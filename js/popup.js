@@ -28,6 +28,36 @@ var rss = [
         url     : "http://dig.chouti.com/all/hot/recent/1",
         icon    : "http://dig.chouti.com/images/chouti_48_48.png",
         selector: ".part1>a.show-content"
+    },
+    {
+        name    : "简书",
+        url     : "http://www.jianshu.com/trending/now",
+        icon    : "http://static.jianshu.io/assets/icon114-fcef1133c955e46bf55e2a60368f687b.png",
+        selector: "h4>a"
+    },
+    {
+        name    : "solidot",
+        url     : "http://www.solidot.org/",
+        icon    : "http://www.solidot.org/favicon.ico",
+        selector: ".bg_htit>h2>a"
+    },
+    /*{
+        name    : "next",
+        url     : "http://next.36kr.com/posts",
+        icon    : "http://next.36kr.com/favicon.ico",
+        selector: ".post-url"
+    },
+    {
+        name    : "mindstore",
+        url     : "http://mindstore.io/",
+        icon    : "http://mindstore.io/static/images/lime/favicon.ico",
+        selector: ".mind-title>a"
+    },*/
+    {
+        name    : "开发者头条",
+        url     : "http://toutiao.io/",
+        icon    : "http://toutiao.io/favicon-96x96.png",
+        selector: "h4>a"
     }
 
 ];
