@@ -87,6 +87,8 @@ function renderTabs(name) {
         var setGray = "";
         if (r.name != currentName) {
             setGray = "class='gray'";
+        }else{
+            setGray="class='active'";
         }
         return memo + "<li " + setGray + " data-name='" + r.name + "'><img src='" + r.icon + "'></li>"
     }, "");

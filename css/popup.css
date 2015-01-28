@@ -11,7 +11,7 @@ ul{
     font-size: 0.8rem;
 }
 #main{
-    width: 400px;
+    width: 300px;
 }
 #main:after{
     content : '';
@@ -20,8 +20,8 @@ ul{
 }
 .tabs{
     width: 40px;
-    float: left;
-    border-right: 1px solid #ddd;
+    float: right;
+    border-left: 1px solid #ddd;
     background: #f1f1f1;
 }
 .tabs>li:hover{
@@ -29,17 +29,30 @@ ul{
 }
 .tabs>li>img{
     max-width: 100%;
+    border-radius: 50%;
 }
 .tabs>li{
-    background-color: #ffffff;
     padding: 4px;
+    background: #f1f1f1;
+    border-top: 1px solid #f1f1f1;
+    border-bottom: 1px solid #f1f1f1;
+}
+.tabs>li.active{
+    margin-left: -1px;
+    background-color: #ffffff!important;
+    border-top: 1px solid #dddddd;
+    border-bottom: 1px solid #dddddd;
+}
+.tabs>li:first-child.active{
+    border-top: none!important;
 }
 .news-list{
     float : left;
-    width: 280px;
+    width: 260px;
 }
 .news-list>li{
     margin: 4px;
+
 }
 
 .news-list>li>a{
@@ -50,17 +63,17 @@ ul{
 
     white-space: nowrap;
     text-overflow: ellipsis;
-    width: 352px;
+    width: 252px;
     overflow: hidden;
 }
 .news-list>li>a:visited{
-    color: #999;
+    color: #ABABAB;
 }
 .news-list>li>a:hover{
     background-color: #DDDDDD;
 }
+
 .gray {
-    background: #f1f1f1!important;
     -webkit-filter: grayscale(100%);
     -moz-filter: grayscale(100%);
     -ms-filter: grayscale(100%);
