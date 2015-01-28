@@ -52,13 +52,13 @@ var rss = [
         url     : "http://mindstore.io/",
         icon    : "http://mindstore.io/static/images/lime/favicon.ico",
         selector: ".mind-title>a"
-    },*/
+    },
     {
         name    : "开发者头条",
         url     : "http://toutiao.io/",
         icon    : "http://toutiao.io/favicon-96x96.png",
         selector: "h4>a"
-    }
+    }*/
 
 ];
 var currentName = localStorage.getItem("currentName") || rss[0].name;
@@ -94,6 +94,18 @@ function renderTabs(name) {
 }
 
 function getRss(current) {
+    function render(data){
+        var html = _.reduce(data, function (memo, d) {
+            return memo + "<li><a target='_blank' href='" + d.link + "'>" + d.title + "</a></li>"
+        }, "");
+        $(".news-list").html(html)
+        $(".tabs").css("height", $("#main").height())
+    }
+    var cache = JSON.parse(localStorage.getItem(current.name));
+    if(cache){
+        render(cache);
+    }
+
     var xhr = new XMLHttpRequest();
     xhr.open("GET", current.url, true);
     xhr.onreadystatechange = function () {
@@ -117,14 +129,12 @@ function getRss(current) {
             }
 
             if (data.length > 0) {
-                var html = _.reduce(data, function (memo, d) {
-                    return memo + "<li><a target='_blank' href='" + d.link + "'>" + d.title + "</a></li>"
-                }, "");
-                $(".news-list").html(html)
-                $(".tabs").css("height", $("#main").height())
+                render(data);
             } else {
                 $(".news-list").html("暂无内容")
             }
+
+            localStorage.setItem(current.name,JSON.stringify(data));
         }
     }
     xhr.send();
