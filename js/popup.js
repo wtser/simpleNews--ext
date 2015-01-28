@@ -26,7 +26,7 @@ var rss = [
     {
         name    : "抽屉新热榜",
         url     : "http://dig.chouti.com/all/hot/recent/1",
-        icon    : "http://dig.chouti.com/images/chouti_48_48.png",
+        icon    : "http://cdn.marketplaceimages.windowsphone.com/v8/images/26738605-6e38-4991-9cdf-20ba1451d635?imageType=ws_icon_large",
         selector: ".part1>a.show-content"
     },
     {
