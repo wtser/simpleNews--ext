@@ -113,7 +113,6 @@ function getRss(current) {
             return memo + "<li><a target='_blank' href='" + d.link + "'>" + d.title + "</a></li>"
         }, "");
         $(".news-list").html(html)
-        $(".tabs").css("height", $("#main").height())
     }
     var cache = JSON.parse(localStorage.getItem(current.name));
     if(cache){
