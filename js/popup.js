@@ -41,7 +41,7 @@ var rss = [
         icon    : "http://www.solidot.org/favicon.ico",
         selector: ".bg_htit>h2>a"
     },
-    {
+    /*{
         name    : "cnbeta",
         url     : "http://m.cnbeta.com/list_hotcomments_1.htm",
         icon    : "https://lh3.ggpht.com/AfjhBAG3hCj-cRTU4b1_bW5HW6vmZ6D73I9O3EhhaZwSgGm4J_yoJl-WZ_LBPko1pWwb=w170",
@@ -52,6 +52,12 @@ var rss = [
         url     : "http://www.ftchinese.com/channel/weekly.html",
         icon    : "http://s.ftimg.net/img/ipad_icon.png",
         selector: "#mostpopulars>span>ul>li>a"
+    },*/
+    {
+        name    : "果壳科学人",
+        url     : "http://www.guokr.com/scientific/",
+        icon    : "http://allaboutwindowsphone.com/images/appicons/123742.png",
+        selector: ".article-title"
     },
     /*{
         name    : "next",
