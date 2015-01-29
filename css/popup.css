@@ -30,6 +30,7 @@ ul{
 .tabs>li>img{
     max-width: 100%;
     border-radius: 50%;
+    display : block;
 }
 .tabs>li{
     padding: 4px;
@@ -45,6 +46,9 @@ ul{
 }
 .tabs>li:first-child.active{
     border-top: none!important;
+}
+.tabs>li:last-child.active{
+    border-bottom: none!important;
 }
 .news-list{
     float : left;

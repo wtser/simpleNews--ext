@@ -3,15 +3,15 @@
       "page": "background.html"
    },
    "browser_action": {
-      /*"default_icon": "icon/19.png",*/
+      "default_icon": "icon/48.png",
       "default_popup": "popup.html",
       "default_title": "hot-ten"
-   },/*
+   },
    "icons": {
       "128": "icon/128.png",
       "16": "icon/16.png",
       "48": "icon/48.png"
-   },*/
+   },
    "manifest_version": 2,
    "name": "hot-ten",
    "options_page": "options.html",

@@ -41,6 +41,18 @@ var rss = [
         icon    : "http://www.solidot.org/favicon.ico",
         selector: ".bg_htit>h2>a"
     },
+    {
+        name    : "cnbeta",
+        url     : "http://m.cnbeta.com/list_hotcomments_1.htm",
+        icon    : "https://lh3.ggpht.com/AfjhBAG3hCj-cRTU4b1_bW5HW6vmZ6D73I9O3EhhaZwSgGm4J_yoJl-WZ_LBPko1pWwb=w170",
+        selector: ".module_list>li>div>a"
+    },
+    {
+        name    : "cnbftchineseeta",
+        url     : "http://www.ftchinese.com/channel/weekly.html",
+        icon    : "http://s.ftimg.net/img/ipad_icon.png",
+        selector: "#mostpopulars>span>ul>li>a"
+    },
     /*{
         name    : "next",
         url     : "http://next.36kr.com/posts",
