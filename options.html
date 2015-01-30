@@ -2,9 +2,57 @@
 <html>
 <head lang="en">
     <meta charset="UTF-8">
-    <title></title>
+    <title>hoten 配置</title>
+    <link rel="stylesheet" href="css/amazeui.min.css">
+    <style>
+        body{
+            font-size: 1.4rem;
+        }
+    </style>
 </head>
 <body>
+<div class="am-g">
+    <div class="am-u-md-2">
+
+        <ul class="am-nav">
+            <li class="am-nav-header">内容源设置</li>
+            <li><a href="#">官方内容源列表</a></li>
+            <li class="am-active"><a href="#">自定义内容源管理</a></li>
+            <li class="am-nav-divider"></li>
+            <li class="am-nav-header">通用设置</li>
+            <li><a href="#">导入／导出</a></li>
+        </ul>
+    </div>
+    <div class="am-u-md-10">
+        <h1>自定义内容源管理</h1>
+        <table class="am-table am-table-bordered am-table-radius am-table-striped">
+            <thead>
+            <tr>
+                <td>显示</td>
+                <td>图标</td>
+                <td>标题</td>
+                <td>网址</td>
+                <td>选择器</td>
+                <td>操作</td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td><input name="isShow" type="checkbox" checked></td>
+                <td><input name="icon" type="text"></td>
+                <td><input name="name" type="text"></td>
+                <td><input name="url" type="text"></td>
+                <td><input name="selector" type="text"></td>
+                <td><button id="add">添</button></td>
+            </tr>
+
+            </tbody>
+        </table>
+
+    </div>
+</div>
+<script src="js/jquery.js"></script>
+<script src="js/underscore-min.js"></script>
 <script src="js/options.js"></script>
 </body>
 </html>
