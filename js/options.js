@@ -24,13 +24,13 @@ $("#add").on("click", function () {
     var newContent = {
         isShow  : _tr.find("[name=isShow]").is(":checked"),
         icon    : _tr.find("[name=icon]").val(),
-        title   : _tr.find("[name=name]").val(),
+        name   : _tr.find("[name=name]").val(),
         url     : _tr.find("[name=url]").val(),
         selector: _tr.find("[name=selector]").val()
     }
     data.push(newContent);
     localStorage.setItem("diyContent",JSON.stringify(data));
-    renderDiyTable();
+    location.reload();
 });
 
 $(".am-table").on("click",".del",function(){
