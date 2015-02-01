@@ -11,7 +11,7 @@ ul{
     font-size: 0.8rem;
 }
 #main{
-    width: 300px;
+    width: 320px;
 }
 #main:after{
     content : '';
@@ -52,7 +52,7 @@ ul{
 }
 .news-list{
     float : left;
-    width: 260px;
+    width: 280px;
 }
 .news-list>li{
     margin: 4px;
@@ -62,16 +62,17 @@ ul{
 .news-list>li>a{
     text-decoration: none;
     color: #333;
-    padding: 8px;
+    padding: 10px;
     display: block;
 
     white-space: nowrap;
     text-overflow: ellipsis;
-    width: 252px;
+    width: 272px;
     overflow: hidden;
+    font-size: 14px;
 }
 .news-list>li>a:visited{
-    color: #ABABAB;
+    color: #cccccc;
 }
 .news-list>li>a:hover{
     background-color: #DDDDDD;
