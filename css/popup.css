@@ -31,6 +31,8 @@ ul{
     max-width: 100%;
     border-radius: 50%;
     display : block;
+    width: 32px;
+    height: 32px;
 }
 .tabs>li{
     padding: 4px;
@@ -45,11 +47,11 @@ ul{
     border-bottom: 1px solid #dddddd;
 }
 .tabs>li:first-child.active{
-    border-top: none!important;
+    border-top-color: #fff!important;
 }
-.tabs>li:last-child.active{
-    border-bottom: none!important;
-}
+/*.tabs>li:last-child.active{
+    border-bottom-color: #fff!important;
+}*/
 .news-list{
     float : left;
     width: 280px;
