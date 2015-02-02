@@ -51,7 +51,8 @@ function getRss(current) {
     var xhr = new XMLHttpRequest();
     xhr.open("GET", current.url, true);
     xhr.onreadystatechange = function () {
-        if (xhr.readyState == 4) {
+        if (xhr.readyState == 4 &&current==window.current) {
+
             var result = xhr.responseText;
             var search = $(result).find(current.selector);
 
