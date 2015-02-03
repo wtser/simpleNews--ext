@@ -55,7 +55,7 @@ if(initState){
         }
     ];
     localStorage.setItem("initState","true");
-    //localStorage.setItem("diyContent",JSON.stringify(rss));
+    localStorage.setItem("diyContent",JSON.stringify(rss));
 }else{
     rss = JSON.parse(localStorage.getItem("diyContent"))||[];
     rss = _.filter(rss,function(r){
