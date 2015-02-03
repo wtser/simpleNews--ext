@@ -16,5 +16,5 @@
    "name": "hoten",
    "options_page": "options.html",
    "permissions": [ "http://*/","https://*/" ],
-   "version": "0.0.1"
+   "version": "0.0.2"
 }
