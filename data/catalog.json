@@ -1,0 +1,20 @@
+[
+  {
+    "slug" : "tech",
+    "name" : "技术",
+    "thumb": "",
+    "desc" : ""
+  },
+  {
+    "slug" : "life",
+    "name" : "生活",
+    "thumb": "",
+    "desc" : ""
+  },
+  {
+    "slug" : "news",
+    "name" : "新闻",
+    "thumb": "",
+    "desc" : ""
+  }
+]
