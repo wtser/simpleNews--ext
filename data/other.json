@@ -1,0 +1,31 @@
+[
+  {
+    "name"    : "简书",
+    "url"     : "http://www.jianshu.com/trending/now",
+    "icon"    : "http://static.jianshu.io/assets/icon114-fcef1133c955e46bf55e2a60368f687b.png",
+    "selector": "h4>a",
+    "isShow"  : true
+  },
+  {
+    "isShow"  : true,
+    "icon"    : "http://img3.douban.com/dae/ps/logo_56-3ef03413a90e85f954c144ced276b089.png",
+    "title"   : "",
+    "url"     : "http://thehours.jd-app.com/",
+    "selector": ".grid>a",
+    "name"    : "一刻热门"
+  },
+  {
+    "isShow"  : true,
+    "icon"    : "http://cdn.marketplaceimages.windowsphone.com/v8/images/26738605-6e38-4991-9cdf-20ba1451d635?imageType=ws_icon_large",
+    "name"    : "抽屉新热榜",
+    "url"     : "http://dig.chouti.com/all/hot/recent/1",
+    "selector": ".part1>a.show-content"
+  },
+  {
+    "isShow"  : true,
+    "icon"    : "http://static.guokr.com/apps/minisite/images/688fdef8.i-logo.png",
+    "name"    : "guokr",
+    "url"     : "http://www.guokr.com/scientific/",
+    "selector": ".article-title"
+  }
+]
