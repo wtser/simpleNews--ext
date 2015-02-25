@@ -16,5 +16,11 @@
     "name" : "人文",
     "thumb": "",
     "desc" : ""
+  },
+  {
+    "slug" : "other",
+    "name" : "其他",
+    "thumb": "",
+    "desc" : ""
   }
 ]

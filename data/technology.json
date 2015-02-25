@@ -13,7 +13,6 @@
     "selector": ".title>a",
     "isShow"  : true
   },
-
   {
     "isShow"  : true,
     "icon"    : "http://www.solidot.org/favicon.ico",
@@ -22,8 +21,6 @@
     "selector": ".bg_htit>h2>a",
     "name"    : "solidot"
   },
-
-
   {
     "isShow"  : true,
     "icon"    : "https://news.ycombinator.com/favicon.ico",
@@ -44,6 +41,12 @@
     "name"    : "果壳网",
     "url"     : "http://www.guokr.com/scientific/",
     "selector": ".article-title"
+  },
+  {
+    "isShow"  : true,
+    "icon"    : "http://www.huxiu.com/favicon.ico",
+    "name"    : "虎嗅看点",
+    "url"     : "http://www.huxiu.com/focus",
+    "selector": "h3>a"
   }
-
 ]

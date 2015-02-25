@@ -130,7 +130,7 @@ function getRss(current) {
                     link : $(search[i]).attr("href")
                 };
                 if (article.link.indexOf("http") == -1) {
-                    var baseUrl = current.url.match(/http[s]?:\/\/+[\s\S]+?\//)[0].slice(0, -1);
+                    var baseUrl = current.url.match(/http[s]?:\/\/+[\s\S]+?\//)[0].slice(0, -1)+"/";
                     article.link = baseUrl + article.link;
                 }
                 data.push(article);

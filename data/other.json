@@ -6,6 +6,6 @@
     "name"    : "抽屉新热榜",
     "url"     : "http://dig.chouti.com/all/hot/recent/1",
     "selector": ".part1>a.show-content"
-  },
+  }
 
 ]
