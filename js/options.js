@@ -35,10 +35,19 @@ var opt = {
 
                 $(".catalog-list").off("click","button");
                 $(".catalog-list").on("click","button",function(){
+                    var currentData = readList[$(this).attr("data-k")];
                     var getDiy = JSON.parse(localStorage.getItem("diyContent"))||[];
-                    getDiy.push(readList[$(this).attr("data-k")]);
-                    localStorage.setItem("diyContent",JSON.stringify(getDiy));
-                    alert("订阅成功")
+                    var hasDingyue = _.find(getDiy,function(f){
+                        return f.name == currentData.name;
+                    });
+                    if(hasDingyue){
+                        alert("已订阅，请勿重复订阅")
+                    }else{
+                        getDiy.push(currentData);
+                        localStorage.setItem("diyContent",JSON.stringify(getDiy));
+                        alert("订阅成功")
+                    }
+
                 });
 
             })
