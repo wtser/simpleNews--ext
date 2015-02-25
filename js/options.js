@@ -21,6 +21,27 @@ var opt = {
         opt[router[hash]]();
     },
     officialContent: function () {
+        $.get("data/catalog.json",function(ret){
+            ret=JSON.parse(ret);
+            var catalist = _.reduce(ret,function(memo,c){
+                return memo+'<li data-slug="'+ c.slug+'">'+ c.name+'</li>';
+            },"")
+            $("#officialContent>.catalogs").html(catalist);
+
+            var catalogJSONFilePath = "data/"+ret[0].slug+".json";
+            $.get(catalogJSONFilePath,function(readList){
+                readList=JSON.parse(readList);
+                var list = _.reduce(readList,function(memo,l,k){
+                    return memo+'<li data-k="'+ k+'" >' +
+                            '<img src="'+ l.icon+'">'+
+                        ''+ l.name+'' +
+                            '<button>订阅</button>'
+                        '</li>';
+                },"")
+                $("#officialContent>.catalog-list").html(list);
+            })
+
+        })
 
     },
     diyContent     : function () {

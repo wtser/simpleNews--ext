@@ -1,19 +1,19 @@
 [
   {
-    "slug" : "tech",
-    "name" : "技术",
-    "thumb": "",
-    "desc" : ""
-  },
-  {
-    "slug" : "life",
-    "name" : "生活",
-    "thumb": "",
-    "desc" : ""
-  },
-  {
     "slug" : "news",
     "name" : "新闻",
+    "thumb": "",
+    "desc" : ""
+  },
+  {
+    "slug" : "technology",
+    "name" : "科技",
+    "thumb": "",
+    "desc" : ""
+  },
+  {
+    "slug" : "humanities",
+    "name" : "人文",
     "thumb": "",
     "desc" : ""
   }
