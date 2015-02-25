@@ -9,9 +9,15 @@
   {
     "isShow"  : true,
     "icon"    : "http://img3.douban.com/dae/ps/logo_56-3ef03413a90e85f954c144ced276b089.png",
-    "title"   : "",
     "url"     : "http://thehours.jd-app.com/",
     "selector": ".grid>a",
     "name"    : "豆瓣一刻"
+  },
+  {
+    "isShow"  : true,
+    "icon"    : "http://static.xgres.com/lianbo/avatar/1199167/120/1354069849",
+    "url"     : "http://xianguo.com/section/4E64C038565A283FFEDDDA17FB978F9E",
+    "selector": ".art-desc .art-t>a",
+    "name"    : "知乎每日精选"
   }
 ]
