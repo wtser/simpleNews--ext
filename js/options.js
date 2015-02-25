@@ -21,6 +21,28 @@ var opt = {
         opt[router[hash]]();
     },
     officialContent: function () {
+        function render(path){
+            $.get(path,function(readList){
+                readList=JSON.parse(readList);
+                var list = _.reduce(readList,function(memo,l,k){
+                    return memo+'<li >' +
+                        '<img src="'+ l.icon+'">'+
+                        ''+ l.name+'' +
+                        '<button data-k="'+ k+'">订阅</button>';
+                    '</li>';
+                },"")
+                $("#officialContent>.catalog-list").html(list);
+
+                $(".catalog-list").off("click","button");
+                $(".catalog-list").on("click","button",function(){
+                    var getDiy = JSON.parse(localStorage.getItem("diyContent"))||[];
+                    getDiy.push(readList[$(this).attr("data-k")]);
+                    localStorage.setItem("diyContent",JSON.stringify(getDiy));
+                    alert("订阅成功")
+                });
+
+            })
+        }
         $.get("data/catalog.json",function(ret){
             ret=JSON.parse(ret);
             var catalist = _.reduce(ret,function(memo,c){
@@ -29,18 +51,14 @@ var opt = {
             $("#officialContent>.catalogs").html(catalist);
 
             var catalogJSONFilePath = "data/"+ret[0].slug+".json";
-            $.get(catalogJSONFilePath,function(readList){
-                readList=JSON.parse(readList);
-                var list = _.reduce(readList,function(memo,l,k){
-                    return memo+'<li data-k="'+ k+'" >' +
-                            '<img src="'+ l.icon+'">'+
-                        ''+ l.name+'' +
-                            '<button>订阅</button>'
-                        '</li>';
-                },"")
-                $("#officialContent>.catalog-list").html(list);
-            })
+            render(catalogJSONFilePath)
 
+        });
+
+        $(".catalogs").on("click","li",function(){
+            var slug = $(this).attr("data-slug");
+            var catalogJSONFilePath = "data/"+slug+".json";
+            render(catalogJSONFilePath)
         })
 
     },

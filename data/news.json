@@ -1,42 +1,10 @@
 [
   {
-    "name"    : "startup news",
-    "url"     : "http://news.dbanotes.net/",
-    "icon"    : "http://news.dbanotes.net/logo.png",
-    "selector": ".title>a",
+    "name"    : "凤凰网今日要闻",
+    "url"     : "http://news.ifeng.com/",
+    "icon"    : "http://a3.att.hudong.com/18/67/01300534773959135942674793711.jpg",
+    "selector": "h4>a",
     "isShow"  : true
-  },
-  {
-    "name"    : "segmentfault",
-    "url"     : "http://segmentfault.com/blogs",
-    "icon"    : "http://static.segmentfault.com/global/img/touch-icon.c78b1075.png",
-    "selector": ".title>a",
-    "isShow"  : true
-  },
-
-  {
-    "isShow"  : true,
-    "icon"    : "http://www.solidot.org/favicon.ico",
-    "title"   : "solidot",
-    "url"     : "http://www.solidot.org/",
-    "selector": ".bg_htit>h2>a",
-    "name"    : "solidot"
-  },
-
-
-  {
-    "isShow"  : true,
-    "icon"    : "https://news.ycombinator.com/favicon.ico",
-    "name"    : "hacker news",
-    "url"     : "https://news.ycombinator.com/",
-    "selector": ".title>a"
-  },
-  {
-    "isShow"  : true,
-    "icon"    : "http://www.v2ex.com/static/img/icon_rayps_64.png",
-    "name"    : "v2ex",
-    "url"     : "http://www.v2ex.com/?tab=hot",
-    "selector": "span.item_title > a"
   }
 
 ]
