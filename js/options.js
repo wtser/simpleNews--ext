@@ -28,16 +28,31 @@ var opt = {
     },
     importExport   : function () {
 
-        $(".export").on("click",function(){
+        $(".export").on("click", function () {
             var data = localStorage.getItem("diyContent");
 
             var blob = new Blob([data], {type: "text/plain;charset=utf-8"});
             saveAs(blob, "hotenBackup.json");
         });
 
-        $(".import").on("change",function(){
-            var file = $(this).val();
-            console.log(file)
+        $(".import").on("change", function (e) {
+            // 检查 File API 支持
+            if (window.File && window.FileReader && window.FileList && window.Blob) {
+                var getFile = e.target.files[0],
+                    reader = new FileReader();
+                reader.onload = function (theFile) {
+                    //写入localstorage
+                    localStorage.setItem("diyContent", theFile.target.result);
+                    alert("导入成功");
+                    location.reload();
+                };
+                reader.readAsText(getFile);
+
+            } else {
+                alert('The File APIs are not fully supported in this browser.');
+            }
+
+
         })
     }
 };
