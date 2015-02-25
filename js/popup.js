@@ -122,6 +122,9 @@ function getRss(current) {
             var data = [];
 
             for (var i = 0, j = 10; i < j; i++) {
+                if(i==search.length){
+                    continue;
+                }
                 var article = {
                     title: $(search[i]).text(),
                     link : $(search[i]).attr("href")

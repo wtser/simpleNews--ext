@@ -2,8 +2,22 @@
   {
     "name"    : "凤凰网今日要闻",
     "url"     : "http://news.ifeng.com/",
-    "icon"    : "http://a3.att.hudong.com/18/67/01300534773959135942674793711.jpg",
+    "icon"    : "http://static.xgres.com/lianbo/avatar/1097834/120/1380005587",
     "selector": "h4>a",
+    "isShow"  : true
+  },
+  {
+    "name"    : "网易新闻",
+    "url"     : "http://news.163.com/jnews/",
+    "icon"    : "http://static.xgres.com/lianbo/avatar/1000463/120/1316745536",
+    "selector": ".name>a",
+    "isShow"  : true
+  },
+  {
+    "name"    : "九个头条",
+    "url"     : "http://www.topnews9.com/lists_1.html",
+    "icon"    : "http://www.topnews9.com/Public/templets/home/images/content/article/portrait-img.jpg",
+    "selector": ".li-right>a",
     "isShow"  : true
   }
 

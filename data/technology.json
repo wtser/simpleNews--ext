@@ -37,6 +37,13 @@
     "name"    : "v2ex",
     "url"     : "http://www.v2ex.com/?tab=hot",
     "selector": "span.item_title > a"
+  },
+  {
+    "isShow"  : true,
+    "icon"    : "http://static.guokr.com/apps/minisite/images/688fdef8.i-logo.png",
+    "name"    : "果壳网",
+    "url"     : "http://www.guokr.com/scientific/",
+    "selector": ".article-title"
   }
 
 ]
