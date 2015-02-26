@@ -15,16 +15,9 @@
   },
   {
     "name"    : "九个头条",
-    "url"     : "http://www.topnews9.com/lists_1.html",
+    "url"     : "http://www.topnews9.com/",
     "icon"    : "http://www.topnews9.com/Public/templets/home/images/content/article/portrait-img.jpg",
-    "selector": ".li-right>a",
-    "isShow"  : true
-  },
-  {
-    "name"    : "壹读",
-    "url"     : "http://yidu.im/",
-    "icon"    : "http://static.xgres.com/lianbo/avatar/1912177/120/1386062574",
-    "selector": ".w a",
+    "selector": "#nine-headlines .title>a",
     "isShow"  : true
   }
 
