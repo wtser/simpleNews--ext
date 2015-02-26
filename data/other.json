@@ -6,6 +6,13 @@
     "name"    : "抽屉新热榜",
     "url"     : "http://dig.chouti.com/all/hot/recent/1",
     "selector": ".part1>a.show-content"
+  },
+  {
+    "isShow"  : true,
+    "icon"    : "http://www.redditstatic.com/favicon.ico",
+    "name"    : "reddit",
+    "url"     : "http://www.reddit.com/",
+    "selector": "#siteTable .title.may-blank"
   }
 
 ]
