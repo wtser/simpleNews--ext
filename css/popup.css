@@ -1,6 +1,7 @@
 *{
     box-sizing: border-box;
 }
+::-webkit-scrollbar {display:none}
 body{
     margin: 0;
 }
@@ -23,6 +24,8 @@ ul{
     float: right;
     border-left: 1px solid #ddd;
     background: #f1f1f1;
+    max-height: 600px;
+    overflow: auto;
 }
 .tabs>li:hover{
     cursor: pointer;
@@ -57,14 +60,14 @@ ul{
     width: 280px;
 }
 .news-list>li{
-    margin: 4px;
+    margin: 6px;
 
 }
 
 .news-list>li>a{
     text-decoration: none;
     color: #333;
-    padding: 10px;
+    padding: 8px;
     display: block;
 
     white-space: nowrap;

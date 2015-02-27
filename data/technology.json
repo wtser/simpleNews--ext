@@ -48,5 +48,12 @@
     "name"    : "虎嗅看点",
     "url"     : "http://www.huxiu.com/focus",
     "selector": "h3>a"
+  },
+  {
+    "isShow"  : true,
+    "icon"    : "http://www.pingwest.com/wp-content/themes/pingwest2014/images/touch-icon.png",
+    "name"    : "PingWest快讯",
+    "url"     : "http://news.pingwest.com/",
+    "selector": ".topic_title>a"
   }
 ]

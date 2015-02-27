@@ -103,7 +103,7 @@ function getRss(current) {
             return memo + "<li><a target='_blank' href='" + d.link + "'>" + d.title + "</a></li>"
         }, "");
         $(".news-list").html(html);
-        $(".tabs").height($(window).height())
+        //$(".tabs").height($(window).height())
     }
     var cache = JSON.parse(localStorage.getItem(current.name));
     if(cache){
@@ -120,6 +120,7 @@ function getRss(current) {
 
 
             var data = [],max=rss.length>10?rss.length:10;
+            if(max>16){max=16}
 
             for (var i = 0; i < max; i++) {
                 if(i==search.length){
