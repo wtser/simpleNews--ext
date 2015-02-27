@@ -119,9 +119,9 @@ function getRss(current) {
             var search = $(result).find(current.selector);
 
 
-            var data = [];
+            var data = [],max=rss.length>10?rss.length:10;
 
-            for (var i = 0, j = 10; i < j; i++) {
+            for (var i = 0; i < max; i++) {
                 if(i==search.length){
                     continue;
                 }
