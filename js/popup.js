@@ -124,7 +124,7 @@ function getRss(current) {
 
             for (var i = 0; i < max; i++) {
                 if(i==search.length){
-                    continue;
+                    break;
                 }
                 var article = {
                     title: $(search[i]).text(),
