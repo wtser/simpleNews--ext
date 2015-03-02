@@ -19,5 +19,12 @@
     "url"     : "http://xianguo.com/section/4E64C038565A283FFEDDDA17FB978F9E",
     "selector": ".art-desc .art-t>a",
     "name"    : "知乎每日精选"
+  },
+  {
+    "isShow"  : true,
+    "icon"    : "http://daily.zhihu.com/favicon.ico",
+    "url"     : "http://daily.zhihu.com/",
+    "selector": ".box>a",
+    "name"    : "知乎日报"
   }
 ]

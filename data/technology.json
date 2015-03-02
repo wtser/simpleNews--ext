@@ -55,5 +55,12 @@
     "name"    : "PingWest快讯",
     "url"     : "http://news.pingwest.com/",
     "selector": ".topic_title>a"
+  },
+  {
+    "isShow"  : true,
+    "icon"    : "http://www.cnbeta.com/favicon.ico",
+    "name"    : "cnbeta",
+    "url"     : "http://m.cnbeta.com/list_dig_1.htm",
+    "selector": ".module_list a"
   }
 ]
