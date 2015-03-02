@@ -50,3 +50,6 @@ background: #efefef;
 #diyContent input[type=text]{
     max-width: 100px;
 }
+#diyContent button{
+    padding: 4px 8px;
+}

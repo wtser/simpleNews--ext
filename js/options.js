@@ -119,7 +119,7 @@ function renderDiyTable() {
             '<td><input name="name" type="text" value="' + d.name + '"></td>' +
             '<td><input name="url" type="text" value="' + d.url + '"></td>' +
             '<td><input name="selector" type="text" value="' + d.selector + '"></td>' +
-            '<td><button class="del">删</button></td>' +
+            '<td><button class="am-btn am-btn-danger am-btn-xs del">删</button></td>' +
             "</tr>";
     }, "");
     $(".am-table>tbody").append(html);
