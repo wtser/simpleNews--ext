@@ -18,6 +18,12 @@
     "desc" : ""
   },
   {
+    "slug" : "aggregation",
+    "name" : "聚合",
+    "thumb": "",
+    "desc" : ""
+  },
+  {
     "slug" : "other",
     "name" : "其他",
     "thumb": "",

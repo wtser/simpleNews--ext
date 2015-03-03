@@ -55,9 +55,10 @@ var opt = {
         $.get("data/catalog.json",function(ret){
             ret=JSON.parse(ret);
             var catalist = _.reduce(ret,function(memo,c){
-                return memo+'<li data-slug="'+ c.slug+'">'+ c.name+'</li>';
+                return memo+'<li data-slug="'+ c.slug+'"><a>'+ c.name+'</a></li>';
             },"")
             $("#officialContent>.catalogs").html(catalist);
+            $("#officialContent>.catalogs>li:first").addClass('am-active');
 
             var catalogJSONFilePath = "data/"+ret[0].slug+".json";
             render(catalogJSONFilePath)
@@ -65,6 +66,8 @@ var opt = {
         });
 
         $(".catalogs").on("click","li",function(){
+            $(".catalogs>.am-active").removeClass('am-active');
+            $(this).addClass('am-active');
             var slug = $(this).attr("data-slug");
             var catalogJSONFilePath = "data/"+slug+".json";
             render(catalogJSONFilePath)
