@@ -3,3 +3,4 @@
 
 .DS_Store
 src/bower_components
+src/node_modules
