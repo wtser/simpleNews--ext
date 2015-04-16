@@ -3,59 +3,48 @@
   margin    : 0 auto;
   font-size : 1rem;
   padding   : 2rem 0;
+
+  .content {
+    margin : 1rem 2rem;
+  }
+
+  .catalogs {
+    list-style    : none;
+    padding       : 0;
+    border-bottom : 1px solid #ddd;
+    margin        : 0;
+
+    li {
+      display : inline-block;
+      padding : 0.5rem 1rem;
+      cursor  : pointer;
+    }
+    .active {
+      border : 1px solid #ddd;
+      border-bottom: none;
+    }
+  }
+
+  .site-info {
+    div {
+      margin-top : 1rem;
+    }
+
+    img {
+      width         : 44px;
+      height        : 44px;
+      border-radius : 50%;
+      overflow      : hidden;
+      float         : left;
+      margin-right  : 0.5rem;
+    }
+    .site-name {
+      line-height : 44px;
+
+    }
+
+  }
 }
 
-#officialContent > .catalogs {
-  margin-bottom : 1rem;
-}
 
-.catalog-list {
-  background : #f0f0f0;
-}
 
-.catalog-list > li {
-  position      : relative;
-  padding       : 1rem;
-  text-overflow : ellipsis;
-  white-space   : nowrap;
-  overflow-x    : hidden;
-  transition    : background 0.2s;
-}
-
-.catalog-list > li > button {
-  position  : absolute;
-  right     : 1rem;
-  top       : 50%;
-  display   : none;
-  transform : translateY(-50%);
-}
-
-.catalog-list > li:hover {
-  background : #dadada;
-}
-
-.catalog-list > li:hover > button {
-  display    : block;
-  padding    : 0.25rem 0.5rem;
-  border     : 1px solid #B6B4B4;
-  background : #efefef;
-}
-
-.catalog-list > li > img {
-  display       : inline-block;
-  margin-right  : 1rem;
-  width         : 40px;
-  border-radius : 50%;
-  overflow      : hidden;
-  border        : 1px solid #ddd;
-  background    : #ffffff;
-  box-shadow    : 1px 1px #ddd;
-}
-
-#diyContent input[type=text] {
-  max-width : 100px;
-}
-
-#diyContent button {
-  padding : 4px 8px;
-}

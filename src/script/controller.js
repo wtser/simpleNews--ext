@@ -105,6 +105,22 @@ angular.module('TenRead.Controllers', [])
 
 
     })
-    .controller('OptionCtrl', function ($scope) {
+    .controller('OptionListCtrl', function ($scope, $http) {
+        $scope.optionList = {};
+        var optionList = $scope.optionList;
+
+        optionList.show = function (slug) {
+            optionList.slug = slug;
+            $http.get('/data/' + slug + '.json').success(function (d) {
+                optionList.sites = d;
+            });
+        };
+
+        $http.get('/data/catalog.json').success(function (d) {
+            optionList.catalogs = d;
+            optionList.slug = d[0].slug;
+            optionList.show(optionList.slug)
+        });
+
 
     });
