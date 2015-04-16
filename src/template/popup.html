@@ -1,1 +1,35 @@
-<h1>popup</h1>
+<div class="popup">
+    <div class="content">
+        <ul class="news-list">
+            <li data-ng-repeat="article in popup.parsedData">
+                <a target="_blank"
+                   href="{{article.href}}">
+                    {{article.title}}
+                </a>
+            </li>
+        </ul>
+
+        <ul class="tabs">
+            <li class="{{ site.status }}"
+                data-ng-repeat="site in popup.sites"
+                data-ng-click="popup.show( $index )"
+                    >
+                <img src="{{ site.icon }}">
+            </li>
+
+        </ul>
+    </div>
+
+    <div class="pure-g control">
+        <div class="pure-u-1-2">
+
+        </div>
+        <div class="pure-u-1-2">
+            <a href="/#/option" class="action"><i class="fa fa-cog"></i></a>
+
+            <a href="javascript:;" class="action {{ popup.loading?'loading':''}}"><i class="fa fa-refresh"></i></a>
+
+        </div>
+    </div>
+
+</div>

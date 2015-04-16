@@ -4,7 +4,7 @@
    },
    "browser_action": {
       "default_icon": "icon/48.png",
-      "default_popup": "popup.html",
+      "default_popup": "index.html/#/popup",
       "default_title": "十阅"
    },
    "icons": {
