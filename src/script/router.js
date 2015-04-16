@@ -24,6 +24,16 @@ angular.module('TenRead', ['ui.router', 'TenRead.Controllers'])
                 templateUrl: "/template/option.html",
                 controller : 'OptionCtrl'
             })
+            .state('option.list', {
+                url        : "/option/list",
+                views:{
+                    'list':{
+                        templateUrl: "/template/option.list.html"
+                    }
+
+                }
+
+            })
             .state('background', {
                 url        : "/background",
                 templateUrl: "/template/option.html"
