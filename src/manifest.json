@@ -1,20 +1,20 @@
 {
-   "background": {
-      "page": "background.html"
-   },
-   "browser_action": {
-      "default_icon": "icon/48.png",
-      "default_popup": "index.html/#/popup",
-      "default_title": "十阅"
-   },
-   "icons": {
-      "128": "icon/128.png",
-      "16": "icon/16.png",
-      "48": "icon/48.png"
-   },
-   "manifest_version": 2,
-   "name": "十阅",
-   "options_page": "options.html",
-   "permissions": [ "http://*/","https://*/" ],
-   "version": "0.1.0"
+  "browser_action"  : {
+    "default_icon" : "icon/48.png",
+    "default_popup": "index.html",
+    "default_title": "十阅"
+  },
+  "icons"           : {
+    "128": "icon/128.png",
+    "16" : "icon/16.png",
+    "48" : "icon/48.png"
+  },
+  "manifest_version": 3,
+  "name"            : "十阅",
+  "options_page"    : "option.html",
+  "permissions"     : [
+    "http://*/",
+    "https://*/"
+  ],
+  "version"         : "1.0.0"
 }

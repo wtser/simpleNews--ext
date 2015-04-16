@@ -104,4 +104,7 @@ angular.module('TenRead.Controllers', [])
         popup.show(popup.index);
 
 
+    })
+    .controller('OptionCtrl', function ($scope) {
+
     });
