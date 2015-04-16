@@ -4,7 +4,7 @@ angular.module('TenRead.Controllers', [])
         $scope.popup = {};
         var popup = $scope.popup;
 
-        popup.sites = [
+        popup.initSites = [
             {
                 "name"    : "startup news",
                 "url"     : "http://news.dbanotes.net/",
@@ -56,11 +56,19 @@ angular.module('TenRead.Controllers', [])
                 "url"     : "http://www.v2ex.com/?tab=hot",
                 "selector": "span.item_title > a"
             }
-        ]
+        ];
 
-        popup.sites[0].status = "active";
+        popup.sites = JSON.parse(localStorage.getItem("sites")) || [];
+        if (popup.sites.length == 0) {
+            popup.sites = popup.initSites;
+            localStorage.setItem("sites", JSON.stringify(popup.sites));
+        }
+
+        popup.index = localStorage.getItem("index") || 0;
+        popup.sites[popup.index].status = "active";
 
         popup.show = function (index) {
+            localStorage.setItem("index", index);
             popup.loading = true;
 
             var site = popup.sites[index];
@@ -69,6 +77,8 @@ angular.module('TenRead.Controllers', [])
                 site.status = "";
             });
             site.status = "active";
+
+            popup.parsedData = JSON.parse(localStorage.getItem("site" + index)) || [];
             $http.get(site.url).success(function (data) {
                 var parsedData = $(data).find(site.selector);
                 popup.parsedData = [];
@@ -84,13 +94,14 @@ angular.module('TenRead.Controllers', [])
                         }
                         article.href = baseUrl + article.href;
                     }
-                    popup.parsedData.push(article)
+                    popup.parsedData.push(article);
+                    localStorage.setItem("site" + index, JSON.stringify(popup.parsedData));
                     popup.loading = false;
                 }
             })
         };
 
-        popup.show(0);
+        popup.show(popup.index);
 
 
     });
