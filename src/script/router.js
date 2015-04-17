@@ -1,14 +1,14 @@
 angular.module('TenRead', ['ui.router', 'TenRead.Controllers'])
 
-.directive("scroll", function ($window) {
-    return function(scope, element, attrs) {
-        angular.element($('.tabs')).bind("scroll", function() {
-            console.log($(this).scrollTop())
+    .directive("scroll", function ($window) {
+        return function (scope, element, attrs) {
+            angular.element($('.tabs')).bind("scroll", function () {
+                console.log($(this).scrollTop())
 
-            scope.$apply();
-        });
-    };
-})
+                scope.$apply();
+            });
+        };
+    })
 
     .config(function ($stateProvider, $urlRouterProvider) {
         //
@@ -31,19 +31,38 @@ angular.module('TenRead', ['ui.router', 'TenRead.Controllers'])
             })
             .state('option', {
                 url        : "/option",
-                templateUrl: "/template/option.html",
-                controller : 'OptionListCtrl'
+                templateUrl: "/template/option.html"
             })
             .state('option.list', {
                 url        : "/list",
                 templateUrl: "/template/option.html",
-                controller : 'OptionListCtrl',
                 views      : {
                     'content': {
-                        templateUrl: "/template/option.list.html"
+                        templateUrl: "/template/option.list.html",
+                        controller : 'OptionListCtrl'
+
                     }
                 }
-
+            })
+            .state('option.mylist', {
+                url        : "/mylist",
+                templateUrl: "/template/option.html",
+                views      : {
+                    'content': {
+                        templateUrl: "/template/option.mylist.html",
+                        controller : 'OptionMyListCtrl'
+                    }
+                }
+            })
+            .state('option.exchange', {
+                url        : "/exchange",
+                templateUrl: "/template/option.html",
+                views      : {
+                    'content': {
+                        templateUrl: "/template/option.exchange.html",
+                        controller : 'OptionExchangeCtrl'
+                    }
+                }
             })
 
     });

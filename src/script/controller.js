@@ -120,7 +120,7 @@ angular.module('TenRead.Controllers', [])
             }).error(function (err) {
                 popup.loading = false;
                 popup.error = true;
-            })
+            });
         };
 
         popup.show(popup.index);
@@ -159,5 +159,59 @@ angular.module('TenRead.Controllers', [])
             optionList.show(optionList.slug)
         });
 
+
+    })
+    .controller('OptionMyListCtrl', function ($scope) {
+        $scope.myList = {};
+        var myList = $scope.myList;
+        myList.form = {
+            icon    : '',
+            url     : '',
+            name    : '',
+            selector: ''
+
+        };
+        myList.form.show = false;
+
+        myList.data = JSON.parse(localStorage.getItem('sites'));
+        myList.add = function () {
+            myList.form = {
+                icon    : '',
+                url     : '',
+                name    : '',
+                selector: ''
+
+            };
+            myList.form.show = true;
+            myList.form.index = -1;
+        };
+        myList.cancel = function () {
+            myList.form.show = false;
+        };
+        myList.edit = function (index) {
+            myList.form = myList.data[index];
+            myList.form.show = true;
+            myList.form.index = index;
+        };
+        myList.del = function (index) {
+            if (confirm("确认删除？")) {
+                myList.data.splice(index, 1);
+                localStorage.setItem("sites", JSON.stringify(myList.data));
+            }
+        };
+        myList.submit = function () {
+            if (myList.form.index == -1) {
+                myList.data.push(myList.form);
+
+            } else {
+
+                myList.data[myList.form.index] = myList.form;
+
+            }
+            localStorage.setItem("sites", JSON.stringify(myList.data));
+            myList.form.show = false;
+        }
+    })
+    .controller('OptionExchangeCtrl', function ($scope) {
 
     });

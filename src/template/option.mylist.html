@@ -1,0 +1,55 @@
+<div class="content">
+
+        <div class="form-modal pure-form pure-form-aligned" data-ng-show="myList.form.show">
+            <fieldset>
+                <div class="pure-control-group">
+                    <label for="name">图标</label>
+                    <input ng-model="myList.form.icon"></label>
+                </div>
+                <div class="pure-control-group">
+                    <label for="name">标题</label>
+                    <input ng-model="myList.form.name"></label>
+                </div>
+                <div class="pure-control-group">
+                    <label for="name">入口地址</label>
+                    <input ng-model="myList.form.url"></label>
+                </div>
+                <div class="pure-control-group">
+                    <label for="name">内容选择器</label>
+                    <input ng-model="myList.form.selector"></label>
+                </div>
+                <div class="pure-controls">
+                    <button class="pure-button pure-button-primary" data-ng-click="myList.submit()">提交</button>
+                    <button class="pure-button" data-ng-click="myList.cancel()">取消</button>
+                </div>
+            </fieldset>
+
+        </div>
+
+    <p>
+        <button class="pure-button pure-button-primary" data-ng-click="myList.add()">添加资源</button>
+    </p>
+
+    <table class="pure-table">
+        <thead>
+        <tr>
+            <th>图标</th>
+            <th>标题</th>
+            <th>入口地址</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr data-ng-repeat="site in myList.data">
+            <td><img style="width: 32px;" src=" {{site.icon}}"></td>
+            <td> {{site.name}}</td>
+            <td> {{site.url}}</td>
+            <td>
+                <button class="pure-button pure-button-primary" data-ng-click="myList.edit($index)">修改</button>
+                <button class="pure-button" data-ng-click="myList.del($index)">删除</button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+</div>
