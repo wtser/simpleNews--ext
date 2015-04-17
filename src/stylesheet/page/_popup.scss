@@ -10,6 +10,9 @@
   .content {
     background    : #f1f1f1;
     border-bottom : 1px solid #ddd;
+    overflow      : hidden;
+    position      : relative;
+
     &:after {
       content : '';
       display : block;
@@ -21,6 +24,7 @@
       float        : left;
       width        : 318px;
       border-right : 1px solid #ddd;
+      min-height   : 385px;
 
       li {
         margin : 6px 4px;
@@ -49,9 +53,12 @@
     .tabs {
       width      : 40px;
       background : #f1f1f1;
-      max-height : 600px;
-      overflow   : auto;
-      display    : table;
+      max-height : 386px;
+      display    : block;
+      position   : absolute;
+      right      : 0;
+      top        : 0;
+      overflow-y: scroll;
       li {
         padding        : 4px;
         background     : #f1f1f1;

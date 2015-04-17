@@ -20,16 +20,27 @@
       cursor  : pointer;
     }
     .active {
-      border : 1px solid #ddd;
-      border-bottom: none;
+      border        : 1px solid #ddd;
+      border-bottom : none;
     }
   }
 
   .site-info {
     div {
       margin-top : 1rem;
+      &:hover {
+        .subscribe {
+          display : inline;
+        }
+        .site-name {
+          display : none;
+        }
+      }
     }
-
+    .subscribe {
+      display         : none;
+      text-decoration : none;
+    }
     img {
       width         : 44px;
       height        : 44px;
@@ -38,7 +49,7 @@
       float         : left;
       margin-right  : 0.5rem;
     }
-    .site-name {
+    .site-name, .subscribe {
       line-height : 44px;
 
     }

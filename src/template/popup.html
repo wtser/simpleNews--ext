@@ -1,6 +1,7 @@
 <div class="popup">
     <div class="content">
         <ul class="news-list">
+            <div data-ng-show="popup.error"><h1>该网站暂不可用，访问超时。</h1></div>
             <li data-ng-repeat="article in popup.parsedData">
                 <a target="_blank"
                    href="{{article.href}}">
@@ -27,7 +28,10 @@
         <div class="pure-u-1-2">
             <a target="_blank" href="#/option/list" class="action"><i class="fa fa-cog"></i></a>
 
-            <a href="javascript:;" class="action {{ popup.loading?'loading':''}}"><i class="fa fa-refresh"></i></a>
+            <a href="javascript:;"
+               class="action {{ popup.loading?'loading':''}}"
+               data-ng-click="popup.show(popup.index)"
+                    ><i class="fa fa-refresh"></i></a>
 
         </div>
     </div>

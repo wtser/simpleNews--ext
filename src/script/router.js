@@ -1,5 +1,15 @@
 angular.module('TenRead', ['ui.router', 'TenRead.Controllers'])
 
+.directive("scroll", function ($window) {
+    return function(scope, element, attrs) {
+        angular.element($('.tabs')).bind("scroll", function() {
+            console.log($(this).scrollTop())
+
+            scope.$apply();
+        });
+    };
+})
+
     .config(function ($stateProvider, $urlRouterProvider) {
         //
         // For any unmatched url, redirect to /state1

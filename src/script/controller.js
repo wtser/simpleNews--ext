@@ -1,8 +1,15 @@
 angular.module('TenRead.Controllers', [])
 
-    .controller('PopupCtrl', function ($scope, $http) {
+
+    .controller('PopupCtrl', function ($scope, $http, $timeout) {
         $scope.popup = {};
         var popup = $scope.popup;
+
+        popup.scrollTop = localStorage.getItem("scrollTop") || 0;
+
+        $timeout(function () {
+            $(".tabs").scrollTop(popup.scrollTop);
+        }, 10);
 
         popup.initSites = [
             {
@@ -68,7 +75,13 @@ angular.module('TenRead.Controllers', [])
         popup.sites[popup.index].status = "active";
 
         popup.show = function (index) {
+            if (index != localStorage.getItem("index")) {
+                popup.scrollTop = $(".tabs").scrollTop();
+                localStorage.setItem("scrollTop", popup.scrollTop);
+            }
+            popup.error = false;
             localStorage.setItem("index", index);
+            popup.index = index;
             popup.loading = true;
 
             var site = popup.sites[index];
@@ -79,7 +92,13 @@ angular.module('TenRead.Controllers', [])
             site.status = "active";
 
             popup.parsedData = JSON.parse(localStorage.getItem("site" + index)) || [];
-            $http.get(site.url).success(function (data) {
+            $http.get(site.url, {
+                timeout: 6000
+            }).success(function (data, status) {
+                if (status != 200) {
+                    $(".news-list").html(data);
+                    return;
+                }
                 var parsedData = $(data).find(site.selector);
                 popup.parsedData = [];
                 for (var i = 0, max = 10; i < max; i++) {
@@ -98,6 +117,9 @@ angular.module('TenRead.Controllers', [])
                     localStorage.setItem("site" + index, JSON.stringify(popup.parsedData));
                     popup.loading = false;
                 }
+            }).error(function (err) {
+                popup.loading = false;
+                popup.error = true;
             })
         };
 
@@ -109,11 +131,26 @@ angular.module('TenRead.Controllers', [])
         $scope.optionList = {};
         var optionList = $scope.optionList;
 
+        optionList.sites = JSON.parse(localStorage.getItem("sites")) || [];
+
         optionList.show = function (slug) {
             optionList.slug = slug;
             $http.get('/data/' + slug + '.json').success(function (d) {
-                optionList.sites = d;
+                optionList.currentSites = d;
             });
+        };
+
+        optionList.subscribe = function (site) {
+            var hasSubscribe = optionList.sites.filter(function (s) {
+                return s.name == site.name;
+            });
+            if (hasSubscribe.length > 0) {
+                alert("该项已订阅")
+            } else {
+                optionList.sites.push(site);
+                localStorage.setItem("sites", JSON.stringify(optionList.sites));
+                alert("订阅成功")
+            }
         };
 
         $http.get('/data/catalog.json').success(function (d) {
