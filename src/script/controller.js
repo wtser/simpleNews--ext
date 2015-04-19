@@ -131,11 +131,13 @@ angular.module('TenRead.Controllers', [])
         $scope.optionList = {};
         var optionList = $scope.optionList;
 
+        optionList.domain = 'http://github.wtser.com/hoten/data/';
+
         optionList.sites = JSON.parse(localStorage.getItem("sites")) || [];
 
         optionList.show = function (slug) {
             optionList.slug = slug;
-            $http.get('/data/' + slug + '.json').success(function (d) {
+            $http.get(optionList.domain + slug + '.json').success(function (d) {
                 optionList.currentSites = d;
             });
         };
@@ -153,7 +155,7 @@ angular.module('TenRead.Controllers', [])
             }
         };
 
-        $http.get('/data/catalog.json').success(function (d) {
+        $http.get(optionList.domain + 'catalog.json').success(function (d) {
             optionList.catalogs = d;
             optionList.slug = d[0].slug;
             optionList.show(optionList.slug)
