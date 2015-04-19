@@ -11,7 +11,13 @@ gulp.task('sass', function () {
 });
 
 
-var sassWatcher = gulp.watch(['./stylesheet/*/*.scss', './stylesheet/*.scss','./script/*'], ['build']);
+var sassWatcher = gulp.watch([
+    './stylesheet/*/*.scss',
+    './stylesheet/*.scss',
+    './script/*',
+    './template/*',
+    '*.html'
+], ['build']);
 sassWatcher.on('change', function (event) {
     console.log('File ' + event.path + ' was ' + event.type + ', running tasks...');
 
