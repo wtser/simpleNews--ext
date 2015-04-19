@@ -6,7 +6,7 @@
 
 ## 贡献自定义内容源
 
-Fork 此项目，修改 xxx.json 并 pull request。
+Fork 此项目，修改 data 目录下的 *.json 并 pull request。
 
 ## todo
 
