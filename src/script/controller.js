@@ -1,6 +1,5 @@
 angular.module('TenRead.Controllers', [])
 
-
     .controller('PopupCtrl', function ($scope, $http, $timeout) {
         $scope.popup = {};
         var popup = $scope.popup;
