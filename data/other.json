@@ -1,32 +1,26 @@
 [
-
   {
-    "isShow"  : true,
-    "icon"    : "http://next.36kr.com/favicon.ico",
-    "name"    : "next",
-    "url"     : "http://next.36kr.com/posts",
+    "icon": "http://next.36kr.com/favicon.ico",
+    "name": "NEXT",
+    "url": "http://next.36kr.com/posts",
     "selector": ".product-url>a"
   },
   {
-    "isShow"  : true,
-    "icon"    : "http://assets.imedao.com/images/favicon.png",
-    "name"    : "雪球",
-    "url"     : "http://xueqiu.com/today/all",
+    "icon": "http://assets.imedao.com/images/favicon.png",
+    "name": "雪球",
+    "url": "http://xueqiu.com/today/all",
     "selector": ".list_item_tit>a"
   },
   {
-    "isShow"  : true,
-    "icon"    : "http://s.jandan.com/static/img/appicon.png",
-    "name"    : "煎蛋",
-    "url"     : "http://jandan.net/",
+    "icon": "http://s.jandan.com/static/img/appicon.png",
+    "name": "煎蛋",
+    "url": "http://jandan.net/",
     "selector": "h2>a"
   },
   {
-    "isShow"  : true,
-    "icon"    : "http://mindstore.io/static/images/lime/favicon.ico",
-    "name"    : "mindstore",
-    "url"     : "http://mindstore.io/",
+    "icon": "http://mindstore.io/static/images/lime/favicon.ico",
+    "name": "mindstore",
+    "url": "http://mindstore.io/",
     "selector": ".mind-title>a"
   }
-
 ]

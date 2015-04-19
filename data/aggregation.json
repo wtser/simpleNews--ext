@@ -1,19 +1,14 @@
 [
-
   {
-    "isShow"  : true,
-    "icon"    : "http://cdn.marketplaceimages.windowsphone.com/v8/images/26738605-6e38-4991-9cdf-20ba1451d635?imageType=ws_icon_large",
-    "name"    : "抽屉新热榜",
-    "url"     : "http://dig.chouti.com/all/hot/recent/1",
+    "icon": "http://cdn.marketplaceimages.windowsphone.com/v8/images/26738605-6e38-4991-9cdf-20ba1451d635?imageType=ws_icon_large",
+    "name": "抽屉新热榜",
+    "url": "http://dig.chouti.com/all/hot/recent/1",
     "selector": ".part1>a.show-content"
   },
   {
-    "isShow"  : true,
-    "icon"    : "http://www.redditstatic.com/favicon.ico",
-    "name"    : "reddit",
-    "url"     : "http://www.reddit.com/",
+    "icon": "http://www.redditstatic.com/favicon.ico",
+    "name": "reddit",
+    "url": "http://www.reddit.com/",
     "selector": "#siteTable .title.may-blank"
   }
-
-
 ]
