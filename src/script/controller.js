@@ -42,14 +42,6 @@ angular.module('TenRead.Controllers', [])
             },
             {
                 "isShow"  : true,
-                "icon"    : "http://img3.douban.com/dae/ps/logo_56-3ef03413a90e85f954c144ced276b089.png",
-                "title"   : "",
-                "url"     : "http://thehours.jd-app.com/",
-                "selector": ".grid>a",
-                "name"    : "一刻热门"
-            },
-            {
-                "isShow"  : true,
                 "icon"    : "https://news.ycombinator.com/favicon.ico",
                 "name"    : "hacker news",
                 "url"     : "https://news.ycombinator.com/",
@@ -92,7 +84,7 @@ angular.module('TenRead.Controllers', [])
 
             popup.parsedData = JSON.parse(localStorage.getItem("site" + index)) || [];
             $http.get(site.url, {
-                timeout: 6000
+                timeout: 10000
             }).success(function (data, status) {
                 if (status != 200) {
                     $(".news-list").html(data);
