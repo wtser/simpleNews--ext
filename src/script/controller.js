@@ -131,7 +131,7 @@ angular.module('TenRead.Controllers', [])
         $scope.optionList = {};
         var optionList = $scope.optionList;
 
-        optionList.domain = 'http://github.wtser.com/hoten/data/';
+        optionList.domain = 'http://github.wtser.com/tenread/data/';
 
         optionList.sites = JSON.parse(localStorage.getItem("sites")) || [];
 
