@@ -4,7 +4,7 @@
             <div data-ng-show="popup.error"><h1>该网站暂不可用，访问超时。</h1></div>
             <li data-ng-repeat="article in popup.parsedData">
                 <a target="_blank"
-                   title="{{article.title}}"
+                   title="{{article.title.length>20?article.title:''}}"
                    href="{{article.href}}">
                     {{article.title}}
                 </a>

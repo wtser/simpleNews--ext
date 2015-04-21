@@ -94,7 +94,7 @@ angular.module('TenRead.Controllers', [])
                 popup.parsedData = [];
                 for (var i = 0, max = 10; i < max; i++) {
                     var article = {
-                        title: $(parsedData[i]).text(),
+                        title: $.trim($(parsedData[i]).text()),
                         href : $(parsedData[i]).attr("href")
                     };
                     if (article.href.indexOf("http") == -1) {
