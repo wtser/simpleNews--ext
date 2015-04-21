@@ -15,9 +15,9 @@ angular.module('TenRead', ['ui.router', 'TenRead.Controllers'])
         // For any unmatched url, redirect to /state1
         $urlRouterProvider.otherwise(function ($injector, $location) {
             if (location.hash == '' && location.pathname == "/option.html") {
-                location.href = location.href + '/#/option/list'
+                location.href = location.href + '#/option/list'
             } else {
-                location.href = location.href + '/#/popup'
+                location.href = location.href + '#/popup'
             }
         });
 
