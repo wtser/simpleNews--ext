@@ -14,6 +14,9 @@ Fork 此项目，修改 data 目录下的 *.json 并 pull request。
 
 4. 导入导出功能
 
+## 使用扩展
 
+[下载 chrome 扩展](https://chrome.google.com/webstore/detail/%E5%8D%81%E9%98%85/bpnpkcfhagdgccpikdkldbnngifepibc)
 
+[hoten.crx](http://wtser.u.qiniudn.com/hoten.crx) 
 
