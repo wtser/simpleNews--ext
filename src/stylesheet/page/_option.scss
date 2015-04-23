@@ -1,66 +1,63 @@
-.option {
+.chrome-bootstrap{
   max-width : 960px;
   margin    : 0 auto;
-  font-size : 1rem;
-  padding   : 2rem 0;
+}
+.mainview {
 
-  .content {
-    margin : 1rem 2rem;
-    .form-modal {
-      position   : absolute;
-      background : #fff;
-      border     : 8px solid #B0B0B0;
-      padding    : 1rem;
-      width      : 500px;
-      left       : 50%;
-      top        : 50%;
-      transform  : translate(-50%, -50%);
-    }
+  .form-modal {
+    position: absolute;
+    background: #fff;
+    border: 8px solid #B0B0B0;
+    padding: 1rem;
+    width: 500px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
   }
 
   .catalogs {
-    list-style    : none;
-    padding       : 0;
-    border-bottom : 1px solid #ddd;
-    margin        : 0;
+    list-style: none;
+    padding: 0;
+    border-bottom: 1px solid #ddd;
+    margin: 0;
 
     li {
-      display : inline-block;
-      padding : 0.5rem 1rem;
-      cursor  : pointer;
+      display: inline-block;
+      padding: 0.5rem 1rem;
+      cursor: pointer;
     }
     .active {
-      border        : 1px solid #ddd;
-      border-bottom : none;
+      border: 1px solid #ddd;
+      border-bottom: none;
     }
   }
 
   .site-info {
     div {
-      margin-top : 1rem;
+      margin-top: 1rem;
       &:hover {
         .subscribe {
-          display : inline;
+          display: inline;
         }
         .site-name {
-          display : none;
+          display: none;
         }
       }
     }
     .subscribe {
-      display         : none;
-      text-decoration : none;
+      display: none;
+      text-decoration: none;
     }
     img {
-      width         : 44px;
-      height        : 44px;
-      border-radius : 50%;
-      overflow      : hidden;
-      float         : left;
-      margin-right  : 0.5rem;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      overflow: hidden;
+      float: left;
+      margin-right: 0.5rem;
     }
     .site-name, .subscribe {
-      line-height : 44px;
+      line-height: 44px;
 
     }
 

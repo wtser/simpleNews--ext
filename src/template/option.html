@@ -1,26 +1,21 @@
-<style>
-    body{
-        background: rgba(241, 241, 241, 0.5);
-    }
-</style>
-<div class="pure-g option">
-    <div class="pure-u-1-5">
-        <ul>
-            <li>
-                <h2>订阅设置</h2>
-                <ul>
-                    <li><a href="#/option/list">订阅资源</a></li>
-                    <li><a href="#/option/mylist">资源管理</a></li>
-                </ul>
-            </li>
-            <!--<li>
-                <h2>通用设置</h2>
-                <ul>
-                    <li><a href="#/option/exchange">导入/导出</a></li>
-                </ul>
-            </li>-->
-        </ul>
-
+<div class="chrome-bootstrap">
+    <div class="frame">
+        <div class="navigation">
+            <h1><a href="#">十阅</a></h1>
+            <ul class="menu">
+                <li class="selected">
+                    <a href="#/option/list">订阅商店</a>
+                </li>
+                <li>
+                    <a href="#/option/mylist">订阅管理</a>
+                </li>
+            </ul>
+            <!--<ul class="menu">
+                <li>
+                    <a href="#examples">导入/导出</a>
+                </li>
+            </ul>-->
+        </div>
+        <div class="mainview view" ui-view="content"></div>
     </div>
-    <div class="pure-u-4-5" ui-view="content"></div>
 </div>

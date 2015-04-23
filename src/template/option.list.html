@@ -1,20 +1,28 @@
-<div class="content">
-    <ul class="catalogs">
-        <li data-ng-repeat="catalog in optionList.catalogs"
-            data-ng-click="optionList.show(catalog.slug)"
-            class="{{optionList.slug==catalog.slug?'active':''}}"
-                >{{catalog.name}}
-        </li>
-    </ul>
+<div class="selected">
+        <header>
+            <h1>Typography</h1>
+        </header>
+        <div class="content">
+            <ul class="catalogs">
+                <li data-ng-repeat="catalog in optionList.catalogs"
+                    data-ng-click="optionList.show(catalog.slug)"
+                    class="{{optionList.slug==catalog.slug?'active':''}}"
+                        >{{catalog.name}}
+                </li>
+            </ul>
 
-    <div class="pure-g site-info">
-        <div class="pure-u-1-3"
-             data-ng-repeat="site in optionList.currentSites"
-                >
-            <img src="{{site.icon}}">
-            <a href="javascript:;" class="subscribe"
-               data-ng-click="optionList.subscribe(site)">点击订阅</a>
-            <span class="site-name">{{site.name}}</span>
+            <div class="pure-g site-info">
+                <div class="pure-u-1-3"
+                     data-ng-repeat="site in optionList.currentSites"
+                        >
+                    <img src="{{site.icon}}">
+                    <a href="javascript:;" class="subscribe"
+                       data-ng-click="optionList.subscribe(site)">点击订阅</a>
+                    <span class="site-name">{{site.name}}</span>
+                </div>
+            </div>
         </div>
     </div>
-</div>
+
+
+
