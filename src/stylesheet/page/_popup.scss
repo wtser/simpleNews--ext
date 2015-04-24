@@ -1,93 +1,93 @@
 .popup {
-  width : 360px;
+  width: 360px;
 
   ul {
-    list-style : none;
-    margin     : 0;
-    padding    : 0;
+    list-style: none;
+    margin: 0;
+    padding: 0;
   }
 
   .content {
-    background    : #f1f1f1;
-    border-bottom : 1px solid #ddd;
-    overflow      : hidden;
-    position      : relative;
+    background: #f1f1f1;
+    border-bottom: 1px solid #ddd;
+    overflow: hidden;
+    position: relative;
 
     &:after {
-      content : '';
-      display : block;
-      clear   : both;
+      content: '';
+      display: block;
+      clear: both;
     }
 
     .news-list {
-      background   : #fff;
-      float        : left;
-      width        : 318px;
-      border-right : 1px solid #ddd;
-      min-height   : 385px;
+      background: #fff;
+      float: left;
+      width: 318px;
+      border-right: 1px solid #ddd;
+      min-height: 385px;
 
       li {
-        margin : 6px 4px;
+        margin: 6px 4px;
 
         a {
-          text-decoration : none;
-          color           : #333;
-          padding         : 8px;
-          display         : block;
-          white-space     : nowrap;
-          text-overflow   : ellipsis;
-          overflow        : hidden;
-          font-size       : 14px;
+          text-decoration: none;
+          color: #333;
+          padding: 8px;
+          display: block;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+          overflow: hidden;
+          font-size: 14px;
 
           &:visited {
-            color : #cccccc;
+            color: #cccccc;
           }
 
           &:hover {
-            background-color : #DDDDDD;
+            background-color: #DDDDDD;
           }
         }
       }
     }
 
     .tabs {
-      width      : 40px;
-      background : #f1f1f1;
-      max-height : 386px;
-      display    : block;
+      width: 40px;
+      background: #f1f1f1;
+      max-height: 386px;
+      display: block;
 
       overflow-y: scroll;
       li {
-        padding        : 4px;
-        background     : #f1f1f1;
-        border-top     : 1px solid #f1f1f1;
-        border-bottom  : 1px solid #f1f1f1;
+        padding: 4px;
+        background: #f1f1f1;
+        border-top: 1px solid #f1f1f1;
+        border-bottom: 1px solid #f1f1f1;
 
-        -webkit-filter : grayscale(100%);
-        filter         : grayscale(100%);
+        -webkit-filter: grayscale(100%);
+        filter: grayscale(100%);
 
         &:hover {
-          cursor : pointer;
+          cursor: pointer;
         }
         &.active {
-          display          : inline-block;
-          margin-left      : -1px;
-          padding-left     : 5px;
-          background-color : #ffffff !important;
-          border-top       : 1px solid #dddddd;
-          border-bottom    : 1px solid #dddddd;
-          -webkit-filter   : none;
-          filter           : none;
+          display: inline-block;
+          margin-left: -1px;
+          padding-left: 5px;
+          background-color: #ffffff !important;
+          border-top: 1px solid #dddddd;
+          border-bottom: 1px solid #dddddd;
+          -webkit-filter: none;
+          filter: none;
         }
         &:first-child.active {
-          border-top-color : #fff !important;
+          border-top-color: #fff !important;
         }
 
         img {
-          max-width     : 100%;
-          border-radius : 50%;
-          width         : 32px;
-          height        : 32px;
+          max-width: 100%;
+          border-radius: 50%;
+          width: 32px;
+          height: 32px;
         }
       }
     }
@@ -95,16 +95,16 @@
   }
 
   .control {
-    background : #fff;
+    background: #fff;
     .action {
-      font-size : 1.4rem;
-      float     : right;
-      padding   : 0.5rem;
-      color     : #666;
+      font-size: 1.4rem;
+      float: right;
+      padding: 0.5rem;
+      color: #666;
     }
     .loading {
-      transform         : rotate(0deg);
-      -webkit-animation : loading 2s infinite linear;
+      transform: rotate(0deg);
+      -webkit-animation: loading 2s infinite linear;
     }
 
   }
@@ -112,9 +112,9 @@
 
 @-webkit-keyframes loading {
   0% {
-    transform : rotate(0deg);
+    transform: rotate(0deg);
   }
   100% {
-    transform : rotate(360deg);
+    transform: rotate(360deg);
   }
 }

@@ -1,6 +1,11 @@
 angular.module('TenRead.Controllers', [])
 
     .controller('PopupCtrl', function ($scope, $http, $timeout) {
+
+        $('.news-list').on('click', 'a', function (e) {
+            e.preventDefault();
+        });
+
         $scope.popup = {};
         var popup = $scope.popup;
 
@@ -117,7 +122,13 @@ angular.module('TenRead.Controllers', [])
         popup.show(popup.index);
 
         popup.sync = function (article) {
-            $http.post('http://tenread.wtser.com/api/sync', article);
+            $http.post('http://tenread.wtser.com/api/sync', article, {
+                timeout: 300
+            }).success(function () {
+                window.open(article.href)
+            }).error(function () {
+                window.open(article.href)
+            });
         }
 
 

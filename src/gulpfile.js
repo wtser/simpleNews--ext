@@ -27,8 +27,7 @@ gulp.task('compressJS', function () {
     gulp.src([
         'bower_components/angular/angular.min.js',
         'bower_components/angular-ui-router/release/angular-ui-router.min.js',
-        'script/router.js',
-        'script/controller.js',
+        'script/*.js',
         'bower_components/zepto/zepto.min.js'
     ])
 
