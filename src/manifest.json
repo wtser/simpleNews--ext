@@ -1,7 +1,7 @@
 {
   "browser_action"  : {
     "default_icon" : "icon/48.png",
-    "default_popup": "index.html",
+    "default_popup": "index.html#/popup",
     "default_title": "十阅"
   },
   "icons"           : {
@@ -11,10 +11,10 @@
   },
   "manifest_version": 2,
   "name"            : "十阅",
-  "options_page"    : "option.html",
+  "options_page"    : "index.html#/option/list",
   "permissions"     : [
     "http://*/",
     "https://*/"
   ],
-  "version"         : "1.0.1"
+  "version"         : "1.1.0"
 }

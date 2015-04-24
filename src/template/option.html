@@ -1,13 +1,13 @@
-<div class="chrome-bootstrap">
+<div class="chrome-bootstrap" data-ng-controller="OptionCtrl">
     <div class="frame">
         <div class="navigation">
             <h1><a href="#">十阅</a></h1>
             <ul class="menu">
-                <li class="selected">
+                <li class="{{ state =='option.list'?'selected':''}}">
                     <a href="#/option/list">订阅商店</a>
                 </li>
-                <li>
-                    <a href="#/option/mylist">订阅管理</a>
+                <li class="{{ state =='option.mylist'?'selected':''}}">
+                    <a href="#/option/mylist">我的订阅</a>
                 </li>
             </ul>
             <!--<ul class="menu">
@@ -17,5 +17,35 @@
             </ul>-->
         </div>
         <div class="mainview view" ui-view="content"></div>
+    </div>
+    <div class="overlay" data-ng-show="myList.form.show">
+        <div class="page">
+            <h1>订阅表单</h1>
+
+            <div class="close-button" data-ng-click="myList.cancel()"></div>
+            <div class="content-area">
+
+                <p>图标</p>
+                <input ng-model="myList.form.icon">
+
+                <p>标题</p>
+                <input ng-model="myList.form.name">
+
+                <p for="name">入口地址</p>
+                <input ng-model="myList.form.url"></label>
+
+                <p for="name">内容选择器</p>
+                <input ng-model="myList.form.selector"></label>
+
+            </div>
+            <div class="action-area">
+                <div class="action-area-right">
+                    <div class="button-strip">
+                        <button data-ng-click="myList.cancel()">取消</button>
+                        <button data-ng-click="myList.submit()">提交</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>

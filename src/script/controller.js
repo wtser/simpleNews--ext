@@ -12,46 +12,46 @@ angular.module('TenRead.Controllers', [])
 
         popup.initSites = [
             {
-                "name"    : "startup news",
-                "url"     : "http://news.dbanotes.net/",
-                "icon"    : "http://news.dbanotes.net/logo.png",
+                "name": "startup news",
+                "url": "http://news.dbanotes.net/",
+                "icon": "http://news.dbanotes.net/logo.png",
                 "selector": ".title>a",
-                "isShow"  : true
+                "isShow": true
             },
             {
-                "name"    : "segmentfault",
-                "url"     : "http://segmentfault.com/blogs",
-                "icon"    : "http://static.segmentfault.com/global/img/touch-icon.c78b1075.png",
+                "name": "segmentfault",
+                "url": "http://segmentfault.com/blogs",
+                "icon": "http://static.segmentfault.com/global/img/touch-icon.c78b1075.png",
                 "selector": ".title>a",
-                "isShow"  : true
+                "isShow": true
             },
             {
-                "name"    : "简书",
-                "url"     : "http://www.jianshu.com/trending/now",
-                "icon"    : "http://static.jianshu.io/assets/icon114-fcef1133c955e46bf55e2a60368f687b.png",
+                "name": "简书",
+                "url": "http://www.jianshu.com/trending/now",
+                "icon": "http://static.jianshu.io/assets/icon114-fcef1133c955e46bf55e2a60368f687b.png",
                 "selector": "h4>a",
-                "isShow"  : true
+                "isShow": true
             },
             {
-                "isShow"  : true,
-                "icon"    : "http://www.solidot.org/favicon.ico",
-                "title"   : "solidot",
-                "url"     : "http://www.solidot.org/",
+                "isShow": true,
+                "icon": "http://www.solidot.org/favicon.ico",
+                "title": "solidot",
+                "url": "http://www.solidot.org/",
                 "selector": ".bg_htit>h2>a",
-                "name"    : "solidot"
+                "name": "solidot"
             },
             {
-                "isShow"  : true,
-                "icon"    : "https://news.ycombinator.com/favicon.ico",
-                "name"    : "hacker news",
-                "url"     : "https://news.ycombinator.com/",
+                "isShow": true,
+                "icon": "https://news.ycombinator.com/favicon.ico",
+                "name": "hacker news",
+                "url": "https://news.ycombinator.com/",
                 "selector": ".title>a"
             },
             {
-                "isShow"  : true,
-                "icon"    : "http://www.v2ex.com/static/img/icon_rayps_64.png",
-                "name"    : "v2ex",
-                "url"     : "http://www.v2ex.com/?tab=hot",
+                "isShow": true,
+                "icon": "http://www.v2ex.com/static/img/icon_rayps_64.png",
+                "name": "v2ex",
+                "url": "http://www.v2ex.com/?tab=hot",
                 "selector": "span.item_title > a"
             }
         ];
@@ -95,7 +95,7 @@ angular.module('TenRead.Controllers', [])
                 for (var i = 0, max = 10; i < max; i++) {
                     var article = {
                         title: $.trim($(parsedData[i]).text()),
-                        href : $(parsedData[i]).attr("href")
+                        href: $(parsedData[i]).attr("href")
                     };
                     if (article.href.indexOf("http") == -1) {
                         var baseUrl = site.url.match(/http[s]?:\/\/+[\s\S]+?\//)[0].slice(0, -1);
@@ -117,6 +117,12 @@ angular.module('TenRead.Controllers', [])
         popup.show(popup.index);
 
 
+    })
+    .controller('OptionCtrl', function ($scope) {
+        $scope.state = 'option.list';
+        $scope.$on('$stateChangeSuccess', function (evt, toState) {
+            $scope.state = toState.name;
+        })
     })
     .controller('OptionListCtrl', function ($scope, $http) {
         $scope.optionList = {};
@@ -154,13 +160,14 @@ angular.module('TenRead.Controllers', [])
 
 
     })
-    .controller('OptionMyListCtrl', function ($scope) {
+    .controller('OptionMyListCtrl', function ($scope, $rootScope) {
         $scope.myList = {};
         var myList = $scope.myList;
+        $rootScope.myList = myList;
         myList.form = {
-            icon    : '',
-            url     : '',
-            name    : '',
+            icon: '',
+            url: '',
+            name: '',
             selector: ''
 
         };
@@ -169,9 +176,9 @@ angular.module('TenRead.Controllers', [])
         myList.data = JSON.parse(localStorage.getItem('sites'));
         myList.add = function () {
             myList.form = {
-                icon    : '',
-                url     : '',
-                name    : '',
+                icon: '',
+                url: '',
+                name: '',
                 selector: ''
 
             };

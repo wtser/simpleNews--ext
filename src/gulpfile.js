@@ -45,9 +45,7 @@ gulp.task('compressCSS', function () {
 gulp.task('copyFiles', function () {
     gulp.src(['bower_components/fontawesome/fonts/*'], {base: "./bower_components/fontawesome"})
         .pipe(gulp.dest('../build/'));
-    gulp.src(['icon/*'], {base: "."})
-        .pipe(gulp.dest('../build/'));
-    gulp.src(['template/*','manifest.json'], {base: '.'})
+    gulp.src(['icon/*','template/*','manifest.json'], {base: '.'})
         .pipe(gulp.dest('../build/'));
 });
 

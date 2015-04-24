@@ -1,4 +1,4 @@
-angular.module('TenRead', ['ui.router', 'TenRead.Controllers'])
+angular.module('TenRead', ['ui.router', 'TenRead.Controllers', 'TenRead.Services'])
 
     .directive("scroll", function ($window) {
         return function (scope, element, attrs) {
@@ -10,14 +10,15 @@ angular.module('TenRead', ['ui.router', 'TenRead.Controllers'])
         };
     })
 
+
     .config(function ($stateProvider, $urlRouterProvider) {
         //
         // For any unmatched url, redirect to /state1
         $urlRouterProvider.otherwise(function ($injector, $location) {
             if (location.hash == '' && location.pathname == "/option.html") {
-                location.href = location.href + '#/option/list'
+                location.hash = '#/option/list'
             } else {
-                location.href = location.href + '#/popup'
+                location.hash = '#/popup'
             }
         });
 
@@ -25,42 +26,42 @@ angular.module('TenRead', ['ui.router', 'TenRead.Controllers'])
         // Now set up the states
         $stateProvider
             .state('popup', {
-                url        : "/popup",
+                url: "/popup",
                 templateUrl: "/template/popup.html",
-                controller : 'PopupCtrl'
+                controller: 'PopupCtrl'
             })
             .state('option', {
-                url        : "/option",
+                url: "/option",
                 templateUrl: "/template/option.html"
             })
             .state('option.list', {
-                url        : "/list",
+                url: "/list",
                 templateUrl: "/template/option.html",
-                views      : {
+                views: {
                     'content': {
                         templateUrl: "/template/option.list.html",
-                        controller : 'OptionListCtrl'
+                        controller: 'OptionListCtrl'
 
                     }
                 }
             })
             .state('option.mylist', {
-                url        : "/mylist",
+                url: "/mylist",
                 templateUrl: "/template/option.html",
-                views      : {
+                views: {
                     'content': {
                         templateUrl: "/template/option.mylist.html",
-                        controller : 'OptionMyListCtrl'
+                        controller: 'OptionMyListCtrl'
                     }
                 }
             })
             .state('option.exchange', {
-                url        : "/exchange",
+                url: "/exchange",
                 templateUrl: "/template/option.html",
-                views      : {
+                views: {
                     'content': {
                         templateUrl: "/template/option.exchange.html",
-                        controller : 'OptionExchangeCtrl'
+                        controller: 'OptionExchangeCtrl'
                     }
                 }
             })

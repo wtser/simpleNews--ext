@@ -1,8 +1,26 @@
-.chrome-bootstrap{
-  max-width : 960px;
-  margin    : 0 auto;
+.chrome-bootstrap {
+  max-width: 960px;
+  margin: 0 auto;
+
+  .content-area {
+    input {
+      width: 100%;
+    }
+  }
 }
+
 .mainview {
+
+  .highlightable img {
+    width: 32px;
+    float: left;
+    margin-right: 1rem;
+  }
+
+  .pagination {
+    display: inline-block;
+    margin: 0;
+  }
 
   .form-modal {
     position: absolute;
@@ -15,29 +33,13 @@
     transform: translate(-50%, -50%);
   }
 
-  .catalogs {
-    list-style: none;
-    padding: 0;
-    border-bottom: 1px solid #ddd;
-    margin: 0;
-
-    li {
-      display: inline-block;
-      padding: 0.5rem 1rem;
-      cursor: pointer;
-    }
-    .active {
-      border: 1px solid #ddd;
-      border-bottom: none;
-    }
-  }
-
   .site-info {
     div {
       margin-top: 1rem;
       &:hover {
         .subscribe {
           display: inline;
+          margin-top: 10px;
         }
         .site-name {
           display: none;
@@ -46,7 +48,6 @@
     }
     .subscribe {
       display: none;
-      text-decoration: none;
     }
     img {
       width: 44px;
@@ -56,7 +57,7 @@
       float: left;
       margin-right: 0.5rem;
     }
-    .site-name, .subscribe {
+    .site-name {
       line-height: 44px;
 
     }

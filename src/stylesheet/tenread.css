@@ -11,7 +11,7 @@ a {
   outline: none; }
 
 .ng-hide {
-  display: none; }
+  display: none !important; }
 
 .popup {
   width: 360px; }
@@ -101,7 +101,16 @@ a {
 .chrome-bootstrap {
   max-width: 960px;
   margin: 0 auto; }
+  .chrome-bootstrap .content-area input {
+    width: 100%; }
 
+.mainview .highlightable img {
+  width: 32px;
+  float: left;
+  margin-right: 1rem; }
+.mainview .pagination {
+  display: inline-block;
+  margin: 0; }
 .mainview .form-modal {
   position: absolute;
   background: #fff;
@@ -111,27 +120,15 @@ a {
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%); }
-.mainview .catalogs {
-  list-style: none;
-  padding: 0;
-  border-bottom: 1px solid #ddd;
-  margin: 0; }
-  .mainview .catalogs li {
-    display: inline-block;
-    padding: 0.5rem 1rem;
-    cursor: pointer; }
-  .mainview .catalogs .active {
-    border: 1px solid #ddd;
-    border-bottom: none; }
 .mainview .site-info div {
   margin-top: 1rem; }
   .mainview .site-info div:hover .subscribe {
-    display: inline; }
+    display: inline;
+    margin-top: 10px; }
   .mainview .site-info div:hover .site-name {
     display: none; }
 .mainview .site-info .subscribe {
-  display: none;
-  text-decoration: none; }
+  display: none; }
 .mainview .site-info img {
   width: 44px;
   height: 44px;
@@ -139,5 +136,5 @@ a {
   overflow: hidden;
   float: left;
   margin-right: 0.5rem; }
-.mainview .site-info .site-name, .mainview .site-info .subscribe {
+.mainview .site-info .site-name {
   line-height: 44px; }
