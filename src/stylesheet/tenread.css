@@ -1,7 +1,5 @@
 @import url(../bower_components/pure/base-min.css);
 @import url(../bower_components/pure/grids-min.css);
-@import url(../bower_components/pure/tables-min.css);
-@import url(../bower_components/pure/forms-min.css);
 @import url(../bower_components/chrome-bootstrap/chrome-bootstrap.min.css);
 ::-webkit-scrollbar {
   display: none; }
