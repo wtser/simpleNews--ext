@@ -116,6 +116,10 @@ angular.module('TenRead.Controllers', [])
 
         popup.show(popup.index);
 
+        popup.sync = function (article) {
+            $http.post('http://tenread.wtser.com/api/sync', article);
+        }
+
 
     })
     .controller('OptionCtrl', function ($scope) {
@@ -128,7 +132,7 @@ angular.module('TenRead.Controllers', [])
         $scope.optionList = {};
         var optionList = $scope.optionList;
 
-        optionList.domain = 'http://github.wtser.com/tenread/data/';
+        optionList.domain = 'http://tenread.wtser.com/data/';
 
         optionList.sites = JSON.parse(localStorage.getItem("sites")) || [];
 
