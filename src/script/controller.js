@@ -214,4 +214,7 @@ angular.module('TenRead.Controllers', [])
     })
     .controller('OptionExchangeCtrl', function ($scope) {
 
+    })
+    .controller('OptionAboutCtrl', function ($scope) {
+
     });

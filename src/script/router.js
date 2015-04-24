@@ -1,4 +1,4 @@
-angular.module('TenRead', ['ui.router', 'TenRead.Controllers', 'TenRead.Services'])
+angular.module('TenRead', ['ui.router', 'TenRead.Controllers'])
 
     .directive("scroll", function ($window) {
         return function (scope, element, attrs) {
@@ -62,6 +62,16 @@ angular.module('TenRead', ['ui.router', 'TenRead.Controllers', 'TenRead.Services
                     'content': {
                         templateUrl: "/template/option.exchange.html",
                         controller: 'OptionExchangeCtrl'
+                    }
+                }
+            })
+            .state('option.about', {
+                url: "/about",
+                templateUrl: "/template/option.html",
+                views: {
+                    'content': {
+                        templateUrl: "/template/option.about.html",
+                        controller: 'OptionAboutCtrl'
                     }
                 }
             })

@@ -1,7 +1,7 @@
 <div class="chrome-bootstrap" data-ng-controller="OptionCtrl">
     <div class="frame">
         <div class="navigation">
-            <h1><a href="#">十阅</a></h1>
+            <h1><a>十阅</a></h1>
             <ul class="menu">
                 <li class="{{ state =='option.list'?'selected':''}}">
                     <a href="#/option/list">订阅商店</a>
@@ -10,11 +10,11 @@
                     <a href="#/option/mylist">我的订阅</a>
                 </li>
             </ul>
-            <!--<ul class="menu">
-                <li>
-                    <a href="#examples">导入/导出</a>
+            <ul class="menu">
+                <li class="{{ state =='option.about'?'selected':''}}">
+                    <a href="#/option/about">关于</a>
                 </li>
-            </ul>-->
+            </ul>
         </div>
         <div class="mainview view" ui-view="content"></div>
     </div>
