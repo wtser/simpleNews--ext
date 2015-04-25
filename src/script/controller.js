@@ -2,6 +2,10 @@ angular.module('TenRead.Controllers', [])
 
     .controller('PopupCtrl', function ($scope, $http, $timeout) {
 
+        $('body').on('click', '.news-list a', function (e) {
+            e.preventDefault();
+        });
+
         $scope.popup = {};
         var popup = $scope.popup;
 
@@ -118,7 +122,10 @@ angular.module('TenRead.Controllers', [])
         popup.show(popup.index);
 
         popup.sync = function (article) {
-            chrome.runtime.sendMessage(article, function (response) {
+            chrome.tabs.create({url: article.href, active: false},function(){
+                $.post('http://tenread.wtser.com/api/sync', article, function (d) {
+                    console.log(JSON.parse(d).visited)
+                })
             });
         }
 
@@ -135,7 +142,6 @@ angular.module('TenRead.Controllers', [])
         var optionList = $scope.optionList;
 
         optionList.domain = 'http://tenread.wtser.com/data/';
-        //optionList.domain = 'data/';
 
         optionList.sites = JSON.parse(localStorage.getItem("sites")) || [];
 
