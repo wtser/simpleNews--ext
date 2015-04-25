@@ -122,13 +122,16 @@ angular.module('TenRead.Controllers', [])
         popup.show(popup.index);
 
         popup.sync = function (article) {
-            $http.post('http://tenread.wtser.com/api/sync', article, {
+            /*$http.post('http://tenread.wtser.com/api/sync', article, {
                 timeout: 600
             }).success(function (d) {
                 window.open(article.href)
             }).error(function () {
                 window.open(article.href+'#timeout')
-            });
+            });*/
+
+            chrome.runtime.sendMessage(article, function(response) {});
+            window.open(article.href)
         }
 
 

@@ -3,6 +3,7 @@ var sass = require('gulp-sass');
 var minicss = require('gulp-mini-css');
 var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
+var ver = require('gulp-ver');
 
 gulp.task('sass', function () {
     gulp.src('./stylesheet/tenread.scss')
@@ -44,7 +45,7 @@ gulp.task('compressCSS', function () {
 gulp.task('copyFiles', function () {
     gulp.src(['bower_components/fontawesome/fonts/*'], {base: "./bower_components/fontawesome"})
         .pipe(gulp.dest('../build/'));
-    gulp.src(['icon/*','template/*','manifest.json'], {base: '.'})
+    gulp.src(['icon/*','template/*','manifest.json','background.js'], {base: '.'})
         .pipe(gulp.dest('../build/'));
 });
 
