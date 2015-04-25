@@ -1,8 +1,7 @@
 chrome.runtime.onMessage.addListener(
     function (request, sender, sendResponse) {
-    	console.log(request)
-    	//localStorage.setItem('aaa',JSON.stringify(request))
-        /*sendResponse({
-            data: ret
-        });*/
+        $.post('http://tenread.wtser.com/api/sync', request, function (d) {
+            //console.log(JSON.parse(d).visited)
+        })
+
     });
