@@ -47,5 +47,17 @@
     "name": "PingWest快讯",
     "url": "http://news.pingwest.com/",
     "selector": ".topic_title>a"
+  },
+  {
+    "icon": "http://www.geekpark.net/icons/72x72.png",
+    "name": "极客公园",
+    "url": "http://www.geekpark.net/collections/%E7%BC%96%E8%BE%91%E7%B2%BE%E9%80%89",
+    "selector": ".title"
+  },
+  {
+    "icon": "http://www.blogsmithmedia.com/cn.engadget.com/media/favicon-96x96.png",
+    "name": "Engadget 中国版",
+    "url": "http://cn.engadget.com/",
+    "selector": ".h2>a"
   }
 ]
