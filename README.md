@@ -18,5 +18,4 @@ Fork 此项目，修改 data 目录下的 *.json 并 pull request。
 
 [下载 chrome 扩展](https://chrome.google.com/webstore/detail/%E5%8D%81%E9%98%85/bpnpkcfhagdgccpikdkldbnngifepibc)
 
-[tenread.crx](https://github.com/wtser/tenread/releases/download/1.1.0/build.crx) 
-
+https://github.com/wtser/tenread/releases/download/1.2.0/build.crx
