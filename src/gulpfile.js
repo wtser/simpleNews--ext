@@ -3,7 +3,7 @@ var sass = require('gulp-sass');
 var minicss = require('gulp-mini-css');
 var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
-var ver = require('gulp-ver');
+//var ver = require('gulp-ver');
 
 gulp.task('sass', function () {
     gulp.src('./stylesheet/tenread.scss')
