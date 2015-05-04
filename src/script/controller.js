@@ -88,41 +88,45 @@ angular.module('TenRead.Controllers', [])
             site.status = "active";
 
             popup.parsedData = JSON.parse(localStorage.getItem("site" + index)) || [];
-            $http.get(site.url, {
-                timeout: 10000
-            }).success(function (data, status) {
-                if (status != 200) {
-                    $(".news-list").html(data);
-                    return;
-                }
-                var parsedData = $(data).find(site.selector);
-                popup.parsedData = [];
-                for (var i = 0, max = 10; i < max; i++) {
-                    var article = {
-                        title: $.trim($(parsedData[i]).text()),
-                        href : $(parsedData[i]).attr("href")
-                    };
-                    if (article.href.indexOf("http") == -1) {
-                        var baseUrl = site.url.match(/http[s]?:\/\/+[\s\S]+?\//)[0].slice(0, -1);
-                        if (article.href[0] != "/") {
-                            baseUrl += "/"
+            $.ajax({
+                type   : 'get',
+                url    : site.url,
+                timeout: 10000,
+                success: function (data) {
+                    $scope.$apply(function () {
+                        var parsedData = $(data).find(site.selector);
+                        $scope.popup.parsedData = [];
+                        for (var i = 0, max = 10; i < max; i++) {
+                            var article = {
+                                title: $.trim($(parsedData[i]).text()),
+                                href : $(parsedData[i]).attr("href")
+                            };
+                            if (article.href.indexOf("http") == -1) {
+                                var baseUrl = site.url.match(/http[s]?:\/\/+[\s\S]+?\//)[0].slice(0, -1);
+                                if (article.href[0] != "/") {
+                                    baseUrl += "/"
+                                }
+                                article.href = baseUrl + article.href;
+                            }
+                            $scope.popup.parsedData.push(article);
+                            localStorage.setItem("site" + index, JSON.stringify(popup.parsedData));
+                            $scope.popup.loading = false;
                         }
-                        article.href = baseUrl + article.href;
-                    }
-                    popup.parsedData.push(article);
-                    localStorage.setItem("site" + index, JSON.stringify(popup.parsedData));
+                    })
+                },
+                error  : function (xhr, type) {
+                    $(".news-list").html(data);
                     popup.loading = false;
+                    popup.error = true;
+                    alert("error");
                 }
-            }).error(function (err) {
-                popup.loading = false;
-                popup.error = true;
             });
         };
 
         popup.show(popup.index);
 
         popup.sync = function (article) {
-            chrome.tabs.create({url: article.href, active: false},function(){
+            chrome.tabs.create({url: article.href, active: false}, function () {
                 $.post('http://tenread.wtser.com/api/sync', article, function (d) {
                     console.log(JSON.parse(d).visited)
                 })
