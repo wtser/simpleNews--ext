@@ -60,4 +60,5 @@
     "url": "http://cn.engadget.com/",
     "selector": ".h2>a"
   }
+  {"name": "一点情怀", "url": "http://1.qinghuai.org/", "icon": "http://1.qinghuai.org/apple-touch-icon.png", "selector": ".details>.link>a"}
 ]
