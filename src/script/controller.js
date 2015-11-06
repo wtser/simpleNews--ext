@@ -101,7 +101,7 @@ angular.module('TenRead.Controllers', [])
                         $scope.popup.parsedData = [];
                         for (var i = 0, max = 10; i < max; i++) {
                             var article = {
-                                title: $.trim($(parsedData[i]).text()),
+                                title: $.trim($(parsedData[i]).text()).replace(/^\<img[\s\S]+\>/, ""),
                                 href : $(parsedData[i]).attr("href")
                             };
                             if (article.href.indexOf("http") == -1) {
