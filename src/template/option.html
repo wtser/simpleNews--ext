@@ -3,15 +3,12 @@
         <div class="navigation">
             <h1><a>十阅</a></h1>
             <ul class="menu">
-                <li class="{{ state =='option.list'?'selected':''}}">
-                    <a href="#/option/list">订阅商店</a>
-                </li>
-                <li class="{{ state =='option.mylist'?'selected':''}}">
-                    <a href="#/option/mylist">我的订阅</a>
+                <li data-ng-repeat="n in option.nav" class="{{option.navSelection(n)}}">
+                    <a data-ng-href="#/option/{{n.value}}">{{n.name}}</a>
                 </li>
             </ul>
             <ul class="menu">
-                <li class="{{ state =='option.about'?'selected':''}}">
+                <li class="{{option.navSelection({value:'about'})}}">
                     <a href="#/option/about">关于</a>
                 </li>
             </ul>

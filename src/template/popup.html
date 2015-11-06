@@ -16,7 +16,7 @@
             <li class="{{ site.status }}"
                 data-ng-repeat="site in popup.sites track by $index"
                 data-ng-click="popup.show( $index )"
-                    >
+            >
                 <img src="{{ site.icon }}">
             </li>
 
@@ -25,6 +25,8 @@
 
     <div class="pure-g control">
         <div class="pure-u-1-2">
+            <a class="site" target="_blank"
+               href="{{popup.currentSite.url}}"><strong>{{popup.currentSite.name}}</strong></a>
 
         </div>
         <div class="pure-u-1-2">
@@ -33,7 +35,7 @@
             <a href="javascript:;"
                class="action {{ popup.loading?'loading':''}}"
                data-ng-click="popup.show(popup.index)"
-                    ><i class="fa fa-refresh"></i></a>
+            ><i class="fa fa-refresh"></i></a>
 
         </div>
     </div>

@@ -2,11 +2,15 @@
   display: none;
 }
 
+body,strong {
+  font-family: "PingFang SC", "Segoe UI", "Lucida Grande", Helvetica, Arial, "Microsoft YaHei", FreeSans, Arimo, "Droid Sans", "wenquanyi micro hei", "Hiragino Sans GB", "Hiragino Sans GB W3", Arial, sans-serif;
+}
+
 a {
   -webkit-tap-highlight-color: transparent;
-  outline: none;
+  outline:                     none;
 }
 
 .ng-hide {
-  display: none!important;
+  display: none !important;
 }

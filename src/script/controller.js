@@ -7,7 +7,7 @@ angular.module('TenRead.Controllers', [])
         });
 
         $scope.popup = {};
-        var popup = $scope.popup;
+        var popup    = $scope.popup;
 
         popup.scrollTop = localStorage.getItem("scrollTop") || 0;
 
@@ -18,45 +18,45 @@ angular.module('TenRead.Controllers', [])
         popup.initSites = [
             {
                 "name"    : "startup news",
-                "url"     : "http://news.dbanotes.net/",
-                "icon"    : "http://news.dbanotes.net/logo.png",
+                "url" : "http://news.dbanotes.net/",
+                "icon": "http://news.dbanotes.net/logo.png",
                 "selector": ".title>a",
                 "isShow"  : true
             },
             {
                 "name"    : "segmentfault",
-                "url"     : "http://segmentfault.com/blogs",
-                "icon"    : "http://static.segmentfault.com/global/img/touch-icon.c78b1075.png",
+                "url" : "http://segmentfault.com/blogs",
+                "icon": "http://static.segmentfault.com/global/img/touch-icon.c78b1075.png",
                 "selector": ".title>a",
                 "isShow"  : true
             },
             {
                 "name"    : "简书",
-                "url"     : "http://www.jianshu.com/trending/now",
-                "icon"    : "http://static.jianshu.io/assets/icon114-fcef1133c955e46bf55e2a60368f687b.png",
+                "url" : "http://www.jianshu.com/trending/now",
+                "icon": "http://static.jianshu.io/assets/icon114-fcef1133c955e46bf55e2a60368f687b.png",
                 "selector": "h4>a",
                 "isShow"  : true
             },
             {
                 "isShow"  : true,
-                "icon"    : "http://www.solidot.org/favicon.ico",
-                "title"   : "solidot",
-                "url"     : "http://www.solidot.org/",
+                "icon"  : "http://www.solidot.org/favicon.ico",
+                "title" : "solidot",
+                "url"   : "http://www.solidot.org/",
                 "selector": ".bg_htit>h2>a",
                 "name"    : "solidot"
             },
             {
                 "isShow"  : true,
-                "icon"    : "https://news.ycombinator.com/favicon.ico",
-                "name"    : "hacker news",
-                "url"     : "https://news.ycombinator.com/",
+                "icon"  : "https://news.ycombinator.com/favicon.ico",
+                "name"  : "hacker news",
+                "url"   : "https://news.ycombinator.com/",
                 "selector": ".title>a"
             },
             {
                 "isShow"  : true,
-                "icon"    : "http://www.v2ex.com/static/img/icon_rayps_64.png",
-                "name"    : "v2ex",
-                "url"     : "http://www.v2ex.com/?tab=hot",
+                "icon"  : "http://www.v2ex.com/static/img/icon_rayps_64.png",
+                "name"  : "v2ex",
+                "url"   : "http://www.v2ex.com/?tab=hot",
                 "selector": "span.item_title > a"
             }
         ];
@@ -68,7 +68,10 @@ angular.module('TenRead.Controllers', [])
         }
 
         popup.index = localStorage.getItem("index") || 0;
-        popup.sites[popup.index].status = "active";
+
+        popup.currentSite        = popup.sites[popup.index];
+        popup.currentSite.status = "active";
+
 
         popup.show = function (index) {
             if (index != localStorage.getItem("index")) {
@@ -77,7 +80,7 @@ angular.module('TenRead.Controllers', [])
             }
             popup.error = false;
             localStorage.setItem("index", index);
-            popup.index = index;
+            popup.index   = index;
             popup.loading = true;
 
             var site = popup.sites[index];
@@ -90,11 +93,11 @@ angular.module('TenRead.Controllers', [])
             popup.parsedData = JSON.parse(localStorage.getItem("site" + index)) || [];
             $.ajax({
                 type   : 'get',
-                url    : site.url,
+                url : site.url,
                 timeout: 10000,
                 success: function (data) {
                     $scope.$apply(function () {
-                        var parsedData = $(data).find(site.selector);
+                        var parsedData          = $(data).find(site.selector);
                         $scope.popup.parsedData = [];
                         for (var i = 0, max = 10; i < max; i++) {
                             var article = {
@@ -117,10 +120,12 @@ angular.module('TenRead.Controllers', [])
                 error  : function (xhr, type) {
                     $(".news-list").html(data);
                     popup.loading = false;
-                    popup.error = true;
+                    popup.error   = true;
                     alert("error");
                 }
             });
+
+            popup.currentSite = popup.sites[popup.index];
         };
 
         popup.show(popup.index);
@@ -136,14 +141,29 @@ angular.module('TenRead.Controllers', [])
 
     })
     .controller('OptionCtrl', function ($scope) {
-        $scope.state = 'option.list';
+        var option = $scope.option = {};
+        option.nav          = [
+            {
+                name : "订阅商店",
+                value: "store"
+            },
+            {
+                name : "我的订阅",
+                value: "subscription"
+            }
+        ];
+        option.navSelection = function (n) {
+            if (option.state == n.value) {
+                return "selected"
+            }
+        };
         $scope.$on('$stateChangeSuccess', function (evt, toState) {
-            $scope.state = toState.name;
+            option.state = toState.url.replace("/", "");
         })
     })
-    .controller('OptionListCtrl', function ($scope, $http) {
+    .controller('OptionStoreCtrl', function ($scope, $http) {
         $scope.optionList = {};
-        var optionList = $scope.optionList;
+        var optionList    = $scope.optionList;
 
         optionList.domain = 'http://tenread.wtser.com/data/';
 
@@ -171,31 +191,31 @@ angular.module('TenRead.Controllers', [])
 
         $http.get(optionList.domain + 'catalog.json').success(function (d) {
             optionList.catalogs = d;
-            optionList.slug = d[0].slug;
+            optionList.slug     = d[0].slug;
             optionList.show(optionList.slug)
         });
 
 
     })
-    .controller('OptionMyListCtrl', function ($scope, $rootScope) {
-        $scope.myList = {};
-        var myList = $scope.myList;
+    .controller('OptionSubscriptionCtrl', function ($scope, $rootScope) {
+        $scope.myList     = {};
+        var myList    = $scope.myList;
         $rootScope.myList = myList;
-        myList.form = {
+        myList.form       = {
             icon    : '',
-            url     : '',
-            name    : '',
+            url : '',
+            name: '',
             selector: ''
 
         };
-        myList.form.show = false;
+        myList.form.show  = false;
 
-        myList.data = JSON.parse(localStorage.getItem('sites'));
-        myList.add = function () {
-            myList.form = {
+        myList.data   = JSON.parse(localStorage.getItem('sites'));
+        myList.add  = function () {
+            myList.form       = {
                 icon    : '',
-                url     : '',
-                name    : '',
+                url : '',
+                name: '',
                 selector: ''
 
             };
@@ -205,12 +225,12 @@ angular.module('TenRead.Controllers', [])
         myList.cancel = function () {
             myList.form.show = false;
         };
-        myList.edit = function (index) {
-            myList.form = myList.data[index];
+        myList.edit   = function (index) {
+            myList.form       = myList.data[index];
             myList.form.show = true;
             myList.form.index = index;
         };
-        myList.del = function (index) {
+        myList.del    = function (index) {
             if (confirm("确认删除？")) {
                 myList.data.splice(index, 1);
                 localStorage.setItem("sites", JSON.stringify(myList.data));

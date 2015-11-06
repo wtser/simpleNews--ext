@@ -4,6 +4,9 @@
 ::-webkit-scrollbar {
   display: none; }
 
+body, strong {
+  font-family: "PingFang SC", "Segoe UI", "Lucida Grande", Helvetica, Arial, "Microsoft YaHei", FreeSans, Arimo, "Droid Sans", "wenquanyi micro hei", "Hiragino Sans GB", "Hiragino Sans GB W3", Arial, sans-serif; }
+
 a {
   -webkit-tap-highlight-color: transparent;
   outline: none; }
@@ -33,20 +36,22 @@ a {
       border-right: 1px solid #ddd;
       min-height: 385px; }
       .popup .content .news-list li {
-        margin: 6px 4px; }
+        margin: 2px 4px; }
         .popup .content .news-list li a {
           text-decoration: none;
-          color: #333;
+          color: #444;
           padding: 8px;
           display: block;
           white-space: nowrap;
           text-overflow: ellipsis;
           overflow: hidden;
-          font-size: 14px; }
+          font-size: 14px;
+          transition: all 0.4s; }
           .popup .content .news-list li a:visited {
             color: #cccccc; }
           .popup .content .news-list li a:hover {
-            background-color: #DDDDDD; }
+            background-color: #ededed;
+            color: #555; }
     .popup .content .tabs {
       width: 40px;
       background: #f1f1f1;
@@ -80,6 +85,12 @@ a {
           height: 32px; }
   .popup .control {
     background: #fff; }
+    .popup .control .site {
+      line-height: 38px;
+      font-size: 1rem;
+      padding-left: 10px;
+      color: #333;
+      text-decoration: none; }
     .popup .control .action {
       font-size: 1.4rem;
       float: right;
@@ -92,7 +103,6 @@ a {
 @-webkit-keyframes loading {
   0% {
     transform: rotate(0deg); }
-
   100% {
     transform: rotate(360deg); } }
 
@@ -106,9 +116,11 @@ a {
   width: 32px;
   float: left;
   margin-right: 1rem; }
+
 .mainview .pagination {
   display: inline-block;
   margin: 0; }
+
 .mainview .form-modal {
   position: absolute;
   background: #fff;
@@ -118,6 +130,7 @@ a {
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%); }
+
 .mainview .site-info div {
   margin-top: 1rem; }
   .mainview .site-info div:hover .subscribe {
@@ -125,8 +138,10 @@ a {
     margin-top: 10px; }
   .mainview .site-info div:hover .site-name {
     display: none; }
+
 .mainview .site-info .subscribe {
   display: none; }
+
 .mainview .site-info img {
   width: 44px;
   height: 44px;
@@ -134,5 +149,6 @@ a {
   overflow: hidden;
   float: left;
   margin-right: 0.5rem; }
+
 .mainview .site-info .site-name {
   line-height: 44px; }

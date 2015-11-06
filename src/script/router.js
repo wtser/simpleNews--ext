@@ -1,22 +1,14 @@
-angular.module('TenRead', ['ui.router', 'TenRead.Controllers'])
-
-    .directive("scroll", function ($window) {
-        return function (scope, element, attrs) {
-            angular.element($('.tabs')).bind("scroll", function () {
-                console.log($(this).scrollTop())
-
-                scope.$apply();
-            });
-        };
+angular.module('TenRead', ['ui.router', 'TenRead.directive', 'TenRead.Controllers'])
+    .config(function ($compileProvider) {
+        $compileProvider.aHrefSanitizationWhitelist (/^\s*(https?|ftp|mailto|file|tel|chrome-extension):/);
     })
-
 
     .config(function ($stateProvider, $urlRouterProvider) {
         //
         // For any unmatched url, redirect to /state1
         $urlRouterProvider.otherwise(function ($injector, $location) {
             if (location.hash == '' && location.pathname == "/option.html") {
-                location.hash = '#/option/list'
+                location.hash = '#/option/store'
             } else {
                 location.hash = '#/popup'
             }
@@ -26,52 +18,52 @@ angular.module('TenRead', ['ui.router', 'TenRead.Controllers'])
         // Now set up the states
         $stateProvider
             .state('popup', {
-                url: "/popup",
+                url        : "/popup",
                 templateUrl: "/template/popup.html",
-                controller: 'PopupCtrl'
+                controller : 'PopupCtrl'
             })
             .state('option', {
-                url: "/option",
+                url        : "/option",
                 templateUrl: "/template/option.html"
             })
-            .state('option.list', {
-                url: "/list",
+            .state('option.store', {
+                url        : "/store",
                 templateUrl: "/template/option.html",
-                views: {
+                views      : {
                     'content': {
-                        templateUrl: "/template/option.list.html",
-                        controller: 'OptionListCtrl'
+                        templateUrl: "/template/option.store.html",
+                        controller : 'OptionStoreCtrl'
 
                     }
                 }
             })
-            .state('option.mylist', {
-                url: "/mylist",
+            .state('option.subscription', {
+                url        : "/subscription",
                 templateUrl: "/template/option.html",
-                views: {
+                views      : {
                     'content': {
-                        templateUrl: "/template/option.mylist.html",
-                        controller: 'OptionMyListCtrl'
+                        templateUrl: "/template/option.subscription.html",
+                        controller : 'OptionSubscriptionCtrl'
                     }
                 }
             })
             .state('option.exchange', {
-                url: "/exchange",
+                url        : "/exchange",
                 templateUrl: "/template/option.html",
-                views: {
+                views      : {
                     'content': {
                         templateUrl: "/template/option.exchange.html",
-                        controller: 'OptionExchangeCtrl'
+                        controller : 'OptionExchangeCtrl'
                     }
                 }
             })
             .state('option.about', {
-                url: "/about",
+                url        : "/about",
                 templateUrl: "/template/option.html",
-                views: {
+                views      : {
                     'content': {
                         templateUrl: "/template/option.about.html",
-                        controller: 'OptionAboutCtrl'
+                        controller : 'OptionAboutCtrl'
                     }
                 }
             })

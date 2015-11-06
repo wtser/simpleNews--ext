@@ -1,20 +1,20 @@
 {
-  "browser_action": {
-    "default_icon": "icon/48.png",
+  "browser_action":   {
+    "default_icon":  "icon/48.png",
     "default_popup": "index.html#/popup",
     "default_title": "十阅"
   },
-  "icons": {
+  "icons":            {
     "128": "icon/128.png",
-    "16": "icon/16.png",
-    "48": "icon/48.png"
+    "16":  "icon/16.png",
+    "48":  "icon/48.png"
   },
   "manifest_version": 2,
-  "name": "十阅",
-  "options_page": "index.html#/option/list",
-  "permissions": [
+  "name":             "十阅",
+  "options_page":     "index.html#/option/store",
+  "permissions":      [
     "http://*/",
     "https://*/"
   ],
-  "version": "1.2.2"
+  "version":          "1.2.2"
 }
