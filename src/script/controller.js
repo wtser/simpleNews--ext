@@ -171,7 +171,7 @@ angular.module('TenRead.Controllers', [])
 
         optionList.show = function (slug) {
             optionList.slug = slug;
-            $http.get(optionList.domain + slug + '.json').success(function (d) {
+            $http.get(optionList.domain + slug + '.json?t=' + Date.now()).success(function (d) {
                 optionList.currentSites = d;
             });
         };
