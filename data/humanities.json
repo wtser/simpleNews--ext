@@ -1,20 +1,14 @@
 [
   {
-    "name": "简书",
-    "url": "http://www.jianshu.com/trending/now",
-    "icon": "http://static.jianshu.io/assets/icon114-fcef1133c955e46bf55e2a60368f687b.png",
+    "name":     "简书",
+    "url":      "http://www.jianshu.com/trending/now",
+    "icon":     "http://static.jianshu.io/assets/icon114-fcef1133c955e46bf55e2a60368f687b.png",
     "selector": "h4>a"
   },
   {
-    "icon": "http://img3.douban.com/dae/ps/logo_56-3ef03413a90e85f954c144ced276b089.png",
-    "url": "http://thehours.jd-app.com/",
-    "selector": ".grid>a",
-    "name": "豆瓣一刻"
-  },
-  {
-    "icon": "http://daily.zhihu.com/favicon.ico",
-    "url": "http://daily.zhihu.com/",
+    "icon":     "http://daily.zhihu.com/favicon.ico",
+    "url":      "http://daily.zhihu.com/",
     "selector": ".box>a",
-    "name": "知乎日报"
+    "name":     "知乎日报"
   }
 ]

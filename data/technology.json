@@ -1,64 +1,69 @@
 [
   {
-    "name": "startup news",
-    "url": "http://news.dbanotes.net/",
-    "icon": "http://news.dbanotes.net/logo.png",
+    "name":     "startup news",
+    "url":      "http://news.dbanotes.net/",
+    "icon":     "http://news.dbanotes.net/logo.png",
     "selector": ".title>a"
   },
   {
-    "name": "segmentfault",
-    "url": "http://segmentfault.com/blogs",
-    "icon": "http://static.segmentfault.com/global/img/touch-icon.c78b1075.png",
+    "name":     "segmentfault",
+    "url":      "http://segmentfault.com/blogs",
+    "icon":     "http://static.segmentfault.com/global/img/touch-icon.c78b1075.png",
     "selector": ".title>a"
   },
   {
-    "icon": "http://www.solidot.org/favicon.ico",
-    "title": "solidot",
-    "url": "http://www.solidot.org/",
+    "icon":     "http://www.solidot.org/favicon.ico",
+    "title":    "solidot",
+    "url":      "http://www.solidot.org/",
     "selector": ".bg_htit>h2>a",
-    "name": "solidot"
+    "name":     "solidot"
   },
   {
-    "icon": "https://news.ycombinator.com/favicon.ico",
-    "name": "hacker news",
-    "url": "https://news.ycombinator.com/",
+    "icon":     "https://news.ycombinator.com/favicon.ico",
+    "name":     "hacker news",
+    "url":      "https://news.ycombinator.com/",
     "selector": ".title>a"
   },
   {
-    "icon": "http://www.v2ex.com/static/img/icon_rayps_64.png",
-    "name": "v2ex",
-    "url": "http://www.v2ex.com/?tab=hot",
+    "icon":     "http://www.v2ex.com/static/img/icon_rayps_64.png",
+    "name":     "v2ex",
+    "url":      "http://www.v2ex.com/?tab=hot",
     "selector": "span.item_title > a"
   },
   {
-    "icon": "http://static.guokr.com/apps/minisite/images/688fdef8.i-logo.png",
-    "name": "果壳科学人",
-    "url": "http://www.guokr.com/scientific/",
+    "icon":     "http://static.guokr.com/apps/minisite/images/688fdef8.i-logo.png",
+    "name":     "果壳科学人",
+    "url":      "http://www.guokr.com/scientific/",
     "selector": ".article-title"
   },
   {
-    "icon": "http://www.huxiu.com/favicon.ico",
-    "name": "虎嗅看点",
-    "url": "http://www.huxiu.com/focus",
+    "icon":     "http://www.huxiu.com/favicon.ico",
+    "name":     "虎嗅看点",
+    "url":      "http://www.huxiu.com/focus",
     "selector": "h3>a"
   },
   {
-    "icon": "http://www.pingwest.com/wp-content/themes/pingwest2014/images/touch-icon.png",
-    "name": "PingWest快讯",
-    "url": "http://news.pingwest.com/",
+    "icon":     "http://www.pingwest.com/wp-content/themes/pingwest2014/images/touch-icon.png",
+    "name":     "PingWest快讯",
+    "url":      "http://news.pingwest.com/",
     "selector": ".topic_title>a"
   },
   {
-    "icon": "http://www.geekpark.net/icons/72x72.png",
-    "name": "极客公园",
-    "url": "http://www.geekpark.net/collections/%E7%BC%96%E8%BE%91%E7%B2%BE%E9%80%89",
+    "icon":     "http://www.geekpark.net/icons/72x72.png",
+    "name":     "极客公园",
+    "url":      "http://www.geekpark.net/collections/%E7%BC%96%E8%BE%91%E7%B2%BE%E9%80%89",
     "selector": ".title"
   },
   {
-    "icon": "http://www.blogsmithmedia.com/cn.engadget.com/media/favicon-96x96.png",
-    "name": "Engadget 中国版",
-    "url": "http://cn.engadget.com/",
+    "icon":     "http://www.blogsmithmedia.com/cn.engadget.com/media/favicon-96x96.png",
+    "name":     "Engadget 中国版",
+    "url":      "http://cn.engadget.com/",
     "selector": ".h2>a"
+  },
+  {
+    "name":     "一点情怀",
+    "url":      "http://1.qinghuai.org/",
+    "icon":     "http://1.qinghuai.org/apple-touch-icon.png",
+    "selector": ".details>.link>a"
   }
-  {"name": "一点情怀", "url": "http://1.qinghuai.org/", "icon": "http://1.qinghuai.org/apple-touch-icon.png", "selector": ".details>.link>a"}
 ]
