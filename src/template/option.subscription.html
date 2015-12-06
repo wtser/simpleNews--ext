@@ -15,7 +15,7 @@
 
 
         <ul class="highlightable editable">
-            <li data-ng-repeat="site in myList.data">
+            <li data-ng-repeat="site in myList.data track by $index">
                 <a data-ng-click="myList.edit($index)">
                     <img style="width: 32px;" src=" {{site.icon}}">
                     <dl>

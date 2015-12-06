@@ -1,6 +1,6 @@
 {
   "manifest_version": 2,
-  "version":          "1.3",
+  "version":          "1.3.1",
   "name":             "十阅",
   "description":      "十阅是一款高效率的新闻收集器,随时获取网站的热门文章 10 篇，充分利用碎片化时间进行阅读.",
   "icons":            {
