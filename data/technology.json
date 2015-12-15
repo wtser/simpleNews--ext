@@ -31,7 +31,7 @@
     "selector": "span.item_title > a"
   },
   {
-    "icon":     "http://static.guokr.com/apps/minisite/images/688fdef8.i-logo.png",
+    "icon":     "http://static.guokr.com/apps/minisite/images/239b2091.i-logo.png",
     "name":     "果壳科学人",
     "url":      "http://www.guokr.com/scientific/",
     "selector": ".article-title"
