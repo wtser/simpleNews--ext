@@ -22,5 +22,12 @@
     "name": "mindstore",
     "url": "http://mindstore.io/",
     "selector": ".mind-title>a"
+  },
+  {
+    "icon":"http://sfault-avatar.b0.upaiyun.com/235/056/2350560982-56796cae3be72_huge256",
+    "url":"http://faxian.smzdm.com/hot_2hours",
+    "name":"什么值得买热门2小时",
+    "selector":".itemName>a"
   }
+  
 ]
