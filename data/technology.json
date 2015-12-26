@@ -61,9 +61,8 @@
     "selector": ".h2>a"
   },
   {
-    "name":     "一点情怀",
-    "url":      "http://1.qinghuai.org/",
-    "icon":     "http://1.qinghuai.org/apple-touch-icon.png",
-    "selector": ".details>.link>a"
-  }
+    "icon": "http://img2.w3ctech.com/logo-144.png", 
+    "url": "http://www.w3ctech.com/",
+    "name": "w3ctech", 
+    "selector": ".topic_title>a"}
 ]
