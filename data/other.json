@@ -28,6 +28,12 @@
     "url":"http://faxian.smzdm.com/hot_2hours",
     "name":"什么值得买热门2小时",
     "selector":".itemName>a"
+  },
+  {
+    "icon":"http://sfault-avatar.b0.upaiyun.com/349/837/3498374095-567f7c03401c3_huge256",
+    "url":"http://z.jd.com/bigger/search.html",
+    "name":"京东众筹",
+    "selector":".i-tits>a"
   }
   
 ]
