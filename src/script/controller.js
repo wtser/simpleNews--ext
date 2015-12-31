@@ -99,22 +99,26 @@ angular.module('TenRead.Controllers', [])
                     $scope.$apply(function () {
                         var parsedData          = $(data).find(site.selector);
                         $scope.popup.parsedData = [];
-                        for (var i = 0, max = 10; i < max; i++) {
-                            var article = {
-                                title: $.trim($(parsedData[i]).text()).replace(/^\<img[\s\S]+\>/, ""),
-                                href : $(parsedData[i]).attr("href")
-                            };
-                            if (article.href.indexOf("http") == -1) {
-                                var baseUrl = site.url.match(/http[s]?:\/\/+[\s\S]+?\//)[0].slice(0, -1);
-                                if (article.href[0] != "/") {
-                                    baseUrl += "/"
+                        if (parsedData.length > 0) {
+                            for (var i = 0, max = 10; i < max; i++) {
+                                var article = {
+                                    title: $.trim($(parsedData[i]).text()).replace(/^\<img[\s\S]+\>/, ""),
+                                    href : $(parsedData[i]).attr("href")
+                                };
+                                if (article.href.indexOf("http") == -1) {
+                                    var baseUrl = site.url.match(/http[s]?:\/\/+[\s\S]+?\//)[0].slice(0, -1);
+                                    if (article.href[0] != "/") {
+                                        baseUrl += "/"
+                                    }
+                                    article.href = baseUrl + article.href;
                                 }
-                                article.href = baseUrl + article.href;
+                                $scope.popup.parsedData.push(article);
+                                localStorage.setItem("site" + index, JSON.stringify(popup.parsedData));
+
                             }
-                            $scope.popup.parsedData.push(article);
-                            localStorage.setItem("site" + index, JSON.stringify(popup.parsedData));
-                            $scope.popup.loading = false;
                         }
+                        $scope.popup.loading = false;
+
                     })
                 },
                 error  : function (xhr, type) {
