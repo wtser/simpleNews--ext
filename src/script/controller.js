@@ -69,7 +69,7 @@ angular.module('TenRead.Controllers', [])
 
         popup.index = localStorage.getItem("index") || 0;
 
-        popup.currentSite        = popup.sites[popup.index];
+        popup.currentSite        = popup.sites[popup.index] || popup.sites[popup.sites.length - 1];
         popup.currentSite.status = "active";
 
 
