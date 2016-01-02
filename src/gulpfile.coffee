@@ -3,9 +3,15 @@ sass = require('gulp-sass')
 minicss = require('gulp-mini-css')
 concat = require('gulp-concat')
 uglify = require('gulp-uglify')
+coffee = require('gulp-coffee')
 #var ver = require('gulp-ver');
 gulp.task 'sass', ->
     gulp.src('./stylesheet/tenread.scss').pipe(sass()).pipe gulp.dest('./stylesheet/')
+
+gulp.task 'coffee',->
+    gulp.src './script/*.coffee'
+    .pipe coffee()
+    .pipe gulp.dest './script/'
 
 gulp.task 'watcher', ->
     watcher = gulp.watch([
