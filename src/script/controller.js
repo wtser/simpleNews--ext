@@ -115,10 +115,11 @@ angular.module('TenRead.Controllers', [])
                     })
                 },
                 error  : function (xhr, type) {
-                    $(".news-list").html(data);
-                    popup.loading = false;
-                    popup.error   = true;
-                    alert("error");
+                    $(".news-list .error").html(xhr.response);
+                    $scope.$apply(function () {
+                        $scope.popup.loading = false;
+                        $scope.popup.error   = true;
+                    })
                 }
             });
 
