@@ -30,45 +30,55 @@ angular.module('TenRead.Controllers', ['TenRead.initData'])
             site.status = ''
         site.status      = 'active'
         popup.parsedData = JSON.parse(localStorage.getItem('site' + index)) or []
-        $.ajax
-            type: 'get'
-            url: if site.type == 'html' then site.url else site.api
-            timeout: 10000
-            success: (data) ->
-                $scope.$apply ->
-                    if site.type == 'html'
-                        parsedData = $(data).find(site.selector.item)
-                        $scope.popup.parsedData = []
-                        if parsedData.length > 0
-                            i = 0
-                            while i < parsedData.length
-                                item = parsedData[i]
-                                article =
-                                    title: $(item).find(site.selector.title).text()
-                                    href: $(item).find(site.selector.href).attr('href')
-                                if article.href.indexOf('http') == -1
-                                    baseUrl = site.url.match(/http[s]?:\/\/+[\s\S]+?\//)[0].slice(0, -1)
-                                    if article.href[0] != '/'
-                                        baseUrl += '/'
-                                    article.href = baseUrl + article.href
-                                $scope.popup.parsedData.push article
-                                localStorage.setItem 'site' + index, JSON.stringify(popup.parsedData)
-                                i++
-                    else
-                        data                    = JSON.parse(data)
-                        $scope.popup.parsedData = data[site.selector.item].map((a) ->
-                            {
-                            title: a[site.selector.title]
-                            href: a[site.selector.href]
-                            }
-                        )
-                        localStorage.setItem 'site' + index, JSON.stringify(popup.parsedData)
-                    $scope.popup.loading = false
-            error: (xhr, type) ->
-                $('.news-list .error').html xhr.response
-                $scope.$apply ->
-                    $scope.popup.loading = false
-                    $scope.popup.error   = true
+
+
+        render = (site)->
+            $.ajax
+                type: 'get'
+                url: if site.type == 'html' then site.url else site.api
+                timeout: 10000
+                success: (data) ->
+                    callback = {
+                        html: ->
+                            parsedData = $(data).find(site.selector.item)
+                            $scope.popup.parsedData = []
+                            if parsedData.length > 0
+                                i = 0
+                                while i < parsedData.length
+                                    item = parsedData[i]
+                                    article =
+                                        title: $(item).find(site.selector.title).text()
+                                        href: $(item).find(site.selector.href).attr('href')
+                                    if article.href.indexOf('http') == -1
+                                        baseUrl = site.url.match(/http[s]?:\/\/+[\s\S]+?\//)[0].slice(0, -1)
+                                        if article.href[0] != '/'
+                                            baseUrl += '/'
+                                        article.href = baseUrl + article.href
+                                    $scope.popup.parsedData.push article
+                                    localStorage.setItem 'site' + index, JSON.stringify(popup.parsedData)
+                                    i++
+                        ajax: ->
+                            data                    = JSON.parse(data)
+                            $scope.popup.parsedData = data[site.selector.item].map((a) ->
+                                {
+                                title: a[site.selector.title]
+                                href: a[site.selector.href]
+                                }
+                            )
+                            localStorage.setItem 'site' + index, JSON.stringify(popup.parsedData)
+
+
+                    }
+
+                    $scope.$apply ->
+                        callback[site.type]()
+                        $scope.popup.loading = false
+                error: (xhr, type) ->
+                    $('.news-list .error').html xhr.response
+                    $scope.$apply ->
+                        $scope.popup.loading = false
+                        $scope.popup.error   = true
+        render(site)
         popup.currentSite = popup.sites[popup.index]
 
     popup.show popup.index
@@ -80,7 +90,6 @@ angular.module('TenRead.Controllers', ['TenRead.initData'])
         }, ->
             $.post 'http://tenread.wtser.com/api/sync', article, (d) ->
                 console.log JSON.parse(d).visited
-
 ).controller('OptionCtrl', ($scope) ->
     option = $scope.option = {}
     option.nav = [
