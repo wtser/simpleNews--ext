@@ -16,8 +16,8 @@ angular.module 'TenRead.initData', []
         "type": "ajax",
         "name": "淘宝众筹",
         "api": "https://hstar-hi.alicdn.com/dream/ajax/getProjectList.htm?page=1&pageSize=20&projectType=&type=6&status=&sort=1",
-        "url": "http://izhongchou.taobao.com/",
-        "icon": "http://static.segmentfault.com/global/img/touch-icon.c78b1075.png",
+        "url": "https://hi.taobao.com/market/hi/list.php",
+        "icon": "https://img.alicdn.com/tps/TB19yVcJFXXXXaNXFXXXXXXXXXX-384-119.png",
         "paging": "",
         "selector": {
             "item": "data",
