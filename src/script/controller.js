@@ -1,48 +1,22 @@
 (function() {
-  angular.module('TenRead.Controllers', []).controller('PopupCtrl', function($scope, $http, $timeout) {
-    var popup;
+  angular.module('TenRead.Controllers', ['TenRead.initData']).controller('PopupCtrl', function($scope, $http, $timeout, initData) {
+    var popup, ref, ref1, ref2;
     $('body').on('click', '.news-list a', function(e) {
-      e.preventDefault();
+      return e.preventDefault();
     });
     $scope.popup = {};
     popup = $scope.popup;
     popup.scrollTop = localStorage.getItem('scrollTop') || 0;
     $timeout((function() {
-      $('.tabs').scrollTop(popup.scrollTop);
+      return $('.tabs').scrollTop(popup.scrollTop);
     }), 10);
-    popup.initSites = [
-      {
-        'type': 'html',
-        'icon': 'http://www.v2ex.com/static/img/icon_rayps_64.png',
-        'name': 'v2ex',
-        'url': 'http://www.v2ex.com/?tab=hot',
-        'paging': '',
-        'selector': {
-          'item': '.cell.item',
-          'title': '.item_title>a',
-          'href': '.item_title>a'
-        }
-      }, {
-        'type': 'ajax',
-        'name': '淘宝众筹',
-        'api': 'https://hstar-hi.alicdn.com/dream/ajax/getProjectList.htm?page=1&pageSize=20&projectType=&type=6&status=&sort=1',
-        'url': 'http://izhongchou.taobao.com/',
-        'icon': 'http://static.segmentfault.com/global/img/touch-icon.c78b1075.png',
-        'paging': '',
-        'selector': {
-          'item': 'data',
-          'title': 'name',
-          'href': 'link'
-        }
-      }
-    ];
-    popup.sites = JSON.parse(localStorage.getItem('sites')) || [];
+    popup.sites = (ref = JSON.parse(localStorage.getItem('sites'))) != null ? ref : [];
     if (popup.sites.length === 0) {
-      popup.sites = popup.initSites;
-      localStorage.setItem('sites', JSON.stringify(popup.sites));
+      popup.sites = initData != null ? initData : [];
     }
-    popup.index = localStorage.getItem('index') || 0;
-    popup.currentSite = popup.sites[popup.index] || popup.sites[popup.sites.length - 1];
+    localStorage.setItem('sites', JSON.stringify(popup.sites));
+    popup.index = (ref1 = localStorage.getItem('index')) != null ? ref1 : 0;
+    popup.currentSite = (ref2 = popup.sites[popup.index]) != null ? ref2 : popup.sites[popup.sites.length - 1];
     popup.currentSite.status = 'active';
     popup.show = function(index) {
       var site;
@@ -56,7 +30,7 @@
       popup.loading = true;
       site = popup.sites[index];
       angular.forEach(popup.sites, function(site) {
-        site.status = '';
+        return site.status = '';
       });
       site.status = 'active';
       popup.parsedData = JSON.parse(localStorage.getItem('site' + index)) || [];
@@ -65,7 +39,7 @@
         url: site.type === 'html' ? site.url : site.api,
         timeout: 10000,
         success: function(data) {
-          $scope.$apply(function() {
+          return $scope.$apply(function() {
             var article, baseUrl, i, item, parsedData;
             if (site.type === 'html') {
               parsedData = $(data).find(site.selector.item);
@@ -100,27 +74,27 @@
               });
               localStorage.setItem('site' + index, JSON.stringify(popup.parsedData));
             }
-            $scope.popup.loading = false;
+            return $scope.popup.loading = false;
           });
         },
         error: function(xhr, type) {
           $('.news-list .error').html(xhr.response);
-          $scope.$apply(function() {
+          return $scope.$apply(function() {
             $scope.popup.loading = false;
-            $scope.popup.error = true;
+            return $scope.popup.error = true;
           });
         }
       });
-      popup.currentSite = popup.sites[popup.index];
+      return popup.currentSite = popup.sites[popup.index];
     };
     popup.show(popup.index);
-    popup.sync = function(article) {
-      chrome.tabs.create({
+    return popup.sync = function(article) {
+      return chrome.tabs.create({
         url: article.href,
         active: false
       }, function() {
-        $.post('http://tenread.wtser.com/api/sync', article, function(d) {
-          console.log(JSON.parse(d).visited);
+        return $.post('http://tenread.wtser.com/api/sync', article, function(d) {
+          return console.log(JSON.parse(d).visited);
         });
       });
     };

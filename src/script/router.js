@@ -1,15 +1,15 @@
 (function() {
   angular.module('TenRead', ['ui.router', 'TenRead.directive', 'TenRead.Controllers']).config(function($compileProvider) {
-    $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|ftp|mailto|file|tel|chrome-extension):/);
+    return $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|ftp|mailto|file|tel|chrome-extension):/);
   }).config(function($stateProvider, $urlRouterProvider) {
     $urlRouterProvider.otherwise(function($injector, $location) {
       if (location.hash === '' && location.pathname === '/option.html') {
-        location.hash = '#/option/store';
+        return location.hash = '#/option/store';
       } else {
-        location.hash = '#/popup';
+        return location.hash = '#/popup';
       }
     });
-    $stateProvider.state('popup', {
+    return $stateProvider.state('popup', {
       url: '/popup',
       templateUrl: '/template/popup.html',
       controller: 'PopupCtrl'

@@ -4,7 +4,6 @@ angular.module('TenRead', [
     'TenRead.Controllers'
 ]).config(($compileProvider) ->
     $compileProvider.aHrefSanitizationWhitelist /^\s*(https?|ftp|mailto|file|tel|chrome-extension):/
-    return
 ).config ($stateProvider, $urlRouterProvider) ->
 #
 # For any unmatched url, redirect to /state1
@@ -13,37 +12,41 @@ angular.module('TenRead', [
             location.hash = '#/option/store'
         else
             location.hash = '#/popup'
-        return
     #
     # Now set up the states
-    $stateProvider.state('popup',
+    $stateProvider
+    .state('popup',
         url: '/popup'
         templateUrl: '/template/popup.html'
-        controller: 'PopupCtrl').state('option',
+        controller: 'PopupCtrl')
+    .state('option',
         url: '/option'
-        templateUrl: '/template/option.html').state('option.store',
+        templateUrl: '/template/option.html')
+    .state('option.store',
         url: '/store'
         templateUrl: '/template/option.html'
         views:
             'content':
                 templateUrl: '/template/option.store.html'
-                controller: 'OptionStoreCtrl').state('option.subscription',
+                controller: 'OptionStoreCtrl')
+    .state('option.subscription',
         url: '/subscription'
         templateUrl: '/template/option.html'
         views:
             'content':
                 templateUrl: '/template/option.subscription.html'
-                controller: 'OptionSubscriptionCtrl').state('option.exchange',
+                controller: 'OptionSubscriptionCtrl')
+    .state('option.exchange',
         url: '/exchange'
         templateUrl: '/template/option.html'
         views:
             'content':
                 templateUrl: '/template/option.exchange.html'
-                controller: 'OptionExchangeCtrl').state 'option.about',
+                controller: 'OptionExchangeCtrl')
+    .state 'option.about',
         url: '/about'
         templateUrl: '/template/option.html'
         views:
             'content':
                 templateUrl: '/template/option.about.html'
                 controller: 'OptionAboutCtrl'
-    return

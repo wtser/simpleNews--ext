@@ -19,7 +19,7 @@ gulp.task 'watcher', ->
         './script/*'
         './template/*'
         '*.html'
-    ], ['build'])
+    ], ['compile'])
 
     watcher.on 'change', (event) ->
         console.log 'File ' + event.path + ' was ' + event.type + ', running tasks...'
@@ -45,9 +45,14 @@ gulp.task 'copyFiles', ->
         'manifest.json'
         'background.js'
     ], base: '.').pipe gulp.dest('../build/')
-gulp.task 'default', ['build', 'watcher']
+gulp.task 'default', ['watcher']
+gulp.task 'compile',[
+    'sass'
+    'coffee'
+]
 gulp.task 'build', [
     'sass'
+    'coffee'
     'compressCSS'
     'compressJS'
     'copyFiles'

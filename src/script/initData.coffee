@@ -1,0 +1,28 @@
+angular.module 'TenRead.initData', []
+.value 'initData', [
+    {
+        "type": "html",
+        "icon": "http://www.v2ex.com/static/img/icon_rayps_64.png",
+        "name": "v2ex",
+        "url": "http://www.v2ex.com/?tab=hot",
+        "paging": "",
+        "selector": {
+            "item": ".cell.item",
+            "title": ".item_title>a",
+            "href": ".item_title>a"
+        }
+    },
+    {
+        "type": "ajax",
+        "name": "淘宝众筹",
+        "api": "https://hstar-hi.alicdn.com/dream/ajax/getProjectList.htm?page=1&pageSize=20&projectType=&type=6&status=&sort=1",
+        "url": "http://izhongchou.taobao.com/",
+        "icon": "http://static.segmentfault.com/global/img/touch-icon.c78b1075.png",
+        "paging": "",
+        "selector": {
+            "item": "data",
+            "title": "name",
+            "href": "link"
+        }
+    }
+]
