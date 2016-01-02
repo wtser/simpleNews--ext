@@ -24,21 +24,21 @@
       float:        left;
       width:        318px;
       border-right: 1px solid #ddd;
-      min-height:   385px;
+      height:       22rem;
+      overflow:     auto;
 
       li {
-        margin: 2px 4px;
-
         a {
           text-decoration: none;
           color:           #444;
-          padding:         8px;
+          padding:         0.7rem 0.5rem;
           display:         block;
           white-space:     nowrap;
           text-overflow:   ellipsis;
           overflow:        hidden;
-          font-size:       14px;
+          font-size:       0.8rem;
           transition:      all 0.4s;
+          line-height:     1;
 
           &:visited {
             color: #cccccc;
@@ -60,7 +60,7 @@
 
       overflow-y: scroll;
       li {
-        padding:        4px;
+        padding:        2px;
         background:     #f1f1f1;
         border-top:     1px solid #f1f1f1;
         border-bottom:  1px solid #f1f1f1;
@@ -74,7 +74,7 @@
         &.active {
           display:          inline-block;
           margin-left:      -1px;
-          padding-left:     5px;
+          padding-left:     3px;
           background-color: #ffffff !important;
           border-top:       1px solid #dddddd;
           border-bottom:    1px solid #dddddd;
@@ -90,6 +90,7 @@
           border-radius: 50%;
           width:         32px;
           height:        32px;
+          border:        2px solid #fff;
         }
       }
     }
@@ -99,16 +100,16 @@
   .control {
     background: #fff;
     .site {
-      line-height:     38px;
-      font-size:       1rem;
-      padding-left:    10px;
+      line-height:     28px;
+      font-size:       0.9rem;
+      padding-left:    0.5rem;
       color:           #333;
       text-decoration: none;
     }
     .action {
-      font-size: 1.4rem;
+      font-size: 1.2rem;
       float:     right;
-      padding:   0.5rem;
+      padding:   0.25rem 0.5rem;
       color:     #666;
     }
     .loading {

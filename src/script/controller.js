@@ -17,47 +17,29 @@ angular.module('TenRead.Controllers', [])
 
         popup.initSites = [
             {
-                "name"    : "startup news",
-                "url" : "http://news.dbanotes.net/",
-                "icon": "http://news.dbanotes.net/logo.png",
-                "selector": ".title>a",
-                "isShow"  : true
+                "type"    : "html",
+                "icon": "http://www.v2ex.com/static/img/icon_rayps_64.png",
+                "name": "v2ex",
+                "url" : "http://www.v2ex.com/?tab=hot",
+                "paging": "",
+                "selector": {
+                    "item" : ".cell.item",
+                    "title": ".item_title>a",
+                    "href" : ".item_title>a"
+                }
             },
             {
-                "name"    : "segmentfault",
-                "url" : "http://segmentfault.com/blogs",
+                "type"    : "ajax",
+                "name": "淘宝众筹",
+                "api" : "https://hstar-hi.alicdn.com/dream/ajax/getProjectList.htm?page=1&pageSize=20&projectType=&type=6&status=&sort=1",
+                "url" : "http://izhongchou.taobao.com/",
                 "icon": "http://static.segmentfault.com/global/img/touch-icon.c78b1075.png",
-                "selector": ".title>a",
-                "isShow"  : true
-            },
-            {
-                "name"    : "简书",
-                "url" : "http://www.jianshu.com/trending/now",
-                "icon": "http://static.jianshu.io/assets/icon114-fcef1133c955e46bf55e2a60368f687b.png",
-                "selector": "h4>a",
-                "isShow"  : true
-            },
-            {
-                "isShow"  : true,
-                "icon"  : "http://www.solidot.org/favicon.ico",
-                "title" : "solidot",
-                "url"   : "http://www.solidot.org/",
-                "selector": ".bg_htit>h2>a",
-                "name"    : "solidot"
-            },
-            {
-                "isShow"  : true,
-                "icon"  : "https://news.ycombinator.com/favicon.ico",
-                "name"  : "hacker news",
-                "url"   : "https://news.ycombinator.com/",
-                "selector": ".title>a"
-            },
-            {
-                "isShow"  : true,
-                "icon"  : "http://www.v2ex.com/static/img/icon_rayps_64.png",
-                "name"  : "v2ex",
-                "url"   : "http://www.v2ex.com/?tab=hot",
-                "selector": "span.item_title > a"
+                "paging": "",
+                "selector": {
+                    "item" : "data",
+                    "title": "name",
+                    "href" : "link"
+                }
             }
         ];
 
@@ -93,30 +75,41 @@ angular.module('TenRead.Controllers', [])
             popup.parsedData = JSON.parse(localStorage.getItem("site" + index)) || [];
             $.ajax({
                 type   : 'get',
-                url : site.url,
+                url : site.type == "html" ? site.url : site.api,
                 timeout: 10000,
                 success: function (data) {
                     $scope.$apply(function () {
-                        var parsedData          = $(data).find(site.selector);
-                        $scope.popup.parsedData = [];
-                        if (parsedData.length > 0) {
-                            for (var i = 0, max = 10; i < max; i++) {
-                                var article = {
-                                    title: $.trim($(parsedData[i]).text()).replace(/^\<img[\s\S]+\>/, ""),
-                                    href : $(parsedData[i]).attr("href")
-                                };
-                                if (article.href.indexOf("http") == -1) {
-                                    var baseUrl = site.url.match(/http[s]?:\/\/+[\s\S]+?\//)[0].slice(0, -1);
-                                    if (article.href[0] != "/") {
-                                        baseUrl += "/"
+                        if (site.type == "html") {
+                            var parsedData          = $(data).find(site.selector.item);
+                            $scope.popup.parsedData = [];
+                            if (parsedData.length > 0) {
+                                for (var i = 0; i < parsedData.length; i++) {
+                                    var item    = parsedData[i];
+                                    var article = {
+                                        title: $(item).find(site.selector.title).text(),
+                                        href : $(item).find(site.selector.href).attr("href")
+                                    };
+                                    if (article.href.indexOf("http") == -1) {
+                                        var baseUrl = site.url.match(/http[s]?:\/\/+[\s\S]+?\//)[0].slice(0, -1);
+                                        if (article.href[0] != "/") {
+                                            baseUrl += "/"
+                                        }
+                                        article.href = baseUrl + article.href;
                                     }
-                                    article.href = baseUrl + article.href;
-                                }
-                                $scope.popup.parsedData.push(article);
-                                localStorage.setItem("site" + index, JSON.stringify(popup.parsedData));
+                                    $scope.popup.parsedData.push(article);
+                                    localStorage.setItem("site" + index, JSON.stringify(popup.parsedData));
 
+                                }
                             }
                         }
+                        else {
+                            data                    = JSON.parse(data);
+                            $scope.popup.parsedData = data[site.selector.item].map(function (a) {
+                                return {title: a[site.selector.title], href: a[site.selector.href]}
+                            });
+                            localStorage.setItem("site" + index, JSON.stringify(popup.parsedData));
+                        }
+
                         $scope.popup.loading = false;
 
                     })
