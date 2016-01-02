@@ -39,7 +39,29 @@ angular.module('TenRead.Controllers', ['TenRead.initData'])
                 timeout: 10000
                 success: (data) ->
                     callback = {
-                        html: ->
+                        old:->
+                            parsedData          = $(data).find(site.selector)
+                            $scope.popup.parsedData = []
+                            if parsedData.length > 0
+                                i = 0
+                                while i < parsedData.length
+                                    item = parsedData[i]
+                                    article =
+                                        title: $(item).find(site.selector.title).text()
+                                        href: $(item).find(site.selector.href).attr('href')
+                                    if article.href.indexOf('http') == -1
+                                        baseUrl = site.url.match(/http[s]?:\/\/+[\s\S]+?\//)[0].slice(0, -1)
+                                        if article.href[0] != '/'
+                                            baseUrl += '/'
+                                        article.href = baseUrl + article.href
+                                    $scope.popup.parsedData.push article
+                                    localStorage.setItem 'site' + index, JSON.stringify(popup.parsedData)
+                                    i++
+
+
+
+
+                    html: ->
                             parsedData = $(data).find(site.selector.item)
                             $scope.popup.parsedData = []
                             if parsedData.length > 0
