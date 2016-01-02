@@ -56,9 +56,9 @@ a {
     .popup .content .tabs {
       width: 40px;
       background: #f1f1f1;
-      max-height: 386px;
-      display: block;
-      overflow-y: scroll; }
+      height: 22rem;
+      overflow: auto;
+      display: block; }
       .popup .content .tabs li {
         padding: 2px;
         background: #f1f1f1;

@@ -55,10 +55,10 @@
     .tabs {
       width:      40px;
       background: #f1f1f1;
-      max-height: 386px;
+      height:       22rem;
+      overflow:     auto;
       display:    block;
 
-      overflow-y: scroll;
       li {
         padding:        2px;
         background:     #f1f1f1;

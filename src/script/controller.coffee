@@ -33,22 +33,29 @@ angular.module('TenRead.Controllers', ['TenRead.initData'])
 
 
         render = (site)->
+            if typeof site.selector is "string"
+                site.type = "compatible"
+            ajaxUrl = {
+                compatible: site.url,
+                html: site.url,
+                ajax: site.api
+            }
             $.ajax
                 type: 'get'
-                url: if site.type == 'html' then site.url else site.api
+                url: ajaxUrl[site.type]
                 timeout: 10000
                 success: (data) ->
                     callback = {
-                        old:->
-                            parsedData          = $(data).find(site.selector)
+                        compatible: ->
+                            parsedData = $(data).find(site.selector)
                             $scope.popup.parsedData = []
                             if parsedData.length > 0
                                 i = 0
                                 while i < parsedData.length
                                     item = parsedData[i]
                                     article =
-                                        title: $(item).find(site.selector.title).text()
-                                        href: $(item).find(site.selector.href).attr('href')
+                                        title: $.trim($(item).text()).replace(/^\<img[\s\S]+\>/, ""),
+                                        href: $(item).attr("href")
                                     if article.href.indexOf('http') == -1
                                         baseUrl = site.url.match(/http[s]?:\/\/+[\s\S]+?\//)[0].slice(0, -1)
                                         if article.href[0] != '/'
@@ -57,11 +64,7 @@ angular.module('TenRead.Controllers', ['TenRead.initData'])
                                     $scope.popup.parsedData.push article
                                     localStorage.setItem 'site' + index, JSON.stringify(popup.parsedData)
                                     i++
-
-
-
-
-                    html: ->
+                        html: ->
                             parsedData = $(data).find(site.selector.item)
                             $scope.popup.parsedData = []
                             if parsedData.length > 0
