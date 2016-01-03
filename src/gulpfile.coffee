@@ -30,7 +30,10 @@ gulp.task 'compressJS', ->
         'bower_components/angular-ui-router/release/angular-ui-router.min.js'
         'script/*.js'
         'bower_components/zepto/zepto.min.js'
-    ]).pipe(concat('app.js')).pipe(uglify(mangle: false)).pipe gulp.dest('../build/')
+    ]).pipe(concat('app.js')).pipe(uglify(mangle: false)).pipe gulp.dest('../build/script/')
+
+    gulp.src ['script/background.js']
+    .pipe(uglify(mangle: false)).pipe gulp.dest('../build/script/')
 gulp.task 'compressCSS', ->
     gulp.src([
         'stylesheet/tenread.css'
@@ -43,7 +46,6 @@ gulp.task 'copyFiles', ->
         'icon/*'
         'template/*'
         'manifest.json'
-        'background.js'
     ], base: '.').pipe gulp.dest('../build/')
 gulp.task 'default', ['watcher']
 gulp.task 'compile',[
