@@ -22,6 +22,11 @@
             <div class="close-button" data-ng-click="myList.cancel()"></div>
             <div class="content-area">
 
+                <p>类型</p>
+                <select ng-model="myList.form.type">
+                    <option value="html">html</option>
+                    <option value="ajax">ajax</option>
+                </select>
                 <p>图标</p>
                 <input ng-model="myList.form.icon">
 

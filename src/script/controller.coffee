@@ -37,8 +37,12 @@ angular.module('TenRead.Controllers', ['TenRead.initData'])
 
 
         render = (site)->
+            # item == title == href 进入兼容模式
             if typeof site.selector is "string"
                 site.type = "compatible"
+            else if site.selector.item == site.selector.title || site.selector.item == site.selector.href
+                site.type = "compatible"
+                site.selector = site.selector.item
             ajaxUrl = {
                 compatible: site.url,
                 html: site.url,
@@ -76,7 +80,7 @@ angular.module('TenRead.Controllers', ['TenRead.initData'])
                                 while i < parsedData.length
                                     item = parsedData[i]
                                     article =
-                                        title: $(item).find(site.selector.title).text()
+                                        title: $.trim $(item).find(site.selector.title).text()
                                         href: $(item).find(site.selector.href).attr('href')
                                     if article.href.indexOf('http') == -1
                                         baseUrl = site.url.match(/http[s]?:\/\/+[\s\S]+?\//)[0].slice(0, -1)
@@ -97,7 +101,7 @@ angular.module('TenRead.Controllers', ['TenRead.initData'])
                                         baseUrl = 'http:'
                                     a[site.selector.href] = baseUrl + a[site.selector.href]
                                 return {
-                                title: a[site.selector.title]
+                                title: $.trim a[site.selector.title]
                                 href: a[site.selector.href]
                                 }
                             )
@@ -200,20 +204,33 @@ angular.module('TenRead.Controllers', ['TenRead.initData'])
             icon: ''
             url: ''
             name: ''
-            selector: ''
+            type: 'html'
+            selector: {
+                item: ""
+                title: ""
+                href: ""
+            }
         myList.modal.form = true
         myList.form.index = -1
         return
 
     myList.cancel = ->
-        myList.modal.form = false
+        myList.modal.form   = false
         myList.modal.export = false
         return
 
     myList.edit = (index) ->
-        myList.form       = myList.data[index]
+        myList.form = myList.data[index]
+        if myList.form.selector.hasOwnProperty("length")
+            myList.form.type     = "html"
+            myList.form.selector = {
+                item: myList.form.selector
+                title: myList.form.selector
+                href: myList.form.selector
+            }
         myList.modal.form = true
         myList.form.index = index
+        console.log JSON.stringify myList.form
         return
 
     myList.del = (index) ->

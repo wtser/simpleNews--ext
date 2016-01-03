@@ -5,7 +5,7 @@
             <li data-ng-repeat="article in popup.parsedData ">
                 <a target="_blank"
                    data-ng-click="popup.redirect(article)"
-                   title="{{article.title.length>30?article.title:''}}"
+                   title="{{article.title.length>25?article.title:''}}"
                    href="{{article.href}}">
                     {{article.title}}
                 </a>
