@@ -15,7 +15,7 @@
         </div>
         <div class="mainview view" ui-view="content"></div>
     </div>
-    <div class="overlay" data-ng-show="myList.form.show">
+    <div class="overlay" data-ng-show="myList.modal.form">
         <div class="page">
             <h1>订阅表单</h1>
 
@@ -45,6 +45,24 @@
 
             </div>
             <div class="action-area">
+                <div class="action-area-right">
+                    <div class="button-strip">
+                        <button data-ng-click="myList.cancel()">取消</button>
+                        <button data-ng-click="myList.submit()">提交</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="overlay" data-ng-show="myList.modal.export">
+        <div class="page">
+            <h1>数据导出</h1>
+
+            <div class="close-button" data-ng-click="myList.cancel()"></div>
+            <div class="content-area">
+                <textarea rows="8" autofocus>{{myList.sites}}</textarea>
+            </div>
+            <div class="action-area" data-ng-if="0">
                 <div class="action-area-right">
                     <div class="button-strip">
                         <button data-ng-click="myList.cancel()">取消</button>

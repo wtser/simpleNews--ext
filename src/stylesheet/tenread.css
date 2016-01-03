@@ -111,8 +111,10 @@ a {
 .chrome-bootstrap {
   max-width: 960px;
   margin: 0 auto; }
-  .chrome-bootstrap .content-area input {
+  .chrome-bootstrap .content-area input, .chrome-bootstrap .content-area textarea {
     width: 100%; }
+  .chrome-bootstrap .content-area textarea {
+    font-family: Menlo, Monaco, Consolas, "Courier New", monospace; }
 
 .mainview .highlightable img {
   width: 32px;

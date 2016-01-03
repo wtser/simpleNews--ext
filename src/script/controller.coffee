@@ -121,7 +121,7 @@ angular.module('TenRead.Controllers', ['TenRead.initData'])
 
     popup.redirect = (article) ->
         chrome.tabs.create {
-            url: 'http://ten-read.wtser.com/redirect?href=' + encodeURIComponent(article.href) + '&title='  + encodeURIComponent(article.title)
+            url: 'http://ten-read.wtser.com/redirect?href=' + encodeURIComponent(article.href) + '&title=' + encodeURIComponent(article.title)
             active: false
         }
 .controller('OptionCtrl', ($scope) ->
@@ -186,26 +186,33 @@ angular.module('TenRead.Controllers', ['TenRead.initData'])
         url: ''
         name: ''
         selector: ''
-    myList.form.show  = false
-    myList.data       = JSON.parse(localStorage.getItem('sites'))
+    myList.modal      = {
+        form: false
+        export: false
+    }
+    myList.sites      = localStorage.getItem('sites')
+    myList.data       = JSON.parse(myList.sites)
 
-    myList.add = ->
+    myList.export = ->
+        myList.modal.export = true
+    myList.add    = ->
         myList.form       =
             icon: ''
             url: ''
             name: ''
             selector: ''
-        myList.form.show  = true
+        myList.modal.form = true
         myList.form.index = -1
         return
 
     myList.cancel = ->
-        myList.form.show = false
+        myList.modal.form = false
+        myList.modal.export = false
         return
 
     myList.edit = (index) ->
         myList.form       = myList.data[index]
-        myList.form.show  = true
+        myList.modal.form = true
         myList.form.index = index
         return
 
@@ -221,7 +228,7 @@ angular.module('TenRead.Controllers', ['TenRead.initData'])
         else
             myList.data[myList.form.index] = myList.form
         localStorage.setItem 'sites', JSON.stringify(myList.data)
-        myList.form.show = false
+        myList.modal.form = false
         return
 
     return
