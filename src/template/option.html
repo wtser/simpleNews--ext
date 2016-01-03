@@ -28,11 +28,20 @@
                 <p>标题</p>
                 <input ng-model="myList.form.name">
 
-                <p for="name">入口地址</p>
-                <input ng-model="myList.form.url"></label>
+                <p>入口地址</p>
+                <input ng-model="myList.form.url">
 
-                <p for="name">内容选择器</p>
-                <input ng-model="myList.form.selector"></label>
+                <p>内容选择器</p>
+
+                <div class="pure-g" data-ng-if="!myList.form.selector.hasOwnProperty('length') ">
+                    <div class="pure-u-1-3">item: <input ng-model="myList.form.selector.item"></div>
+                    <div class="pure-u-1-3">title: <input ng-model="myList.form.selector.title"></div>
+                    <div class="pure-u-1-3">href: <input ng-model="myList.form.selector.href"></div>
+
+                </div>
+                <div data-ng-if="myList.form.selector.hasOwnProperty('length') ">
+                    <input ng-model="myList.form.selector">
+                </div>
 
             </div>
             <div class="action-area">
