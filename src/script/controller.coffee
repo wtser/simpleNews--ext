@@ -1,6 +1,6 @@
 angular.module('TenRead.Controllers', ['TenRead.initData'])
 
-.controller('PopupCtrl', ($scope, $http, $timeout, initData) ->
+.controller 'PopupCtrl', ($scope, $http, $timeout, initData) ->
     $('body').on 'click', '.news-list a', (e) -> e.preventDefault()
     $scope.popup    = {}
     popup = $scope.popup
@@ -13,8 +13,12 @@ angular.module('TenRead.Controllers', ['TenRead.initData'])
     popup.sites = JSON.parse(localStorage.getItem('sites')) ? []
     if popup.sites.length == 0 then popup.sites = initData ? []
     localStorage.setItem 'sites', JSON.stringify(popup.sites)
-    popup.index              = localStorage.getItem('index') ? 0
-    popup.currentSite        = popup.sites[popup.index] ? popup.sites[popup.sites.length - 1]
+    popup.index = localStorage.getItem('index') ? 0
+    # 索引值越界处理
+    if popup.index >= popup.sites.length
+        popup.index = popup.sites.length - 1
+
+    popup.currentSite        = popup.sites[popup.index]
     popup.currentSite.status = 'active'
 
     popup.show = (index) ->
@@ -85,7 +89,14 @@ angular.module('TenRead.Controllers', ['TenRead.initData'])
                         ajax: ->
                             data                    = JSON.parse(data)
                             $scope.popup.parsedData = data[site.selector.item].map((a) ->
-                                {
+                                if a[site.selector.href].indexOf('http') == -1
+                                    baseUrl = site.url.match(/http[s]?:\/\/+[\s\S]+?\//)[0].slice(0, -1)
+                                    if a[site.selector.href][0] != '/'
+                                        baseUrl += '/'
+                                    if a[site.selector.href][1] == "/"
+                                        baseUrl = 'http:'
+                                    a[site.selector.href] = baseUrl + a[site.selector.href]
+                                return {
                                 title: a[site.selector.title]
                                 href: a[site.selector.href]
                                 }
@@ -115,7 +126,7 @@ angular.module('TenRead.Controllers', ['TenRead.initData'])
         }, ->
             $.post 'http://tenread.wtser.com/api/sync', article, (d) ->
                 console.log JSON.parse(d).visited
-).controller('OptionCtrl', ($scope) ->
+.controller('OptionCtrl', ($scope) ->
     option = $scope.option = {}
     option.nav = [
         {
