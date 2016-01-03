@@ -1,6 +1,6 @@
 {
   "manifest_version": 2,
-  "version":          "2.2",
+  "version":          "2.0",
   "name":             "十阅",
   "description":      "十阅是一款高效率的主动式新闻阅读器,随时获取网站的热门文章,资讯及优惠信息，充分利用碎片化时间",
   "icons":            {

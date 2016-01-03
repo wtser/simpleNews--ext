@@ -119,13 +119,11 @@ angular.module('TenRead.Controllers', ['TenRead.initData'])
 
     popup.show popup.index
 
-    popup.sync = (article) ->
+    popup.redirect = (article) ->
         chrome.tabs.create {
-            url: article.href
+            url: 'http://ten-read.wtser.com/redirect?href=' + encodeURIComponent(article.href) + '&title='  + encodeURIComponent(article.title)
             active: false
-        }, ->
-            $.post 'http://tenread.wtser.com/api/sync', article, (d) ->
-                console.log JSON.parse(d).visited
+        }
 .controller('OptionCtrl', ($scope) ->
     option = $scope.option = {}
     option.nav = [
