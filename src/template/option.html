@@ -36,7 +36,7 @@
                 <p>入口地址</p>
                 <input ng-model="myList.form.url">
 
-                <div data-ng-if="myList.form.hasOwnProperty('api') ">
+                <div data-ng-if="myList.form.type == 'ajax' ">
                     <p>ajax 地址</p>
                     <input ng-model="myList.form.api">
 
