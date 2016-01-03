@@ -13,8 +13,8 @@ previousVersion = localStorage.getItem("version") ? 0
 if previousVersion != manifest.version
     opt = {
         type: "basic",
-        title: "更新",
-        message: "十阅 更新到" + manifest.version + "版本啦～\n此次更新 重构了数据底层,支持了ajax 类型的数据源",
+        title: "十阅更新至 " + manifest.version + " 版本啦～",
+        message: "此次更新 重构了数据底层,支持了 ajax 类型的数据源且取消了一次只能看10条内容的限制",
         iconUrl: "icon/128.png"
     }
     id = new Date().getTime().toString();
