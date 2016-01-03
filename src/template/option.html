@@ -36,6 +36,12 @@
                 <p>入口地址</p>
                 <input ng-model="myList.form.url">
 
+                <div data-ng-if="myList.form.hasOwnProperty('api') ">
+                    <p>ajax 地址</p>
+                    <input ng-model="myList.form.api">
+
+                </div>
+
                 <p>内容选择器</p>
 
                 <div class="pure-g" data-ng-if="!myList.form.selector.hasOwnProperty('length') ">

@@ -55,6 +55,8 @@ angular.module 'TenRead.initData', []
         "type": "html"
     }
     {
+        type: "ajax",
+        api: "https://hstar-hi.alicdn.com/dream/ajax/getProjectList.htm?page=1&pageSize=20&projectType=&type=6&status=1&sort=4"
         "icon": "https://img.alicdn.com/tps/TB19yVcJFXXXXaNXFXXXXXXXXXX-384-119.png",
         "url": "https://hi.taobao.com/market/hi/list.php",
         "selector": {"item": "data", "title": "name", "href": "link"},
