@@ -29,6 +29,7 @@ gulp.task 'compressJS', ->
         'bower_components/angular/angular.min.js'
         'bower_components/angular-ui-router/release/angular-ui-router.min.js'
         'script/*.js'
+        '!script/background.js'
         'bower_components/zepto/zepto.min.js'
     ]).pipe(concat('app.js')).pipe(uglify(mangle: false)).pipe gulp.dest('../build/script/')
 
