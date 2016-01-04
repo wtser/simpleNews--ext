@@ -1,4 +1,3 @@
-
 <div class="selected">
     <header>
         <h1>我的订阅</h1>
@@ -13,10 +12,10 @@
     <div class="content" style="padding-top: 100px;">
 
 
-        <ul class="highlightable editable">
-            <li data-ng-repeat="site in myList.data track by $index">
+        <ul class="highlightable editable" data-ng-model="myList.data" data-as-sortable="myList.dragControlListeners">
+            <li data-ng-repeat="site in myList.data" data-as-sortable-item>
                 <a data-ng-click="myList.edit($index)">
-                    <img style="width: 32px;" src=" {{site.icon}}">
+                    <img data-as-sortable-item-handle style="width: 32px;" src=" {{site.icon}}">
                     <dl>
                         <dt>{{site.name}}</dt>
                         <dd>{{site.url}}</dd>
@@ -24,7 +23,6 @@
                 </a>
                 <a class="action" data-ng-click="myList.edit($index)">编辑</a>
                 <a class="delete" data-ng-click="myList.del($index)">删除</a>
-
             </li>
 
         </ul>

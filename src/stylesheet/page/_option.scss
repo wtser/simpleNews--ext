@@ -68,5 +68,29 @@
   }
 }
 
+/*style for ng-sortable*/
+.as-sortable-item, .as-sortable-placeholder {
+  margin: 1px 2px 5px 1px;
+}
+
+.as-sortable-item {
+  background-color: #ffffff;
+}
+
+.as-sortable-item-handle {
+}
+
+.as-sortable-placeholder {
+  border: 1px dashed darkgrey;
+  box-sizing: border-box;
+}
+
+.as-sortable-drag {
+  opacity: .8;
+}
+
+.as-sortable-hidden {
+}
+
 
 
