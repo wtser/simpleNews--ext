@@ -28,6 +28,7 @@ gulp.task 'compressJS', ->
     gulp.src([
         'bower_components/angular/angular.min.js'
         'bower_components/angular-ui-router/release/angular-ui-router.min.js'
+        'bower_components/ng-sortable/dist/ng-sortable.js'
         'script/*.js'
         '!script/background.js'
         'bower_components/zepto/zepto.min.js'
@@ -39,6 +40,7 @@ gulp.task 'compressCSS', ->
     gulp.src([
         'stylesheet/tenread.css'
         'bower_components/fontawesome/css/font-awesome.min.css'
+        'bower_components/ng-sortable/dist/ng-sortable.css'
     ]).pipe(concat('app.css')).pipe(minicss()).pipe gulp.dest('../build/')
 gulp.task 'copyFiles', ->
     gulp.src(['bower_components/fontawesome/fonts/*'],
