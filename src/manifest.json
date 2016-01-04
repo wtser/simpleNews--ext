@@ -1,14 +1,18 @@
 {
   "manifest_version": 2,
-  "version":          "1.3.1",
+  "version":          "2.0.1",
   "name":             "十阅",
-  "description":      "十阅是一款高效率的新闻收集器,随时获取网站的热门文章 10 篇，充分利用碎片化时间进行阅读.",
+  "description":      "十阅是一款高效率的主动式新闻阅读器,随时获取网站的热门文章,资讯及优惠信息，充分利用碎片化时间",
   "icons":            {
     "128": "icon/128.png",
     "16":  "icon/16.png",
     "48":  "icon/48.png"
   },
   "author":           "wtser",
+  "background": {
+    "persistent": false,
+    "scripts": [ "script/background.js" ]
+  },
   "browser_action":   {
     "default_icon":  "icon/48.png",
     "default_popup": "index.html#/popup",
@@ -16,6 +20,7 @@
   },
   "options_page":     "index.html#/option/store",
   "permissions":      [
+    "notifications",
     "http://*/",
     "https://*/"
   ]

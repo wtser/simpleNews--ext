@@ -3,7 +3,12 @@
     "name":     "startup news",
     "url":      "http://news.dbanotes.net/",
     "icon":     "http://news.dbanotes.net/logo.png",
-    "selector": ".title>a"
+    "selector": {
+      "item":  ".title>a",
+      "title": ".title>a",
+      "href":  ".title>a"
+    },
+    "type":     "html"
   },
   {
     "name":     "segmentfault",
@@ -15,20 +20,35 @@
     "icon":     "http://www.solidot.org/favicon.ico",
     "title":    "solidot",
     "url":      "http://www.solidot.org/",
-    "selector": ".bg_htit>h2>a",
-    "name":     "solidot"
+    "selector": {
+      "item":  ".block_m",
+      "title": ".bg_htit>h2>a",
+      "href":  ".bg_htit>h2>a"
+    },
+    "name":     "solidot",
+    "type":     "html"
   },
   {
     "icon":     "https://news.ycombinator.com/favicon.ico",
     "name":     "hacker news",
     "url":      "https://news.ycombinator.com/",
-    "selector": ".title>a"
+    "selector": {
+      "item":  ".athing",
+      "title": ".title>a",
+      "href":  ".title>a"
+    },
+    "type":     "html"
   },
   {
     "icon":     "http://www.v2ex.com/static/img/icon_rayps_64.png",
     "name":     "v2ex",
     "url":      "http://www.v2ex.com/?tab=hot",
-    "selector": "span.item_title > a"
+    "selector": {
+      "item":  "span.item_title > a",
+      "title": "span.item_title > a",
+      "href":  "span.item_title > a"
+    },
+    "type":     "html"
   },
   {
     "icon":     "http://static.guokr.com/apps/minisite/images/239b2091.i-logo.png",
@@ -61,8 +81,9 @@
     "selector": ".h2>a"
   },
   {
-    "icon": "http://img2.w3ctech.com/logo-144.png", 
-    "url": "http://www.w3ctech.com/",
-    "name": "w3ctech", 
-    "selector": ".topic_title>a"}
+    "icon":     "http://img2.w3ctech.com/logo-144.png",
+    "url":      "http://www.w3ctech.com/",
+    "name":     "w3ctech",
+    "selector": ".topic_title>a"
+  }
 ]
