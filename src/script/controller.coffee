@@ -125,7 +125,7 @@ angular.module('TenRead.Controllers', ['TenRead.initData', 'as.sortable'])
 
     popup.redirect = (article) ->
         chrome.tabs.create {
-            url: 'http://ten-read.wtser.com/redirect?href=' + encodeURIComponent(article.href) + '&title=' + encodeURIComponent(article.title)
+            url: 'https://ten-read.wtser.com/redirect?href=' + encodeURIComponent(article.href) + '&title=' + encodeURIComponent(article.title)
             active: false
         }
 .controller('OptionCtrl', ($scope) ->
