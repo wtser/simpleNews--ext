@@ -14,7 +14,12 @@
     "name":     "segmentfault",
     "url":      "http://segmentfault.com/blogs",
     "icon":     "http://static.segmentfault.com/global/img/touch-icon.c78b1075.png",
-    "selector": ".title>a"
+    "selector": {
+      "item":  ".stream-list__item",
+      "title": ".title>a",
+      "href":  ".title>a"
+    },
+    "type":     "html"
   },
   {
     "icon":     "http://www.solidot.org/favicon.ico",
@@ -52,9 +57,14 @@
   },
   {
     "icon":     "http://static.guokr.com/apps/minisite/images/239b2091.i-logo.png",
-    "name":     "果壳科学人",
+    "name":     "果壳推荐",
     "url":      "http://www.guokr.com/scientific/",
-    "selector": ".article-title"
+    "selector": {
+      "item":  ".article-title",
+      "title": ".article-title",
+      "href":  ".article-title"
+    },
+    "type":     "html"
   },
   {
     "icon":     "http://www.huxiu.com/favicon.ico",
