@@ -1,11 +1,11 @@
 <div class="popup">
     <div class="content">
         <ul class="news-list">
-            <div data-ng-show="popup.error"><h1>该网站暂不可用，访问超时。</h1></div>
+            <div class="error" data-ng-show="popup.error"><h1>该网站暂不可用，访问超时。</h1></div>
             <li data-ng-repeat="article in popup.parsedData ">
                 <a target="_blank"
-                   data-ng-click="popup.sync(article)"
-                   title="{{article.title.length>20?article.title:''}}"
+                   data-ng-click="popup.redirect(article)"
+                   title="{{article.title.length>25?article.title:''}}"
                    href="{{article.href}}">
                     {{article.title}}
                 </a>
