@@ -8,7 +8,7 @@ coffee = require('gulp-coffee')
 gulp.task 'sass', ->
     gulp.src('./stylesheet/tenread.scss').pipe(sass()).pipe gulp.dest('./stylesheet/')
 
-gulp.task 'coffee',->
+gulp.task 'coffee', ->
     gulp.src './script/*.coffee'
     .pipe coffee()
     .pipe gulp.dest './script/'
@@ -51,7 +51,7 @@ gulp.task 'copyFiles', ->
         'manifest.json'
     ], base: '.').pipe gulp.dest('../build/')
 gulp.task 'default', ['watcher']
-gulp.task 'compile',[
+gulp.task 'compile', [
     'sass'
     'coffee'
 ]
