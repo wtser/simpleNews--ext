@@ -36,7 +36,7 @@
   "selector":{"item":".query-result-list","title":".link-tit","href":".i-tits>a"}},
   {
     "type":     "ajax",
-    "api":      "https://hstar-hi.alicdn.com/dream/ajax/getProjectList.htm?page=1&pageSize=20&projectType=&type=6&status=1&sort=4",
+    "api":      "https://hstar-hi.alicdn.com/dream/ajax/getProjectList.htm?page=1&pageSize=30&projectType=&type=6&status=1&sort=1",
     "icon":     "https://img.alicdn.com/tps/TB19yVcJFXXXXaNXFXXXXXXXXXX-384-119.png",
     "url":      "https://hi.taobao.com/market/hi/list.php",
     "selector": {
