@@ -30,8 +30,8 @@
     "selector": ".itemName>a"
   },
   {"icon":"http://static.360buyimg.com/finance/base/1.2.0/images/logo-slogan.png",
-  "url":"http://z.jd.com/bigger/search.html?status=2&sort=zhtj&categoryId=10&parentCategoryId=&sceneEnd=&productEnd=&keyword=&page=1&pageSize=20",
-  "name":"京东众筹 科技",
+  "url":"http://z.jd.com/bigger/search.html?status=2&sort=zhtj&categoryId=&parentCategoryId=&sceneEnd=&productEnd=&keyword=&page=1&pageSize=30",
+  "name":"京东众筹",
   "type":"html",
   "selector":{"item":".query-result-list","title":".link-tit","href":".i-tits>a"}},
   {
