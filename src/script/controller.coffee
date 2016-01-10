@@ -1,4 +1,4 @@
-angular.module('TenRead.Controllers', ['TenRead.initData'])
+angular.module('TenRead.Controllers', ['TenRead.initData', 'as.sortable'])
 
 .controller 'PopupCtrl', ($scope, $http, $timeout, initData) ->
     $('body').on 'click', '.news-list a', (e) -> e.preventDefault()
@@ -37,11 +37,11 @@ angular.module('TenRead.Controllers', ['TenRead.initData'])
 
 
         render = (site)->
-            # item == title == href 进入兼容模式
+# item == title == href 进入兼容模式
             if typeof site.selector is "string"
                 site.type = "compatible"
             else if site.selector.item == site.selector.title || site.selector.item == site.selector.href
-                site.type = "compatible"
+                site.type     = "compatible"
                 site.selector = site.selector.item
             ajaxUrl = {
                 compatible: site.url,
@@ -125,7 +125,7 @@ angular.module('TenRead.Controllers', ['TenRead.initData'])
 
     popup.redirect = (article) ->
         chrome.tabs.create {
-            url: 'http://ten-read.wtser.com/redirect?href=' + encodeURIComponent(article.href) + '&title=' + encodeURIComponent(article.title)
+            url: 'https://ten-read.wtser.com/redirect?href=' + encodeURIComponent(article.href) + '&title=' + encodeURIComponent(article.title)
             active: false
         }
 .controller('OptionCtrl', ($scope) ->
@@ -185,17 +185,22 @@ angular.module('TenRead.Controllers', ['TenRead.initData'])
     $scope.myList     = {}
     myList = $scope.myList
     $rootScope.myList = myList
-    myList.form       =
+
+    myList.dragControlListeners = {
+        orderChanged: (event)->
+            localStorage.setItem 'sites', JSON.stringify(myList.data)
+    }
+    myList.form                 =
         icon: ''
         url: ''
         name: ''
         selector: ''
-    myList.modal      = {
+    myList.modal                = {
         form: false
         export: false
     }
-    myList.sites      = localStorage.getItem('sites')
-    myList.data       = JSON.parse(myList.sites)
+    myList.sites                = localStorage.getItem('sites')
+    myList.data                 = JSON.parse(myList.sites)
 
     myList.export = ->
         myList.modal.export = true

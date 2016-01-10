@@ -14,7 +14,7 @@ if previousVersion != manifest.version
     opt = {
         type: "basic",
         title: "十阅更新至 " + manifest.version + " 版本啦～",
-        message: "此次更新 重构了数据底层,支持了 ajax 类型的数据源且取消了一次只能看10条内容的限制 \n\n紧急修复了初始化数据错误和配置订阅功能",
+        message: "此次更新 支持订阅拖拽更换顺序\r\r fix gfw 原因导致的文章不跳转",
         iconUrl: "icon/128.png"
     }
     id = new Date().getTime().toString();

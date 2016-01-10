@@ -156,3 +156,17 @@ a {
 
 .mainview .site-info .site-name {
   line-height: 44px; }
+
+/*style for ng-sortable*/
+.as-sortable-item, .as-sortable-placeholder {
+  margin: 1px 2px 5px 1px; }
+
+.as-sortable-item {
+  background-color: #ffffff; }
+
+.as-sortable-placeholder {
+  border: 1px dashed darkgrey;
+  box-sizing: border-box; }
+
+.as-sortable-drag {
+  opacity: .8; }

@@ -13,7 +13,8 @@
     "tests"
   ],
   "dependencies": {
-    "chrome-bootstrap": "git@github.com:better-history/chrome-bootstrap.git#~1.5.0"
+    "chrome-bootstrap": "git@github.com:better-history/chrome-bootstrap.git#~1.5.0",
+    "ng-sortable": "~1.3.2"
   },
   "devDependencies": {
     "angular": "~1.3.15",

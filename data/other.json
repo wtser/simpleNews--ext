@@ -29,12 +29,11 @@
     "name":     "什么值得买热门2小时",
     "selector": ".itemName>a"
   },
-  {
-    "icon":     "http://sfault-avatar.b0.upaiyun.com/349/837/3498374095-567f7c03401c3_huge256",
-    "url":      "http://z.jd.com/bigger/search.html",
-    "name":     "京东众筹",
-    "selector": ".i-tits>a"
-  },
+  {"icon":"http://static.360buyimg.com/finance/base/1.2.0/images/logo-slogan.png",
+  "url":"http://z.jd.com/bigger/search.html?status=2&sort=zhtj&categoryId=10&parentCategoryId=&sceneEnd=&productEnd=&keyword=&page=1&pageSize=20",
+  "name":"京东众筹 科技",
+  "type":"html",
+  "selector":{"item":".query-result-list","title":".link-tit","href":".i-tits>a"}},
   {
     "type":     "ajax",
     "api":      "https://hstar-hi.alicdn.com/dream/ajax/getProjectList.htm?page=1&pageSize=20&projectType=&type=6&status=1&sort=4",
