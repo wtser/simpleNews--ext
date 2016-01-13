@@ -153,7 +153,7 @@ angular.module('TenRead.Controllers', ['TenRead.initData', 'as.sortable'])
 ).controller('OptionStoreCtrl', ($scope, $http) ->
     $scope.optionList = {}
     optionList = $scope.optionList
-    optionList.domain = 'http://wtser.github.io/ten-read/data/'
+    optionList.domain = 'https://wtser.com/ten-read/data/'
     optionList.sites  = JSON.parse(localStorage.getItem('sites')) or []
 
     optionList.show = (slug) ->
