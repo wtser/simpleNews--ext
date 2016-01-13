@@ -14,7 +14,7 @@ if previousVersion != manifest.version
     opt = {
         type: "basic",
         title: "十阅更新至 " + manifest.version + " 版本啦～",
-        message: "此次更新 支持订阅拖拽更换顺序\r\r fix gfw 原因导致的文章不跳转",
+        message: "此次更新  订阅商店访问加速",
         iconUrl: "icon/128.png"
     }
     id = new Date().getTime().toString();
