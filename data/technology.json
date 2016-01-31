@@ -73,10 +73,15 @@
     "selector": "h3>a"
   },
   {
-    "icon":     "http://www.pingwest.com/wp-content/themes/pingwest2014/images/touch-icon.png",
-    "name":     "PingWest快讯",
-    "url":      "http://news.pingwest.com/",
-    "selector": ".topic_title>a"
+    "icon":      "http://www.pingwest.com/wp-content/themes/pingwest2014/images/touch-icon.png",
+    "name":      "PingWest快讯",
+    "url":       "http://news.pingwest.com/",
+    "selector":  {
+      "item":  ".item.clearfix",
+      "title": ".item-con>h2>a",
+      "href":  ".item-con>h2>a"
+    },
+    "type":      "html"
   },
   {
     "icon":     "http://www.geekpark.net/icons/72x72.png",
