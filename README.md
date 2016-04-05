@@ -13,3 +13,10 @@ Fork 此项目，修改 data 目录下的 *.json 并 pull request。
 ## 使用扩展
 
 [下载 chrome 扩展](https://chrome.google.com/webstore/detail/%E5%8D%81%E9%98%85/bpnpkcfhagdgccpikdkldbnngifepibc)
+
+
+## 请我喝杯咖啡
+
+感谢支持,很高兴这个项目对你有所帮助。
+
+![请我喝杯咖啡](https://coding.net/u/wtser/p/ten-read/git/raw/master/src/icon/payme.png)
