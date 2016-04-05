@@ -83,4 +83,22 @@
             </div>
         </div>
     </div>
+    <div class="overlay" data-ng-show="myList.modal.import">
+        <div class="page">
+            <h1>数据导入</h1>
+
+            <div class="close-button" data-ng-click="myList.cancel()"></div>
+            <div class="content-area">
+                <textarea placeholder="将要导入的 json 数据粘贴至此处" rows="8" autofocus data-ng-model="myList.sitesImport"></textarea>
+            </div>
+            <div class="action-area">
+                <div class="action-area-right">
+                    <div class="button-strip">
+                        <button data-ng-click="myList.cancel()">取消</button>
+                        <button data-ng-click="myList.importAction()">导入</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
