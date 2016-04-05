@@ -62,8 +62,8 @@ angular.module('TenRead.Controllers', ['TenRead.initData', 'as.sortable'])
                 while i < parsedData.length
                   item = parsedData[i]
                   article =
-                    title: $.trim $(item).text().replace(/^\<img[\s\S]+\>/, ""),
-                      href: $(item).attr("href")
+                    title: $.trim $(item).text().replace(/^\<img[\s\S]+\>/, "")
+                    href: $(item).attr("href")
                   if article.href.indexOf('http') == -1
                     baseUrl = site.url.match(/http[s]?:\/\/+[\s\S]+?\//)[0].slice(0, -1)
                     if article.href[0] != '/'
