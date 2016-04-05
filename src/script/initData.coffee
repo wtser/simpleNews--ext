@@ -41,7 +41,7 @@ angular.module 'TenRead.initData', []
         "type": "html",
     }
     {
-        "icon": "http://static.zhihu.com/static/img/ios/zhihu(120px).png",
+        "icon": "https://static.zhihu.com/static/revved/img/ios/touch-icon-152.f361b474.png",
         "url": "http://www.zhihu.com/explore/recommendations",
         "name": "知乎编辑推荐",
         "selector": {"item": ".zm-item", "title": "h2>a", "href": "h2>a"},
