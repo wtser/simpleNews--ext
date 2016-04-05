@@ -11,5 +11,5 @@
     "selector": ".box>a",
     "name":     "知乎日报"
   },
-  {"icon":"http://static.zhihu.com/static/img/ios/zhihu(120px).png","url":"http://www.zhihu.com/explore/recommendations","name":"知乎编辑推荐","selector":"a.question_link"}
+  {"icon":"https://static.zhihu.com/static/revved/img/ios/touch-icon-152.f361b474.png","url":"http://www.zhihu.com/explore/recommendations","name":"知乎编辑推荐","selector":"a.question_link"}
 ]
