@@ -20,11 +20,11 @@ gulp.task 'coffee', ->
 
 gulp.task 'watcher', ->
   watcher = gulp.watch [
-        './stylesheet/**/*.scss'
-        './script/*'
-        './template/*'
-        '*.html'
-        ], ['compile']
+    './stylesheet/**/*.scss'
+    './script/*'
+    './template/*'
+    '*.html'
+  ], ['compile']
 
   watcher.on 'change', (event) ->
     console.log 'File ' + event.path + ' was ' + event.type
@@ -32,13 +32,13 @@ gulp.task 'watcher', ->
 
 gulp.task 'compressJS', ->
   gulp.src [
-        'bower_components/angular/angular.min.js'
-        'bower_components/angular-ui-router/release/angular-ui-router.min.js'
-        'bower_components/ng-sortable/dist/ng-sortable.js'
-        'script/*.js'
-        '!script/background.js'
-        'bower_components/zepto/zepto.min.js'
-    ]
+    'bower_components/angular/angular.min.js'
+    'bower_components/angular-ui-router/release/angular-ui-router.min.js'
+    'bower_components/ng-sortable/dist/ng-sortable.js'
+    'bower_components/zepto/zepto.min.js'
+    'script/*.js'
+    '!script/background.js'
+  ]
   .pipe(concat('app.js'))
   .pipe(uglify(mangle: false))
   .pipe gulp.dest('../build/script/')
@@ -48,33 +48,32 @@ gulp.task 'compressJS', ->
   .pipe gulp.dest('../build/script/')
 
 
-
 gulp.task 'compressCSS', ->
   gulp.src([
-        'stylesheet/tenread.css'
-        'bower_components/fontawesome/css/font-awesome.min.css'
-        'bower_components/ng-sortable/dist/ng-sortable.css'
-    ]).pipe(concat('app.css')).pipe(minicss()).pipe gulp.dest('../build/')
+    'stylesheet/tenread.css'
+    'bower_components/fontawesome/css/font-awesome.min.css'
+    'bower_components/ng-sortable/dist/ng-sortable.css'
+  ]).pipe(concat('app.css')).pipe(minicss()).pipe gulp.dest('../build/')
 
 gulp.task 'copyFiles', ->
   gulp.src(['bower_components/fontawesome/fonts/*'],
-        base: './bower_components/fontawesome').pipe gulp.dest('../build/')
+    base: './bower_components/fontawesome').pipe gulp.dest('../build/')
   gulp.src([
-        'icon/*'
-        'template/*'
-        'manifest.json'
-    ], base: '.').pipe gulp.dest('../build/')
+    'icon/*'
+    'template/*'
+    'manifest.json'
+  ], base: '.').pipe gulp.dest('../build/')
 
 gulp.task 'default', ['watcher']
 
 gulp.task 'compile', [
-    'sass'
-    'coffee'
+  'sass'
+  'coffee'
 ]
 gulp.task 'build', [
-    'sass'
-    'coffee'
-    'compressCSS'
-    'compressJS'
-    'copyFiles'
+  'sass'
+  'coffee'
+  'compressCSS'
+  'compressJS'
+  'copyFiles'
 ]
