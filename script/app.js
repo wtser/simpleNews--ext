@@ -1,4 +1,3 @@
-
 let app = function () {
     this.sites = require('./sites.json.js');
 
@@ -11,7 +10,6 @@ let app = function () {
 
 
 app.prototype.renderSiteList = function () {
-    console.log(this)
     let html = this.sites.reduce(function (init, site, index) {
         return init + `<li data-index='${index}' class="reader__site-item reader__site-item--content"><span class="reader__site-title">${site.name}</span></li>`
     }, '');
@@ -20,6 +18,12 @@ app.prototype.renderSiteList = function () {
     document.querySelector('.reader__site-items').innerHTML = html;
 };
 
+app.prototype.redirect   = function (url) {
+    chrome.tabs.create({
+        url   : url,
+        active: false
+    })
+}
 app.prototype.renderFeed = function (site) {
     this.articleLoading = true;
     this.feed           = site;
@@ -35,7 +39,7 @@ app.prototype.parseArticle = function (feed) {
 
     let url = feed.nextUrl ? feed.nextUrl : feed.api ? feed.api : feed.url;
 
-    fetch(url,{headers: {'Content-Type': 'text/html; charset=utf-8'}})
+    fetch(url, {headers: {'Content-Type': 'text/html; charset=utf-8'}})
         .then(function (rsp) {
 
             switch (feed.type) {
@@ -137,6 +141,23 @@ app.prototype.eventBind = function () {
             _this.renderFeed(site);
         })
     }
+
+    let $list = document.querySelector('.reader__list');
+    $list.addEventListener('click', function (e) {
+        e.preventDefault();
+        let $ele = e.target;
+        while (!$ele.classList.contains('reader__list-item-link')) {
+            $ele = $ele.parentNode
+            if(e.nodeName == "BODY"){
+                return;
+            }
+        }
+
+        let href = $ele.href;
+        _this.redirect(href)
+
+
+    })
 }
 
 app.prototype.init = function () {
