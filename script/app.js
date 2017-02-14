@@ -31,6 +31,23 @@ app.prototype.renderFeed = function (site) {
     this.parseArticle(this.feed)
 }
 
+app.prototype.fetch = function (url) {
+    return new Promise(function (resolve, reject) {
+        let xhr = new XMLHttpRequest();
+        xhr.open("GET", url, true);
+        xhr.onload             = function () {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                resolve(xhr.response)
+            } else {
+                reject(xhr)
+            }
+        }
+        xhr.onreadystatechange = function () {
+
+        }
+        xhr.send();
+    })
+}
 
 app.prototype.parseArticle = function (feed) {
     let _this   = this;
@@ -39,76 +56,68 @@ app.prototype.parseArticle = function (feed) {
 
     let url = feed.nextUrl ? feed.nextUrl : feed.api ? feed.api : feed.url;
 
-    fetch(url, {headers: {'Content-Type': 'text/html; charset=utf-8'}})
-        .then(function (rsp) {
 
+    _this.fetch(url).then(function (body) {
+        switch (feed.type) {
+            case 'ajax':
+                body = JSON.parse(body)
+                break;
+        }
+
+        if (body) {
+            let articleList, parsedData;
             switch (feed.type) {
                 case 'html':
-                    return rsp.text()
+                    let dom       = document.createElement('div');
+                    dom.innerHTML = body;
+                    articleList   = dom.querySelectorAll(feed.selector.item || feed.selector);
+                    parsedData    = Array.prototype.map.call(articleList, function (articleNode) {
+
+                        let title = articleNode.querySelector(feed.selector.title).textContent.trim()
+                        let href  = articleNode.querySelector(feed.selector.href).attributes.href.nodeValue
+                        if (href.indexOf('http') === -1) {
+                            if (href[0] !== '/') {
+                                href = '/' + href;
+                            }
+                            href = feed.domain + href;
+                        }
+                        return {
+                            title: title,
+                            href : href
+                        }
+                    })
+
                     break;
                 case 'ajax':
-                    return rsp.json()
-                    break;
-                default:
-                    return rsp.json()
-
-            }
-        })
-        .then(function (body) {
-
-
-            if (body) {
-                let articleList, parsedData;
-                switch (feed.type) {
-                    case 'html':
-                        let dom       = document.createElement('div');
-                        dom.innerHTML = body;
-                        articleList   = dom.querySelectorAll(feed.selector.item || feed.selector);
-                        parsedData    = Array.prototype.map.call(articleList, function (articleNode) {
-
-                            let title = articleNode.querySelector(feed.selector.title).textContent.trim()
-                            let href  = articleNode.querySelector(feed.selector.href).attributes.href.nodeValue
-                            if (href.indexOf('http') === -1) {
-                                // if (article.href[0] !== '/') {
-                                //     article.href += '/';
-                                // }
-                                href = feed.domain + href;
+                    let data   = body;
+                    parsedData = data[feed.selector.item].map(function (a) {
+                        var baseUrl;
+                        if (a[feed.selector.href].indexOf('http') === -1) {
+                            baseUrl = feed.domain
+                            if (a[feed.selector.href][0] !== '/') {
+                                baseUrl += '/';
                             }
-                            return {
-                                title: title,
-                                href : href
+                            if (a[feed.selector.href][1] === "/") {
+                                baseUrl = 'http:';
                             }
-                        })
-
-                        _this.renderArticles(parsedData)
-                        break;
-                    case 'ajax':
-                        let data   = body;
-                        parsedData = data[feed.selector.item].map(function (a) {
-                            var baseUrl;
-                            if (a[feed.selector.href].indexOf('http') === -1) {
-                                baseUrl = feed.domain
-                                if (a[feed.selector.href][0] !== '/') {
-                                    baseUrl += '/';
-                                }
-                                if (a[feed.selector.href][1] === "/") {
-                                    baseUrl = 'http:';
-                                }
-                                a[feed.selector.href] = baseUrl + a[feed.selector.href];
-                            }
-                            return {
-                                title: a[feed.selector.title].trim(),
-                                href : a[feed.selector.href]
-                            };
-                        });
-
-                        _this.renderArticles(parsedData)
-
-                }
+                            a[feed.selector.href] = baseUrl + a[feed.selector.href];
+                        }
+                        return {
+                            title: a[feed.selector.title].trim(),
+                            href : a[feed.selector.href]
+                        };
+                    });
 
 
             }
-        })
+            _this.renderArticles(parsedData)
+
+
+        }
+
+    }, function (err) {
+        console.log(err)
+    })
 
 }
 
@@ -148,7 +157,7 @@ app.prototype.eventBind = function () {
         let $ele = e.target;
         while (!$ele.classList.contains('reader__list-item-link')) {
             $ele = $ele.parentNode
-            if(e.nodeName == "BODY"){
+            if (e.nodeName == "BODY") {
                 return;
             }
         }

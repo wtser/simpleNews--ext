@@ -84,6 +84,22 @@
 	    this.parseArticle(this.feed);
 	};
 
+	app.prototype.fetch = function (url) {
+	    return new Promise(function (resolve, reject) {
+	        var xhr = new XMLHttpRequest();
+	        xhr.open("GET", url, true);
+	        xhr.onload = function () {
+	            if (xhr.readyState === 4 && xhr.status === 200) {
+	                resolve(xhr.response);
+	            } else {
+	                reject(xhr);
+	            }
+	        };
+	        xhr.onreadystatechange = function () {};
+	        xhr.send();
+	    });
+	};
+
 	app.prototype.parseArticle = function (feed) {
 	    var _this = this;
 	    feed.domain = feed.url.split('/');
@@ -91,20 +107,12 @@
 
 	    var url = feed.nextUrl ? feed.nextUrl : feed.api ? feed.api : feed.url;
 
-	    fetch(url, { headers: { 'Content-Type': 'text/html; charset=utf-8' } }).then(function (rsp) {
-
+	    _this.fetch(url).then(function (body) {
 	        switch (feed.type) {
-	            case 'html':
-	                return rsp.text();
-	                break;
 	            case 'ajax':
-	                return rsp.json();
+	                body = JSON.parse(body);
 	                break;
-	            default:
-	                return rsp.json();
-
 	        }
-	    }).then(function (body) {
 
 	        if (body) {
 	            var articleList = void 0,
@@ -119,9 +127,9 @@
 	                        var title = articleNode.querySelector(feed.selector.title).textContent.trim();
 	                        var href = articleNode.querySelector(feed.selector.href).attributes.href.nodeValue;
 	                        if (href.indexOf('http') === -1) {
-	                            // if (article.href[0] !== '/') {
-	                            //     article.href += '/';
-	                            // }
+	                            if (href[0] !== '/') {
+	                                href = '/' + href;
+	                            }
 	                            href = feed.domain + href;
 	                        }
 	                        return {
@@ -130,7 +138,6 @@
 	                        };
 	                    });
 
-	                    _this.renderArticles(parsedData);
 	                    break;
 	                case 'ajax':
 	                    var data = body;
@@ -152,10 +159,11 @@
 	                        };
 	                    });
 
-	                    _this.renderArticles(parsedData);
-
 	            }
+	            _this.renderArticles(parsedData);
 	        }
+	    }, function (err) {
+	        console.log(err);
 	    });
 	};
 
