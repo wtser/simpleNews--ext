@@ -120,7 +120,6 @@ html, .reader {
     margin-left: 20%;
     height:      100%;
     position:    relative;
-    margin-top:  40px;
 
 }
 
@@ -166,16 +165,7 @@ html, .reader {
 
 }
 
-.reader__header {
-    position:         fixed;
-    height:           40px;
-    background-color: #b3b3b3;
-    top:              0;
-    left:             0;
-    width:            100%;
-    z-index:          2;
 
-}
 
 /* response */
 
