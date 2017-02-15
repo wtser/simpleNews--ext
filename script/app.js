@@ -84,7 +84,7 @@ app.prototype.parseArticle = function (feed) {
 
                         }
                         let title   = getText(articleNode, feed.selector.title)
-                        let href    = articleNode.querySelector(feed.selector.href).attributes.href.nodeValue
+                        let href    = articleNode.querySelector(feed.selector.href).getAttribute('href')
                         let desc    = getText(articleNode, feed.selector.desc)
                         if (href.indexOf('http') === -1) {
                             if (href[0] !== '/') {

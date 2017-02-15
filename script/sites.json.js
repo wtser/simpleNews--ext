@@ -81,7 +81,12 @@ let sites = [
         "icon"    : "https://static.zhihu.com/static/revved/img/ios/touch-icon-152.87c020b9.png",
         "url"     : "http://www.zhihu.com/explore/recommendations",
         "name"    : "知乎编辑推荐",
-        "selector": {"item": "a.question_link", "title": "a.question_link", "href": "a.question_link"},
+        "selector": {
+            "item": ".zm-item",
+            "title": "h2>a",
+            "href": "h2>a",
+            "desc":'.zh-summary'
+        },
         "type"    : "html",
         "desc"    : "与世界分享你的知识、经验和见解"
     }, {
@@ -125,16 +130,9 @@ let sites = [
         "icon"    : "http://rs-assets.b0.upaiyun.com/assets/apple-touch-icon-180x180-precomposed-763d5ea2ad5193d98490fa9b7c362cfc.png",
         "name"    : "NEXT",
         "url"     : "http://next.36kr.com/posts",
-        "selector": {"item": ".product-url>a", "title": ".product-url>a", "href": ".product-url>a"},
+        "selector": {"item": ".product-item ", "title": ".post-url", "href": ".post-url",desc:'.post-tagline'},
         "type"    : "html",
         "desc"    : "不错过任何一个新产品"
-    }, {
-        "icon"    : "http://mindstore.io/static/images/lime/favicon.ico",
-        "name"    : "mindstore",
-        "url"     : "http://mindstore.io/",
-        "selector": {"item": ".mind-item", "title": ".mind-title", "href": ".mind-content"},
-        "type"    : "html",
-        "desc"    : "在这里找到最好的产品与想法"
     }, {
         "icon"    : "http://wanqu.co/static/images/wanqu/favicons/apple-touch-icon-180x180.png",
         "url"     : "http://wanqu.co/hot/",

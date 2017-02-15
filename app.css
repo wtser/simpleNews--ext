@@ -38,6 +38,7 @@ html, .reader {
     height:           100%;
     position:         fixed;
     padding-left:     20px;
+    z-index:          2;
 }
 
 .reader__list {
@@ -119,6 +120,7 @@ html, .reader {
     margin-left: 20%;
     height:      100%;
     position:    relative;
+    margin-top:  40px;
 
 }
 
@@ -161,6 +163,17 @@ html, .reader {
     background-color: #EEE;
     left:             20px;
     padding-left:     20px;
+
+}
+
+.reader__header {
+    position:         fixed;
+    height:           40px;
+    background-color: #b3b3b3;
+    top:              0;
+    left:             0;
+    width:            100%;
+    z-index:          2;
 
 }
 
