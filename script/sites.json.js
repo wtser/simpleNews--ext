@@ -52,7 +52,7 @@ let sites = [
         "icon"    : "https://news.ycombinator.com/favicon.ico",
         "name"    : "hacker news",
         "url"     : "https://news.ycombinator.com/",
-        "selector": {"item": ".athing", "title": ".title>a", "href": ".title>a", "next": "tr:last-child .title>a"},
+        "selector": {"item": ".athing", "title": ".title>a", "href": ".title>a", "next": "tr:last-child .title>a",'next':'.morelink'},
         "type"    : "html",
         "desc"    : "HN"
     }, {

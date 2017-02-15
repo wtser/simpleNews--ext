@@ -1,8 +1,9 @@
 let app = function () {
     this.sites = require('./sites.json.js');
 
-    this.articleLoading = false;
-    this.feed           = {};
+    //this.articleLoading = false;
+    this.feed    = {};
+    this.loading = false;
 
     this.init();
 
@@ -25,10 +26,8 @@ app.prototype.redirect   = function (url) {
     })
 }
 app.prototype.renderFeed = function (site) {
-    this.articleLoading = true;
-    this.feed           = site;
-
-    this.parseArticle(this.feed)
+    document.querySelector('.reader__loading').classList.remove('hide')
+    this.parseArticle(site)
 }
 
 app.prototype.fetch = function (url) {
@@ -54,10 +53,13 @@ app.prototype.parseArticle = function (feed) {
     feed.domain = feed.url.split('/');
     feed.domain = feed.domain[0] + '//' + feed.domain[2];
 
-    let url = feed.nextUrl ? feed.nextUrl : feed.api ? feed.api : feed.url;
+    feed.fetchUrl = feed.fetchUrl ? feed.fetchUrl : feed.api ? feed.api : feed.url;
+    if (feed.fetchUrl === 'end') {
+        return;
+    }
 
 
-    _this.fetch(url).then(function (body) {
+    _this.fetch(feed.fetchUrl).then(function (body) {
         switch (feed.type) {
             case 'ajax':
                 body = JSON.parse(body)
@@ -65,33 +67,48 @@ app.prototype.parseArticle = function (feed) {
         }
 
         if (body) {
-            let articleList, parsedData;
+            let articleList, parsedData, next;
             switch (feed.type) {
                 case 'html':
                     let dom       = document.createElement('div');
                     dom.innerHTML = body;
                     articleList   = dom.querySelectorAll(feed.selector.item || feed.selector);
-                    parsedData    = Array.prototype.map.call(articleList, function (articleNode) {
 
-
-                        let getText = function (node, selector) {
-                            let dom = node.querySelector(selector)
-                            if (dom && (dom = dom.textContent.trim())) {
-                                return dom
-                            } else {
-                                return ''
-                            }
-
+                    let getText = function (node, selector) {
+                        let dom = node.querySelector(selector)
+                        if (dom && (dom = dom.textContent.trim())) {
+                            return dom
+                        } else {
+                            return ''
                         }
-                        let title   = getText(articleNode, feed.selector.title)
-                        let href    = articleNode.querySelector(feed.selector.href).getAttribute('href')
-                        let desc    = getText(articleNode, feed.selector.desc)
-                        if (href.indexOf('http') === -1) {
-                            if (href[0] !== '/') {
-                                href = '/' + href;
+
+                    }
+                    let getHref = function (node, selector) {
+                        let dom = node.querySelector(selector)
+                        if (dom && (dom = dom.getAttribute('href'))) {
+                            if (dom.indexOf('http') === -1) {
+                                if (dom[0] !== '/') {
+                                    dom = '/' + dom;
+                                }
+                                dom = feed.domain + dom;
                             }
-                            href = feed.domain + href;
+                            return dom
+                        } else {
+                            return ''
                         }
+
+                    }
+
+                    next = getHref(dom, feed.selector.next);
+
+                    parsedData = Array.prototype.map.call(articleList, function (articleNode) {
+
+
+                        let title = getText(articleNode, feed.selector.title)
+                        let href  = getHref(articleNode, feed.selector.href);
+
+                        let desc = getText(articleNode, feed.selector.desc)
+
                         return {
                             title: title,
                             href : href,
@@ -101,7 +118,12 @@ app.prototype.parseArticle = function (feed) {
 
                     break;
                 case 'ajax':
-                    let data   = body;
+                    let data      = body;
+                    next          = data[feed.selector.next];
+                    let nextPage  = parseInt(feed.fetchUrl.match(/page=[\d]+/)[0].split('=')[1]) + 1
+                    next = feed.api;
+                    next = next.replace(/page=[\d]+/, 'page=' + nextPage)
+
                     parsedData = data[feed.selector.item].map(function (a) {
                         var baseUrl;
                         if (a[feed.selector.href].indexOf('http') === -1) {
@@ -123,7 +145,16 @@ app.prototype.parseArticle = function (feed) {
 
 
             }
-            _this.renderArticles(parsedData)
+
+            let renderMethod = 'html'
+            if (feed.domain === _this.feed.domain && feed.fetchUrl != 'end' && feed.fetchUrl != (feed.api ? feed.api : feed.url)) {
+                renderMethod = 'append'
+            }
+
+            _this.renderArticles(parsedData, renderMethod)
+
+            feed.fetchUrl = next ? next : 'end'
+            _this.feed    = feed;
 
 
         }
@@ -134,7 +165,7 @@ app.prototype.parseArticle = function (feed) {
 
 }
 
-app.prototype.renderArticles = function (articleData) {
+app.prototype.renderArticles = function (articleData, renderMethod) {
 
     let html = articleData.reduce(function (init, article) {
         return init + `<li class="reader__list-item"><a target="_blank" href="${ article.href }" class="reader__list-item-link"><span class="reader__list-item-title">${article.title }</span><span class="reader__list-item-below ellipsis">${article.desc ? article.desc : article.href}</span></a></li>`;
@@ -143,8 +174,14 @@ app.prototype.renderArticles = function (articleData) {
     let dom       = document.createElement('div');
     dom.innerHTML = html
 
-    document.querySelector('.reader__list').append(dom);
-    document.querySelector('.loading').remove()
+    if (renderMethod === 'html') {
+        document.querySelector('.reader__list').innerHTML = html;
+    } else {
+        document.querySelector('.reader__list').append(dom);
+    }
+    document.querySelector('.reader__loading').classList.add('hide')
+
+    this.loading = false;
 
 
 }
@@ -157,12 +194,27 @@ app.prototype.eventBind = function () {
         dom.addEventListener('click', function (e) {
             document.querySelector('.reader__site-item--active').classList.remove('reader__site-item--active');
             e.target.classList.add("reader__site-item--active");
-            document.querySelector('.reader__list').innerHTML = `<p class="loading">Loading</p>`;
 
             let site = _this.sites[index];
+            delete site.fetchUrl;
+            document.querySelector('.reader__main').scrollTop = 0;
+
             _this.renderFeed(site);
         })
     }
+
+    document.querySelector('.reader__main').addEventListener('scroll', function (e) {
+        if (_this.feed.selector.next) {
+
+            let $ele    = e.target
+            let percent = $ele.clientHeight / ($ele.scrollHeight - $ele.scrollTop )
+            if (percent > 0.7 && _this.loading == false) {
+                _this.loading = true;
+                _this.renderFeed(_this.feed)
+            }
+        }
+    })
+
 
     let $list = document.querySelector('.reader__list');
     $list.addEventListener('click', function (e) {
@@ -190,11 +242,3 @@ app.prototype.init = function () {
 
 new app();
 
-
-// $(window).scroll(function() {
-//     var scrollHeight = document.body.scrollHeight;
-//     var height = $(window).scrollTop();
-//     if (scrollHeight - height - 1000 < document.body.clientHeight / 2 && !articleLoading && feed.hasOwnProperty('nextUrl')) {
-//         renderArticles()
-//     }
-// });

@@ -7,14 +7,12 @@
 }
 
 html, .reader {
-    background:                 #F4F4F4;
-    font-family:                -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-    -webkit-font-smoothing:     antialiased;
-    color:                      #222;
-    height:                     100%;
-    margin:                     0;
-    -webkit-overflow-scrolling: touch;
-    overflow:                   scroll;
+    background:             #F4F4F4;
+    font-family:            -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    -webkit-font-smoothing: antialiased;
+    color:                  #222;
+    height:                 100%;
+    margin:                 0;
 }
 
 .reader__icon {
@@ -106,6 +104,34 @@ html, .reader {
     -webkit-box-orient: vertical;
 }
 
+.hide {
+    display: none;
+}
+
+.reader__main {
+    height:                     100%;
+
+    -webkit-overflow-scrolling: touch;
+    overflow:                   scroll;
+}
+
+.reader__loading {
+    position:         fixed;
+    width:            100%;
+    height:           100%;
+    background-color: rgba(255, 255, 255, 0.7);
+    z-index:          3;
+}
+
+.reader__loading-text {
+    font-size: 20px;
+    color:     #666;
+    position:  absolute;
+    left:      40%;
+    top:       50%;
+    transform: translate(-50%, -50%)
+}
+
 .reader__list-item-below {
     font-size: 12px;
     color:     #999;
@@ -115,10 +141,9 @@ html, .reader {
 }
 
 .reader__news {
-    float:       left;
     width:       80%;
     margin-left: 20%;
-    height:      100%;
+    /*height:      100%;*/
     position:    relative;
 
 }
@@ -164,8 +189,6 @@ html, .reader {
     padding-left:     20px;
 
 }
-
-
 
 /* response */
 

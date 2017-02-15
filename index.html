@@ -3,20 +3,19 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="/icon/Open-Book-icon.png">
     <title>News</title>
     <link rel="stylesheet" href="/app.css">
 </head>
 <body class="reader">
 <div class="reader__main">
     <div class="reader__sidebar">
-        <div class="reader__icon"><img src="http://icons.iconarchive.com/icons/iconsmind/outline/512/Open-Book-icon.png"
-                                       srcset="/images/icon@2x.png 2x"></div>
+        <div class="reader__icon"><img src="/icon/Open-Book-icon.png"></div>
         <ul class="reader__site">
             <li class="reader__site-item reader__site-item--all reader__site-item--active">All News</li>
             <li class="reader__site-item reader__site-item-divider"></li>
             <li class="reader__site-item reader__site-item--sites">
                 <ul class="reader__site-items"></ul>
-
 
             </li>
             <div class="reader__config">
@@ -27,6 +26,9 @@
         </ul>
     </div>
     <div class="reader__news">
+        <div class="reader__loading hide">
+            <div class="reader__loading-text">Loading</div>
+        </div>
         <ul class="reader__list">
         </ul>
     </div>

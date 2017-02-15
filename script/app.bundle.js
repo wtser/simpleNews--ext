@@ -56,8 +56,9 @@
 	var app = function app() {
 	    this.sites = __webpack_require__(2);
 
-	    this.articleLoading = false;
+	    //this.articleLoading = false;
 	    this.feed = {};
+	    this.loading = false;
 
 	    this.init();
 	};
@@ -78,10 +79,8 @@
 	    });
 	};
 	app.prototype.renderFeed = function (site) {
-	    this.articleLoading = true;
-	    this.feed = site;
-
-	    this.parseArticle(this.feed);
+	    document.querySelector('.reader__loading').classList.remove('hide');
+	    this.parseArticle(site);
 	};
 
 	app.prototype.fetch = function (url) {
@@ -105,9 +104,12 @@
 	    feed.domain = feed.url.split('/');
 	    feed.domain = feed.domain[0] + '//' + feed.domain[2];
 
-	    var url = feed.nextUrl ? feed.nextUrl : feed.api ? feed.api : feed.url;
+	    feed.fetchUrl = feed.fetchUrl ? feed.fetchUrl : feed.api ? feed.api : feed.url;
+	    if (feed.fetchUrl === 'end') {
+	        return;
+	    }
 
-	    _this.fetch(url).then(function (body) {
+	    _this.fetch(feed.fetchUrl).then(function (body) {
 	        switch (feed.type) {
 	            case 'ajax':
 	                body = JSON.parse(body);
@@ -116,13 +118,15 @@
 
 	        if (body) {
 	            var articleList = void 0,
-	                parsedData = void 0;
-	            switch (feed.type) {
-	                case 'html':
-	                    var dom = document.createElement('div');
-	                    dom.innerHTML = body;
-	                    articleList = dom.querySelectorAll(feed.selector.item || feed.selector);
-	                    parsedData = Array.prototype.map.call(articleList, function (articleNode) {
+	                parsedData = void 0,
+	                next = void 0;
+
+	            (function () {
+	                switch (feed.type) {
+	                    case 'html':
+	                        var dom = document.createElement('div');
+	                        dom.innerHTML = body;
+	                        articleList = dom.querySelectorAll(feed.selector.item || feed.selector);
 
 	                        var getText = function getText(node, selector) {
 	                            var dom = node.querySelector(selector);
@@ -132,53 +136,83 @@
 	                                return '';
 	                            }
 	                        };
-	                        var title = getText(articleNode, feed.selector.title);
-	                        var href = articleNode.querySelector(feed.selector.href).getAttribute('href');
-	                        var desc = getText(articleNode, feed.selector.desc);
-	                        if (href.indexOf('http') === -1) {
-	                            if (href[0] !== '/') {
-	                                href = '/' + href;
+	                        var getHref = function getHref(node, selector) {
+	                            var dom = node.querySelector(selector);
+	                            if (dom && (dom = dom.getAttribute('href'))) {
+	                                if (dom.indexOf('http') === -1) {
+	                                    if (dom[0] !== '/') {
+	                                        dom = '/' + dom;
+	                                    }
+	                                    dom = feed.domain + dom;
+	                                }
+	                                return dom;
+	                            } else {
+	                                return '';
 	                            }
-	                            href = feed.domain + href;
-	                        }
-	                        return {
-	                            title: title,
-	                            href: href,
-	                            desc: desc
 	                        };
-	                    });
 
-	                    break;
-	                case 'ajax':
-	                    var data = body;
-	                    parsedData = data[feed.selector.item].map(function (a) {
-	                        var baseUrl;
-	                        if (a[feed.selector.href].indexOf('http') === -1) {
-	                            baseUrl = feed.domain;
-	                            if (a[feed.selector.href][0] !== '/') {
-	                                baseUrl += '/';
-	                            }
-	                            if (a[feed.selector.href][1] === "/") {
-	                                baseUrl = 'http:';
-	                            }
-	                            a[feed.selector.href] = baseUrl + a[feed.selector.href];
-	                        }
-	                        return {
-	                            title: a[feed.selector.title].trim(),
-	                            href: a[feed.selector.href],
-	                            desc: a[feed.selector.desc]
-	                        };
-	                    });
+	                        next = getHref(dom, feed.selector.next);
 
+	                        parsedData = Array.prototype.map.call(articleList, function (articleNode) {
+
+	                            var title = getText(articleNode, feed.selector.title);
+	                            var href = getHref(articleNode, feed.selector.href);
+
+	                            var desc = getText(articleNode, feed.selector.desc);
+
+	                            return {
+	                                title: title,
+	                                href: href,
+	                                desc: desc
+	                            };
+	                        });
+
+	                        break;
+	                    case 'ajax':
+	                        var data = body;
+	                        next = data[feed.selector.next];
+	                        var nextPage = parseInt(feed.fetchUrl.match(/page=[\d]+/)[0].split('=')[1]) + 1;
+	                        next = feed.api;
+	                        next = next.replace(/page=[\d]+/, 'page=' + nextPage);
+
+	                        parsedData = data[feed.selector.item].map(function (a) {
+	                            var baseUrl;
+	                            if (a[feed.selector.href].indexOf('http') === -1) {
+	                                baseUrl = feed.domain;
+	                                if (a[feed.selector.href][0] !== '/') {
+	                                    baseUrl += '/';
+	                                }
+	                                if (a[feed.selector.href][1] === "/") {
+	                                    baseUrl = 'http:';
+	                                }
+	                                a[feed.selector.href] = baseUrl + a[feed.selector.href];
+	                            }
+	                            return {
+	                                title: a[feed.selector.title].trim(),
+	                                href: a[feed.selector.href],
+	                                desc: a[feed.selector.desc]
+	                            };
+	                        });
+
+	                }
+	            })();
+
+	            var renderMethod = 'html';
+	            if (feed.domain === _this.feed.domain && feed.fetchUrl != 'end' && feed.fetchUrl != (feed.api ? feed.api : feed.url)) {
+	                renderMethod = 'append';
 	            }
-	            _this.renderArticles(parsedData);
+
+	            _this.renderArticles(parsedData, renderMethod);
+
+	            feed.fetchUrl = next ? next : 'end';
+	            _this.feed = feed;
 	        }
 	    }, function (err) {
 	        console.log(err);
 	    });
 	};
 
-	app.prototype.renderArticles = function (articleData) {
+	app.prototype.renderArticles = function (articleData, renderMethod) {
 
 	    var html = articleData.reduce(function (init, article) {
 	        return init + ('<li class="reader__list-item"><a target="_blank" href="' + article.href + '" class="reader__list-item-link"><span class="reader__list-item-title">' + article.title + '</span><span class="reader__list-item-below ellipsis">' + (article.desc ? article.desc : article.href) + '</span></a></li>');
@@ -187,8 +221,14 @@
 	    var dom = document.createElement('div');
 	    dom.innerHTML = html;
 
-	    document.querySelector('.reader__list').append(dom);
-	    document.querySelector('.loading').remove();
+	    if (renderMethod === 'html') {
+	        document.querySelector('.reader__list').innerHTML = html;
+	    } else {
+	        document.querySelector('.reader__list').append(dom);
+	    }
+	    document.querySelector('.reader__loading').classList.add('hide');
+
+	    this.loading = false;
 	};
 
 	app.prototype.eventBind = function () {
@@ -207,9 +247,11 @@
 	            dom.addEventListener('click', function (e) {
 	                document.querySelector('.reader__site-item--active').classList.remove('reader__site-item--active');
 	                e.target.classList.add("reader__site-item--active");
-	                document.querySelector('.reader__list').innerHTML = '<p class="loading">Loading</p>';
 
 	                var site = _this.sites[index];
+	                delete site.fetchUrl;
+	                document.querySelector('.reader__main').scrollTop = 0;
+
 	                _this.renderFeed(site);
 	            });
 	        };
@@ -231,6 +273,18 @@
 	            }
 	        }
 	    }
+
+	    document.querySelector('.reader__main').addEventListener('scroll', function (e) {
+	        if (_this.feed.selector.next) {
+
+	            var $ele = e.target;
+	            var percent = $ele.clientHeight / ($ele.scrollHeight - $ele.scrollTop);
+	            if (percent > 0.7 && _this.loading == false) {
+	                _this.loading = true;
+	                _this.renderFeed(_this.feed);
+	            }
+	        }
+	    });
 
 	    var $list = document.querySelector('.reader__list');
 	    $list.addEventListener('click', function (e) {
@@ -255,19 +309,13 @@
 
 	new app();
 
-	// $(window).scroll(function() {
-	//     var scrollHeight = document.body.scrollHeight;
-	//     var height = $(window).scrollTop();
-	//     if (scrollHeight - height - 1000 < document.body.clientHeight / 2 && !articleLoading && feed.hasOwnProperty('nextUrl')) {
-	//         renderArticles()
-	//     }
-	// });
-
 /***/ },
 /* 2 */
 /***/ function(module, exports) {
 
 	"use strict";
+
+	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 	var sites = [{
 	    "icon": "http://www.solidot.org/favicon.ico",
@@ -316,7 +364,7 @@
 	    "icon": "https://news.ycombinator.com/favicon.ico",
 	    "name": "hacker news",
 	    "url": "https://news.ycombinator.com/",
-	    "selector": { "item": ".athing", "title": ".title>a", "href": ".title>a", "next": "tr:last-child .title>a" },
+	    "selector": _defineProperty({ "item": ".athing", "title": ".title>a", "href": ".title>a", "next": "tr:last-child .title>a" }, "next", '.morelink'),
 	    "type": "html",
 	    "desc": "HN"
 	}, {
