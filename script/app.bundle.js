@@ -124,8 +124,17 @@
 	                    articleList = dom.querySelectorAll(feed.selector.item || feed.selector);
 	                    parsedData = Array.prototype.map.call(articleList, function (articleNode) {
 
-	                        var title = articleNode.querySelector(feed.selector.title).textContent.trim();
+	                        var getText = function getText(node, selector) {
+	                            var dom = node.querySelector(selector);
+	                            if (dom && (dom = dom.textContent.trim())) {
+	                                return dom;
+	                            } else {
+	                                return '';
+	                            }
+	                        };
+	                        var title = getText(articleNode, feed.selector.title);
 	                        var href = articleNode.querySelector(feed.selector.href).attributes.href.nodeValue;
+	                        var desc = getText(articleNode, feed.selector.desc);
 	                        if (href.indexOf('http') === -1) {
 	                            if (href[0] !== '/') {
 	                                href = '/' + href;
@@ -134,7 +143,8 @@
 	                        }
 	                        return {
 	                            title: title,
-	                            href: href
+	                            href: href,
+	                            desc: desc
 	                        };
 	                    });
 
@@ -155,7 +165,8 @@
 	                        }
 	                        return {
 	                            title: a[feed.selector.title].trim(),
-	                            href: a[feed.selector.href]
+	                            href: a[feed.selector.href],
+	                            desc: a[feed.selector.desc]
 	                        };
 	                    });
 
@@ -170,7 +181,7 @@
 	app.prototype.renderArticles = function (articleData) {
 
 	    var html = articleData.reduce(function (init, article) {
-	        return init + ('<li class="reader__list-item"><a target="_blank" href="' + article.href + '" class="reader__list-item-link"><span class="reader__list-item-title ellipsis">' + article.title + '</span><span class="reader__list-item-below ellipsis">' + article.href + '</span></a></li>');
+	        return init + ('<li class="reader__list-item"><a target="_blank" href="' + article.href + '" class="reader__list-item-link"><span class="reader__list-item-title">' + article.title + '</span><span class="reader__list-item-below ellipsis">' + (article.desc ? article.desc : article.href) + '</span></a></li>');
 	    }, '');
 
 	    var dom = document.createElement('div');
@@ -260,12 +271,47 @@
 
 	var sites = [{
 	    "icon": "http://www.solidot.org/favicon.ico",
-	    "title": "solidot",
 	    "url": "http://www.solidot.org/",
 	    "selector": { "item": ".block_m", "title": "h2>a", "href": "h2>a" },
 	    "name": "solidot",
 	    "type": "html",
 	    "desc": "奇客的资讯，重要的东西"
+	}, {
+	    name: 'slashdot',
+	    url: 'https://slashdot.org/popular',
+	    type: 'html',
+	    selector: {
+	        "item": ".fhitem",
+	        "title": ".story-title>a",
+	        "href": ".story-title>a"
+	    }
+	}, {
+	    name: 'medium',
+	    url: 'https://medium.com/browse/top',
+	    type: 'html',
+	    selector: {
+	        "item": ".streamItem",
+	        "title": ".graf--title",
+	        "href": ".postArticle-content>a",
+	        "desc": ".graf--trailing"
+
+	    }
+	}, {
+	    name: 'lifehacker',
+	    url: 'http://lifehacker.com/',
+	    type: 'html',
+	    selector: {
+	        "item": ".post-wrapper",
+	        "title": ".entry-title>a",
+	        "href": ".entry-title>a",
+	        "desc": ".entry-summary"
+
+	    }
+	}, {
+	    name: 'github trending',
+	    url: 'https://github.com/trending',
+	    type: 'html',
+	    selector: { "item": ".repo-list>li", "title": "h3 a ", "href": "h3 a", 'desc': '.py-1 .d-inline-block' }
 	}, {
 	    "icon": "https://news.ycombinator.com/favicon.ico",
 	    "name": "hacker news",
@@ -284,16 +330,17 @@
 	    "icon": "https://www.v2ex.com/static/img/icon_rayps_64.png",
 	    "name": "v2ex",
 	    "url": "https://www.v2ex.com/?tab=hot",
-	    "selector": { "item": "span.item_title", "title": "a", "href": "a" },
+	    "selector": { "item": ".item tr", "title": ".item_title a", "href": ".item_title a", desc: '.small.fade' },
 	    "type": "html",
 	    "desc": "创意工作者们的社区"
 	}, {
 	    "name": "简书",
-	    "url": "http://www.jianshu.com/recommendations/notes?category_id=56",
+	    "url": "http://www.jianshu.com/trending/weekly?page=1",
 	    "icon": "http://static.jianshu.io/assets/icon114-fcef1133c955e46bf55e2a60368f687b.png",
-	    "selector": { "item": ".content", "title": ".title", "href": ".title" },
+	    "selector": { "item": ".content", "title": ".title", "href": ".title", 'desc': '.abstract' },
 	    "desc": "一个基于内容分享的社区",
-	    "type": "html"
+	    "type": "html",
+	    'page': 'page'
 	}, {
 	    "icon": "https://static.zhihu.com/static/revved/img/ios/touch-icon-152.87c020b9.png",
 	    "url": "http://www.zhihu.com/explore/recommendations",
@@ -309,6 +356,7 @@
 	        "item": ".content-list>.item",
 	        "title": ".part1>a.show-content",
 	        "href": ".part1>a.show-content",
+	        'desc': '.summary',
 	        "next": "#dig_lcpage>ul>li:last-child>a"
 	    },
 	    "type": "html",

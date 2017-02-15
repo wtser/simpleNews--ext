@@ -24,15 +24,20 @@ html, .reader {
     opacity:     0.7;
 }
 
+.reader__icon > img {
+    height:     64px;
+    margin-top: -10px;
+}
+
 .reader__sidebar {
-    width:            25%;
+    width:            20%;
     min-width:        200px;
     float:            left;
     color:            #666;
     background-color: #EEE;
     height:           100%;
     position:         fixed;
-    padding-left:     5%;
+    padding-left:     20px;
 }
 
 .reader__list {
@@ -77,32 +82,41 @@ html, .reader {
 }
 
 .reader__list-item-title {
-    font-size:   14px;
-    width:       90%;
-    display:     block;
-    margin:      0;
-    font-weight: normal;
-    line-height: 2em;
+    font-size:          14px;
+    width:              100%;
+    display:            block;
+    margin:             0;
+    font-weight:        500;
+    color:              #666;
+    line-height:        1.5;
+
+    overflow:           hidden;
+    text-overflow:      ellipsis;
+    display:            -webkit-box !important;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
 }
 
 .ellipsis {
-    white-space:   nowrap;
-    overflow:      hidden;
-    text-overflow: ellipsis;
+    overflow:           hidden;
+    text-overflow:      ellipsis;
+    display:            -webkit-box !important;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
 }
 
 .reader__list-item-below {
     font-size: 12px;
-    margin:    5px 0 0;
     color:     #999;
     width:     100%;
     display:   inline-block;
+    margin:    5px 0 0;
 }
 
 .reader__news {
     float:       left;
-    width:       75%;
-    margin-left: 25%;
+    width:       80%;
+    margin-left: 20%;
     height:      100%;
     position:    relative;
 
@@ -134,8 +148,20 @@ html, .reader {
 }
 
 .reader__site-items {
-    overflow:   auto;
-    max-height: 400px;
+    overflow: auto;
+    /*max-height: 400px;*/
+    height:   calc(100% - 265px);
+    position: fixed;
+}
+
+.reader__config {
+    position:         absolute;
+    bottom:           20px;
+    width:            calc(100% - 20px);
+    background-color: #EEE;
+    left:             20px;
+    padding-left:     20px;
+
 }
 
 /* response */

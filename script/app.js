@@ -73,8 +73,19 @@ app.prototype.parseArticle = function (feed) {
                     articleList   = dom.querySelectorAll(feed.selector.item || feed.selector);
                     parsedData    = Array.prototype.map.call(articleList, function (articleNode) {
 
-                        let title = articleNode.querySelector(feed.selector.title).textContent.trim()
-                        let href  = articleNode.querySelector(feed.selector.href).attributes.href.nodeValue
+
+                        let getText = function (node, selector) {
+                            let dom = node.querySelector(selector)
+                            if (dom && (dom = dom.textContent.trim())) {
+                                return dom
+                            } else {
+                                return ''
+                            }
+
+                        }
+                        let title   = getText(articleNode, feed.selector.title)
+                        let href    = articleNode.querySelector(feed.selector.href).attributes.href.nodeValue
+                        let desc    = getText(articleNode, feed.selector.desc)
                         if (href.indexOf('http') === -1) {
                             if (href[0] !== '/') {
                                 href = '/' + href;
@@ -83,7 +94,8 @@ app.prototype.parseArticle = function (feed) {
                         }
                         return {
                             title: title,
-                            href : href
+                            href : href,
+                            desc : desc
                         }
                     })
 
@@ -104,7 +116,8 @@ app.prototype.parseArticle = function (feed) {
                         }
                         return {
                             title: a[feed.selector.title].trim(),
-                            href : a[feed.selector.href]
+                            href : a[feed.selector.href],
+                            desc : a[feed.selector.desc]
                         };
                     });
 
@@ -124,7 +137,7 @@ app.prototype.parseArticle = function (feed) {
 app.prototype.renderArticles = function (articleData) {
 
     let html = articleData.reduce(function (init, article) {
-        return init + `<li class="reader__list-item"><a target="_blank" href="${ article.href }" class="reader__list-item-link"><span class="reader__list-item-title ellipsis">${article.title }</span><span class="reader__list-item-below ellipsis">${article.href}</span></a></li>`;
+        return init + `<li class="reader__list-item"><a target="_blank" href="${ article.href }" class="reader__list-item-link"><span class="reader__list-item-title">${article.title }</span><span class="reader__list-item-below ellipsis">${article.desc ? article.desc : article.href}</span></a></li>`;
     }, '')
 
     let dom       = document.createElement('div');
