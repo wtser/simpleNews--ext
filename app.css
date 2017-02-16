@@ -72,10 +72,10 @@ html, .reader {
     display:         block;
 }
 
-
 .reader__list-item-link:visited .reader__list-item-below {
     color: #ccc;
 }
+
 .reader__list-item-link:visited .reader__list-item-title {
     color: #ccc;
 }
@@ -169,6 +169,7 @@ html, .reader {
     list-style:  none;
     cursor:      pointer;
     position:    relative;
+    transition:  all 0.25s cubic-bezier(0.22, 0.61, 0.36, 1);
 }
 
 .reader__site-item-divider {
@@ -178,13 +179,14 @@ html, .reader {
 }
 
 .reader__site-item--active {
-    font-weight:      500;
     background-color: #f4f4f4;
+    font-size:        20px;
+    padding: 5px 10px;
+
 }
 
-.reader__site-items {
 
-}
+
 
 .reader__config {
 
