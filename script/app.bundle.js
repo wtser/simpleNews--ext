@@ -245,8 +245,13 @@
 	            var index = $site[0],
 	                dom = $site[1];
 	            dom.addEventListener('click', function (e) {
-	                document.querySelector('.reader__site-item--active').classList.remove('reader__site-item--active');
-	                e.target.classList.add("reader__site-item--active");
+	                var $active = document.querySelector('.reader__site-item--active');
+	                $active ? $active.classList.remove('reader__site-item--active') : '';
+	                var $target = e.target;
+	                while (!$target.classList.contains('reader__site-item')) {
+	                    $target = $target.parentElement;
+	                }
+	                $target.classList.add("reader__site-item--active");
 
 	                var site = _this.sites[index];
 	                delete site.fetchUrl;

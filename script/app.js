@@ -118,11 +118,11 @@ app.prototype.parseArticle = function (feed) {
 
                     break;
                 case 'ajax':
-                    let data      = body;
-                    next          = data[feed.selector.next];
-                    let nextPage  = parseInt(feed.fetchUrl.match(/page=[\d]+/)[0].split('=')[1]) + 1
-                    next = feed.api;
-                    next = next.replace(/page=[\d]+/, 'page=' + nextPage)
+                    let data     = body;
+                    next         = data[feed.selector.next];
+                    let nextPage = parseInt(feed.fetchUrl.match(/page=[\d]+/)[0].split('=')[1]) + 1
+                    next         = feed.api;
+                    next         = next.replace(/page=[\d]+/, 'page=' + nextPage)
 
                     parsedData = data[feed.selector.item].map(function (a) {
                         var baseUrl;
@@ -192,8 +192,13 @@ app.prototype.eventBind = function () {
     for (let $site of $sites.entries()) {
         let index = $site[0], dom = $site[1];
         dom.addEventListener('click', function (e) {
-            document.querySelector('.reader__site-item--active').classList.remove('reader__site-item--active');
-            e.target.classList.add("reader__site-item--active");
+            let $active = document.querySelector('.reader__site-item--active')
+            $active ? $active.classList.remove('reader__site-item--active') : '';
+            let $target = e.target
+            while (!$target.classList.contains('reader__site-item')) {
+                $target = $target.parentElement
+            }
+            $target.classList.add("reader__site-item--active");
 
             let site = _this.sites[index];
             delete site.fetchUrl;

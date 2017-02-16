@@ -72,11 +72,11 @@ html, .reader {
     display:         block;
 }
 
-.reader__list-item-link:visited {
-    color: #ccc;
-}
 
 .reader__list-item-link:visited .reader__list-item-below {
+    color: #ccc;
+}
+.reader__list-item-link:visited .reader__list-item-title {
     color: #ccc;
 }
 
@@ -152,6 +152,14 @@ html, .reader {
     margin:     0 0 0 20px;
     text-align: left;
     padding:    0;
+    height:     100%;
+    position:   relative;
+}
+
+.reader__site-item--sites {
+    height:   calc(100% - 255px);
+    overflow: scroll;
+    position: absolute;
 }
 
 .reader__site-item {
@@ -170,23 +178,15 @@ html, .reader {
 }
 
 .reader__site-item--active {
-    font-weight: bold;
+    font-weight:      500;
+    background-color: #f4f4f4;
 }
 
 .reader__site-items {
-    overflow: auto;
-    /*max-height: 400px;*/
-    height:   calc(100% - 265px);
-    position: fixed;
+
 }
 
 .reader__config {
-    position:         absolute;
-    bottom:           20px;
-    width:            calc(100% - 20px);
-    background-color: #EEE;
-    left:             20px;
-    padding-left:     20px;
 
 }
 
