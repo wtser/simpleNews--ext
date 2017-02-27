@@ -87,10 +87,15 @@ app.prototype.parseArticle = function (feed) {
                         let dom = node.querySelector(selector)
                         if (dom && (dom = dom.getAttribute('href'))) {
                             if (dom.indexOf('http') === -1) {
-                                if (dom[0] !== '/') {
-                                    dom = '/' + dom;
+                                if (dom[0] != '/') {
+                                    let linkArr = feed.url.split('/')
+                                    linkArr.pop();
+                                    linkArr.push(dom)
+                                    dom = linkArr.join('/')
+                                } else {
+                                    dom = feed.domain + dom
                                 }
-                                dom = feed.domain + dom;
+
                             }
                             return dom
                         } else {

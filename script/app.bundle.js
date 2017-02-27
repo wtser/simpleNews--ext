@@ -140,10 +140,14 @@
 	                            var dom = node.querySelector(selector);
 	                            if (dom && (dom = dom.getAttribute('href'))) {
 	                                if (dom.indexOf('http') === -1) {
-	                                    if (dom[0] !== '/') {
-	                                        dom = '/' + dom;
+	                                    if (dom[0] != '/') {
+	                                        var linkArr = feed.url.split('/');
+	                                        linkArr.pop();
+	                                        linkArr.push(dom);
+	                                        dom = linkArr.join('/');
+	                                    } else {
+	                                        dom = feed.domain + dom;
 	                                    }
-	                                    dom = feed.domain + dom;
 	                                }
 	                                return dom;
 	                            } else {
@@ -320,8 +324,6 @@
 
 	"use strict";
 
-	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
 	var sites = [{
 	    "icon": "http://www.solidot.org/favicon.ico",
 	    "url": "http://www.solidot.org/",
@@ -369,9 +371,14 @@
 	    "icon": "https://news.ycombinator.com/favicon.ico",
 	    "name": "hacker news",
 	    "url": "https://news.ycombinator.com/",
-	    "selector": _defineProperty({ "item": ".athing", "title": ".title>a", "href": ".title>a", "next": "tr:last-child .title>a" }, "next", '.morelink'),
+	    "selector": { "item": ".athing", "title": ".title>a", "href": ".title>a", 'next': '.morelink' },
 	    "type": "html",
 	    "desc": "HN"
+	}, {
+	    "name": "saraba1st",
+	    "url": "http://bbs.saraba1st.com/2b/forum-75-1.html",
+	    "selector": { "item": "#threadlisttableid tbody", "title": ".s.xst", "href": ".s.xst", "next": ".nxt" },
+	    "type": "html"
 	}, {
 	    "icon": "https://toutiao.io/apple-icon-180x180.png",
 	    "url": "https://toutiao.io",

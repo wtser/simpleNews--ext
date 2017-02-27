@@ -52,9 +52,14 @@ let sites = [
         "icon"    : "https://news.ycombinator.com/favicon.ico",
         "name"    : "hacker news",
         "url"     : "https://news.ycombinator.com/",
-        "selector": {"item": ".athing", "title": ".title>a", "href": ".title>a", "next": "tr:last-child .title>a",'next':'.morelink'},
+        "selector": {"item": ".athing", "title": ".title>a", "href": ".title>a", 'next': '.morelink'},
         "type"    : "html",
         "desc"    : "HN"
+    }, {
+        "name"    : "saraba1st",
+        "url"     : "http://bbs.saraba1st.com/2b/forum-75-1.html",
+        "selector": {"item": "#threadlisttableid tbody", "title": ".s.xst", "href": ".s.xst", "next": ".nxt"},
+        "type"    : "html"
     }, {
         "icon"    : "https://toutiao.io/apple-icon-180x180.png",
         "url"     : "https://toutiao.io",
@@ -73,19 +78,19 @@ let sites = [
         "name"    : "简书",
         "url"     : "http://www.jianshu.com/trending/weekly?page=1",
         "icon"    : "http://static.jianshu.io/assets/icon114-fcef1133c955e46bf55e2a60368f687b.png",
-        "selector": {"item": ".content", "title": ".title", "href": ".title",'desc':'.abstract'},
+        "selector": {"item": ".content", "title": ".title", "href": ".title", 'desc': '.abstract'},
         "desc"    : "一个基于内容分享的社区",
         "type"    : "html",
-        'page':'page'
+        'page'    : 'page'
     }, {
         "icon"    : "https://static.zhihu.com/static/revved/img/ios/touch-icon-152.87c020b9.png",
         "url"     : "http://www.zhihu.com/explore/recommendations",
         "name"    : "知乎编辑推荐",
         "selector": {
-            "item": ".zm-item",
+            "item" : ".zm-item",
             "title": "h2>a",
-            "href": "h2>a",
-            "desc":'.zh-summary'
+            "href" : "h2>a",
+            "desc" : '.zh-summary'
         },
         "type"    : "html",
         "desc"    : "与世界分享你的知识、经验和见解"
@@ -97,7 +102,7 @@ let sites = [
             "item" : ".content-list>.item",
             "title": ".part1>a.show-content",
             "href" : ".part1>a.show-content",
-            'desc':'.summary',
+            'desc' : '.summary',
             "next" : "#dig_lcpage>ul>li:last-child>a"
         },
         "type"    : "html",
@@ -130,7 +135,7 @@ let sites = [
         "icon"    : "http://rs-assets.b0.upaiyun.com/assets/apple-touch-icon-180x180-precomposed-763d5ea2ad5193d98490fa9b7c362cfc.png",
         "name"    : "NEXT",
         "url"     : "http://next.36kr.com/posts",
-        "selector": {"item": ".product-item ", "title": ".post-url", "href": ".post-url",desc:'.post-tagline'},
+        "selector": {"item": ".product-item ", "title": ".post-url", "href": ".post-url", desc: '.post-tagline'},
         "type"    : "html",
         "desc"    : "不错过任何一个新产品"
     }, {
