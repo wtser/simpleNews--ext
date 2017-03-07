@@ -244,11 +244,52 @@ app.prototype.eventBind = function () {
     })
 }
 
+app.prototype.landing = function () {
+    document.querySelector('.reader__list').innerHTML = `
+        <div class="house"></div>
+        <table width="97%" border="0" align="center" cellspacing="0">
+										<tbody><tr>
+											<td width="42%" height="22" align="center">
+												<strong>项目名称</strong>
+											</td>
+											<td width="14%" align="center">
+												<strong>套数</strong>
+											</td>
+											<td width="19%" align="center">
+												<strong>金额(万)</strong>
+											</td>
+											<td width="" align="center">
+												<strong>面积</strong>
+											</td>
+										</tr>
+									</tbody></table>
+        <div class="house2"></div>
+    `
+    let url                                           = 'http://www.tmsf.com/newhouse/property_searchall.htm?keytype=1&searchkeyword=%E5%90%AF%E5%9F%8E%28%E9%87%8E%E9%A3%8E%C2%B7%E5%90%AF%E5%9F%8E%29&keyword=%25u542F%25u57CE%2528%25u91CE%25u98CE%25B7%25u542F%25u57CE%2529'
+    this.fetch(url).then(function (html) {
+        let dom       = document.createElement('div');
+        dom.innerHTML = html;
+        let sell      = dom.querySelector('.ash1.famwei.ft14 a').innerText.match(/\d+/)[0];
+        document.querySelector('.house').innerHTML = ('野风启城可售 ' + sell)
+    })
+
+    let url2 = 'http://www.tmsf.com/yhweb/'
+    this.fetch(url2).then(function (html) {
+        let dom       = document.createElement('div');
+        dom.innerHTML = html;
+        let sell      = dom.querySelector('#myCont5 marquee')
+        document.querySelector('.house2').innerHTML = sell.innerHTML
+    })
+}
+
 app.prototype.init = function () {
     this.renderSiteList();
     this.eventBind();
+    this.landing()
 
 }
 
 new app();
+
+
 

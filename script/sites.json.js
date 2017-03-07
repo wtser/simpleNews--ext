@@ -8,6 +8,12 @@ let sites = [
         "desc"    : "奇客的资讯，重要的东西"
     },
     {
+        "url"     : "https://stackshare.io/trending/tools",
+        "selector": {"item": ".trending-load-more>div", "title": "#service-name-trending", "href": ".btn",desc:'.trending-description'},
+        "name"    : "stackshare",
+        "type"    : "html",
+    },
+    {
         name    : 'slashdot',
         url     : 'https://slashdot.org/popular',
         type    : 'html',

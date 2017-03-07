@@ -311,9 +311,29 @@
 	    });
 	};
 
+	app.prototype.landing = function () {
+	    document.querySelector('.reader__list').innerHTML = '\n        <div class="house"></div>\n        <table width="97%" border="0" align="center" cellspacing="0">\n\t\t\t\t\t\t\t\t\t\t<tbody><tr>\n\t\t\t\t\t\t\t\t\t\t\t<td width="42%" height="22" align="center">\n\t\t\t\t\t\t\t\t\t\t\t\t<strong>\u9879\u76EE\u540D\u79F0</strong>\n\t\t\t\t\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t\t\t\t\t\t<td width="14%" align="center">\n\t\t\t\t\t\t\t\t\t\t\t\t<strong>\u5957\u6570</strong>\n\t\t\t\t\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t\t\t\t\t\t<td width="19%" align="center">\n\t\t\t\t\t\t\t\t\t\t\t\t<strong>\u91D1\u989D(\u4E07)</strong>\n\t\t\t\t\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t\t\t\t\t\t<td width="" align="center">\n\t\t\t\t\t\t\t\t\t\t\t\t<strong>\u9762\u79EF</strong>\n\t\t\t\t\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t\t\t</tbody></table>\n        <div class="house2"></div>\n    ';
+	    var url = 'http://www.tmsf.com/newhouse/property_searchall.htm?keytype=1&searchkeyword=%E5%90%AF%E5%9F%8E%28%E9%87%8E%E9%A3%8E%C2%B7%E5%90%AF%E5%9F%8E%29&keyword=%25u542F%25u57CE%2528%25u91CE%25u98CE%25B7%25u542F%25u57CE%2529';
+	    this.fetch(url).then(function (html) {
+	        var dom = document.createElement('div');
+	        dom.innerHTML = html;
+	        var sell = dom.querySelector('.ash1.famwei.ft14 a').innerText.match(/\d+/)[0];
+	        document.querySelector('.house').innerHTML = '野风启城可售 ' + sell;
+	    });
+
+	    var url2 = 'http://www.tmsf.com/yhweb/';
+	    this.fetch(url2).then(function (html) {
+	        var dom = document.createElement('div');
+	        dom.innerHTML = html;
+	        var sell = dom.querySelector('#myCont5 marquee');
+	        document.querySelector('.house2').innerHTML = sell.innerHTML;
+	    });
+	};
+
 	app.prototype.init = function () {
 	    this.renderSiteList();
 	    this.eventBind();
+	    this.landing();
 	};
 
 	new app();
@@ -331,6 +351,11 @@
 	    "name": "solidot",
 	    "type": "html",
 	    "desc": "奇客的资讯，重要的东西"
+	}, {
+	    "url": "https://stackshare.io/trending/tools",
+	    "selector": { "item": ".trending-load-more>div", "title": "#service-name-trending", "href": ".btn", desc: '.trending-description' },
+	    "name": "stackshare",
+	    "type": "html"
 	}, {
 	    name: 'slashdot',
 	    url: 'https://slashdot.org/popular',
