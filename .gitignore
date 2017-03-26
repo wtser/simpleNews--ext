@@ -9,3 +9,4 @@ build/**/
 build/*.css
 build/*.js
 build/*.json
+.idea/
