@@ -83,10 +83,16 @@
 	    this.parseArticle(site);
 	};
 
-	app.prototype.fetch = function (url) {
+	app.prototype.fetch = function (url, config) {
 	    return new Promise(function (resolve, reject) {
 	        var xhr = new XMLHttpRequest();
-	        xhr.open("GET", url, true);
+	        var method = (config && config.method ? config.method : 'get').toUpperCase();
+	        xhr.open(method, url, true);
+	        if (config && config.header) {
+	            Object.keys(config.header).forEach(function (k) {
+	                xhr.setRequestHeader(k, config.header[k]);
+	            });
+	        }
 	        xhr.onload = function () {
 	            if (xhr.readyState === 4 && xhr.status === 200) {
 	                resolve(xhr.response);
@@ -312,7 +318,8 @@
 	};
 
 	app.prototype.landing = function () {
-	    document.querySelector('.reader__list').innerHTML = '\n        <div class="house"></div>\n        <table width="97%" border="0" align="center" cellspacing="0">\n\t\t\t\t\t\t\t\t\t\t<tbody><tr>\n\t\t\t\t\t\t\t\t\t\t\t<td width="42%" height="22" align="center">\n\t\t\t\t\t\t\t\t\t\t\t\t<strong>\u9879\u76EE\u540D\u79F0</strong>\n\t\t\t\t\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t\t\t\t\t\t<td width="14%" align="center">\n\t\t\t\t\t\t\t\t\t\t\t\t<strong>\u5957\u6570</strong>\n\t\t\t\t\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t\t\t\t\t\t<td width="19%" align="center">\n\t\t\t\t\t\t\t\t\t\t\t\t<strong>\u91D1\u989D(\u4E07)</strong>\n\t\t\t\t\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t\t\t\t\t\t<td width="" align="center">\n\t\t\t\t\t\t\t\t\t\t\t\t<strong>\u9762\u79EF</strong>\n\t\t\t\t\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t\t\t</tbody></table>\n        <div class="house2"></div>\n    ';
+	    var that = this;
+	    document.querySelector('.reader__list').innerHTML = '\n    <div class="video"></div>\n        <div class="house"></div>\n        <table width="97%" border="0" align="center" cellspacing="0">\n\t\t\t\t\t\t\t\t\t\t<tbody><tr>\n\t\t\t\t\t\t\t\t\t\t\t<td width="42%" height="22" align="center">\n\t\t\t\t\t\t\t\t\t\t\t\t<strong>\u9879\u76EE\u540D\u79F0</strong>\n\t\t\t\t\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t\t\t\t\t\t<td width="14%" align="center">\n\t\t\t\t\t\t\t\t\t\t\t\t<strong>\u5957\u6570</strong>\n\t\t\t\t\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t\t\t\t\t\t<td width="19%" align="center">\n\t\t\t\t\t\t\t\t\t\t\t\t<strong>\u91D1\u989D(\u4E07)</strong>\n\t\t\t\t\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t\t\t\t\t\t<td width="" align="center">\n\t\t\t\t\t\t\t\t\t\t\t\t<strong>\u9762\u79EF</strong>\n\t\t\t\t\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t\t\t</tbody></table>\n\n        <div class="house2"></div>\n\n    ';
 	    var url = 'http://www.tmsf.com/newhouse/property_searchall.htm?keytype=1&searchkeyword=%E5%90%AF%E5%9F%8E%28%E9%87%8E%E9%A3%8E%C2%B7%E5%90%AF%E5%9F%8E%29&keyword=%25u542F%25u57CE%2528%25u91CE%25u98CE%25B7%25u542F%25u57CE%2529';
 	    this.fetch(url).then(function (html) {
 	        var dom = document.createElement('div');
@@ -327,6 +334,39 @@
 	        dom.innerHTML = html;
 	        var sell = dom.querySelector('#myCont5 marquee');
 	        document.querySelector('.house2').innerHTML = sell.innerHTML;
+	    });
+
+	    var url3 = 'https://leancloud.cn:443/1.1/classes/video?limit=6',
+	        url3Header = {
+	        'X-Avoscloud-Application-Id': '6Wtm61DtS6PB8YPWukRfGnv2-gzGzoHsz',
+	        'X-Avoscloud-Application-Key': '4yPPSDwdRCWzWdCimOSBvwVx'
+	    };
+	    this.fetch(url3, { header: url3Header }).then(function (html) {
+	        var data = JSON.parse(html).results;
+	        var $video = data.reduce(function (init, d) {
+	            return init + ('<li class="reader__list-item reader__list-item--video" data-id="' + d.objectId + '">\n                <a target="_blank" href="' + d.url + '" class="reader__list-item-link"><span class="reader__list-item-title">' + d.title + '</span></a></li>');
+	        }, '');
+
+	        document.querySelector('.video').innerHTML = $video;
+	        document.querySelector('.video').addEventListener('click', function (e) {
+	            var dom = e.target;
+	            while (!dom.classList.contains('reader__list-item--video')) {
+	                dom = dom.parentElement;
+	            }
+	            if (dom.classList.contains('reader__list-item--video')) {
+	                (function () {
+	                    var id = dom.dataset.id;
+
+	                    that.fetch('https://leancloud.cn:443/1.1/classes/video/' + id, {
+	                        method: "delete",
+	                        header: url3Header
+	                    }).then(function () {
+	                        console.log('delete ' + id);
+	                        dom.style.textDecoration = 'line-through';
+	                    });
+	                })();
+	            }
+	        });
 	    });
 	};
 
