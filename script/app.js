@@ -50,7 +50,7 @@ app.prototype.fetch = function (url, config) {
         xhr.onreadystatechange = function () {
 
         }
-        xhr.send();
+        xhr.send(config.body);
     })
 }
 
@@ -251,7 +251,7 @@ app.prototype.eventBind = function () {
 }
 
 app.prototype.landing = function () {
-    let that = this;
+    let that                                          = this;
     document.querySelector('.reader__list').innerHTML = `
     <div class="video"></div>
         <div class="house"></div>
@@ -291,8 +291,9 @@ app.prototype.landing = function () {
         document.querySelector('.house2').innerHTML = sell.innerHTML
     })
 
-    let url3       = 'https://leancloud.cn:443/1.1/classes/video?limit=6',
+    let url3       = 'https://leancloud.cn:443/1.1/classes/video?limit=6&where=' + JSON.stringify({status: {$ne: 'deleted'}}),
         url3Header = {
+            'Content-Type'               : 'application/json',
             'X-Avoscloud-Application-Id' : '6Wtm61DtS6PB8YPWukRfGnv2-gzGzoHsz',
             'X-Avoscloud-Application-Key': '4yPPSDwdRCWzWdCimOSBvwVx'
         }
@@ -311,13 +312,16 @@ app.prototype.landing = function () {
 
             }
             if (dom.classList.contains('reader__list-item--video')) {
-                let id = dom.dataset.id
+                let id = dom.dataset.id;
 
                 that.fetch('https://leancloud.cn:443/1.1/classes/video/' + id, {
-                    method: "delete",
-                    header: url3Header
-                }).then(function(){
-                    console.log('delete '+ id)
+                    method: "put",
+                    header: url3Header,
+                    body  : JSON.stringify({
+                        status: 'deleted'
+                    })
+                }).then(function () {
+                    console.log('delete ' + id)
                     dom.style.textDecoration = 'line-through'
 
                 })

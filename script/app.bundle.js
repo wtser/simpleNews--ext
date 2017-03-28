@@ -101,7 +101,7 @@
 	            }
 	        };
 	        xhr.onreadystatechange = function () {};
-	        xhr.send();
+	        xhr.send(config.body);
 	    });
 	};
 
@@ -336,8 +336,9 @@
 	        document.querySelector('.house2').innerHTML = sell.innerHTML;
 	    });
 
-	    var url3 = 'https://leancloud.cn:443/1.1/classes/video?limit=6',
+	    var url3 = 'https://leancloud.cn:443/1.1/classes/video?limit=6&where=' + JSON.stringify({ status: { $ne: 'deleted' } }),
 	        url3Header = {
+	        'Content-Type': 'application/json',
 	        'X-Avoscloud-Application-Id': '6Wtm61DtS6PB8YPWukRfGnv2-gzGzoHsz',
 	        'X-Avoscloud-Application-Key': '4yPPSDwdRCWzWdCimOSBvwVx'
 	    };
@@ -358,8 +359,11 @@
 	                    var id = dom.dataset.id;
 
 	                    that.fetch('https://leancloud.cn:443/1.1/classes/video/' + id, {
-	                        method: "delete",
-	                        header: url3Header
+	                        method: "put",
+	                        header: url3Header,
+	                        body: JSON.stringify({
+	                            status: 'deleted'
+	                        })
 	                    }).then(function () {
 	                        console.log('delete ' + id);
 	                        dom.style.textDecoration = 'line-through';
