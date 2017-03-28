@@ -50,7 +50,7 @@ app.prototype.fetch = function (url, config) {
         xhr.onreadystatechange = function () {
 
         }
-        xhr.send(config.body);
+        xhr.send(config ? config.body : null);
     })
 }
 
