@@ -351,6 +351,16 @@
 	"use strict";
 
 	var sites = [{
+	    "url": "http://115.159.211.105/forum.php?mod=forumdisplay&fid=2",
+	    "selector": {
+	        "item": "[id^=normalthread_]",
+	        "title": ".s.xst",
+	        "href": ".s.xst",
+	        "next": ".nxt"
+	    },
+	    "name": "水库论坛",
+	    "type": "html"
+	}, {
 	    "icon": "http://www.solidot.org/favicon.ico",
 	    "url": "http://www.solidot.org/",
 	    "selector": { "item": ".block_m", "title": "h2>a", "href": "h2>a" },
@@ -359,7 +369,12 @@
 	    "desc": "奇客的资讯，重要的东西"
 	}, {
 	    "url": "https://stackshare.io/trending/tools",
-	    "selector": { "item": ".trending-load-more>div", "title": "#service-name-trending", "href": ".btn", desc: '.trending-description' },
+	    "selector": {
+	        "item": ".trending-load-more>div",
+	        "title": "#service-name-trending",
+	        "href": ".btn",
+	        desc: '.trending-description'
+	    },
 	    "name": "stackshare",
 	    "type": "html"
 	}, {
