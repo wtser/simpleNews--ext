@@ -1,38 +1,37 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="/icon/Open-Book-icon.png">
-    <title>News</title>
-    <link rel="stylesheet" href="/app.css">
-</head>
-<body class="reader">
-<div class="reader__main">
-    <div class="reader__sidebar">
-        <div class="reader__icon"><img src="/icon/Open-Book-icon.png"></div>
-        <ul class="reader__site">
-            <li class="reader__site-item reader__site-item--all">All News</li>
-            <li class="reader__site-item reader__site-item-divider"></li>
-            <li class="reader__site-item reader__site-item--sites">
-                <ul class="reader__site-items"></ul>
-
-            </li>
-            <div class="reader__config">
-                <li class="reader__site-item reader__site-item-divider"></li>
-                <li class="reader__site-item reader__site-item--settings">Settings</li>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="shortcut icon" href="/icon/Open-Book-icon.png">
+        <title>News</title>
+        <link rel="stylesheet" href="/app.css">
+    </head>
+    <body class="reader">
+        <div class="reader__main">
+            <div class="reader__sidebar">
+                <div class="reader__icon">
+                    <img src="/icon/Open-Book-icon.png">
+                </div>
+                <ul class="reader__site">
+                    <li class="reader__site-item reader__site-item--all">All News</li>
+                    <li class="reader__site-item reader__site-item-divider"></li>
+                    <li class="reader__site-item reader__site-item--sites">
+                        <ul class="reader__site-items"></ul>
+                    </li>
+                </ul>
+                <div class="reader__config">
+                    <li class="reader__site-item reader__site-item-divider"></li>
+                    <li class="reader__site-item reader__site-item--settings">Settings</li>
+                </div>
             </div>
-
-        </ul>
-    </div>
-    <div class="reader__news">
-        <div class="reader__loading hide">
-            <div class="reader__loading-text">Loading</div>
+            <div class="reader__news">
+                <div class="reader__loading hide">
+                    <div class="reader__loading-text">Loading</div>
+                </div>
+                <ul class="reader__list"></ul>
+            </div>
         </div>
-        <ul class="reader__list">
-        </ul>
-    </div>
-</div>
-<script src="/script/app.bundle.js"></script>
-</body>
+        <script src="/script/app.bundle.js"></script>
+    </body>
 </html>
