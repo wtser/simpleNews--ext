@@ -111,6 +111,9 @@ html, .reader {
     -webkit-overflow-scrolling: touch;
     overflow: hidden;
     position: fixed;
+    /* margin: 0 auto; */
+    /* left: 50%; */
+    /* transform: translateX(-50%); */
 }
 
 .reader__loading {

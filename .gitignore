@@ -10,4 +10,4 @@ build/*.css
 build/*.js
 build/*.json
 .idea/
-node_modules
+node_modules/
