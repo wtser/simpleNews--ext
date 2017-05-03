@@ -213,13 +213,13 @@ app.prototype.eventBind = function () {
 
             let site = _this.sites[index];
             delete site.fetchUrl;
-            document.querySelector('.reader__main').scrollTop = 0;
+            document.querySelector('.reader__news').scrollTop = 0;
 
             _this.renderFeed(site);
         })
     }
 
-    document.querySelector('.reader__main').addEventListener('scroll', function (e) {
+    document.querySelector('.reader__news').addEventListener('scroll', function (e) {
         if (_this.feed.selector.next) {
 
             let $ele    = e.target

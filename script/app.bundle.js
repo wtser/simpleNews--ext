@@ -265,7 +265,7 @@
 
 	                var site = _this.sites[index];
 	                delete site.fetchUrl;
-	                document.querySelector('.reader__main').scrollTop = 0;
+	                document.querySelector('.reader__news').scrollTop = 0;
 
 	                _this.renderFeed(site);
 	            });
@@ -289,7 +289,7 @@
 	        }
 	    }
 
-	    document.querySelector('.reader__main').addEventListener('scroll', function (e) {
+	    document.querySelector('.reader__news').addEventListener('scroll', function (e) {
 	        if (_this.feed.selector.next) {
 
 	            var $ele = e.target;
@@ -460,7 +460,6 @@
 	    "type": "html",
 	    "desc": "与世界分享你的知识、经验和见解"
 	}, {
-	    "icon": "http://cdn.marketplaceimages.windowsphone.com/v8/images/26738605-6e38-4991-9cdf-20ba1451d635?imageType=ws_icon_large",
 	    "name": "抽屉新热榜",
 	    "url": "http://dig.chouti.com/all/hot/recent/1",
 	    "selector": {
@@ -468,7 +467,7 @@
 	        "title": ".part1>a.show-content",
 	        "href": ".part1>a.show-content",
 	        'desc': '.summary',
-	        "next": "#dig_lcpage>ul>li:last-child>a"
+	        "next": "#dig_lcpage li:last-child a"
 	    },
 	    "type": "html",
 	    "desc": "聚合每日热门、搞笑、有趣资讯"
@@ -512,7 +511,7 @@
 	    "selector": { "item": ".list-group>.list-group-item .list-title", "title": "a", "href": "a" }
 	}, {
 	    "icon": "http://sfault-avatar.b0.upaiyun.com/235/056/2350560982-56796cae3be72_huge256",
-	    "url": "http://faxian.smzdm.com/h2s0t0f0c1p1/#filter-block",
+	    "url": "http://faxian.smzdm.com/h2s0t0f0c1p1/",
 	    "name": "什么值得买热门2小时",
 	    "selector": {
 	        "item": ".feed-list-col li",
@@ -554,7 +553,6 @@
 	}, {
 	    "name": "草榴技术区",
 	    "url": "http://t66y.com/thread0806.php?fid=7",
-	    "icon": "http://static.xgres.com/lianbo/avatar/1000463/120/1316745536",
 	    "selector": {
 	        "item": "#ajaxtable .t_one",
 	        "title": "h3>a",
