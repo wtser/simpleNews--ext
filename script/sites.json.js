@@ -166,7 +166,8 @@ let sites = [
         "type": "html",
         "desc": "关注互联网、创业、技术",
         "selector": {"item": ".list-group>.list-group-item .list-title", "title": "a", "href": "a"}
-    }, {
+    },
+    {
         "icon": "http://sfault-avatar.b0.upaiyun.com/235/056/2350560982-56796cae3be72_huge256",
         "url": "http://faxian.smzdm.com/h2s0t0f0c1p1/",
         "name": "什么值得买热门2小时",
@@ -178,7 +179,22 @@ let sites = [
         },
         "type": "html",
         "desc": "汇集2小时里最热门的网友优惠商品爆料"
-    }, {
+    },
+    {
+        "url": "http://yangmaojie.com/",
+        "name": "羊毛头条",
+        "selector": {
+            "item": ".thread.tap",
+            "title": ".subject a:nth-last-child(1)",
+            "href": ".subject a:nth-last-child(1)",
+            "desc": "dt",
+            "next": ".page-item:last-child a"
+        },
+        "type": "html",
+        "desc": "交流活动信息，没事薅个羊腿"
+    },
+
+    {
         "icon": "http://www.kiees.com/favicon.ico",
         "url": "http://www.kiees.com/",
         "name": "发现值得买",
