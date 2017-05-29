@@ -42,14 +42,14 @@
 /************************************************************************/
 /******/ ([
 /* 0 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ function(module, exports, __webpack_require__) {
 
 	module.exports = __webpack_require__(1);
 
 
-/***/ }),
+/***/ },
 /* 1 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
@@ -126,83 +126,86 @@
 	            var articleList = void 0,
 	                parsedData = void 0,
 	                next = void 0;
-	            switch (feed.type) {
-	                case 'html':
-	                    var dom = document.createElement('div');
-	                    dom.innerHTML = body;
-	                    articleList = dom.querySelectorAll(feed.selector.item || feed.selector);
 
-	                    var getText = function getText(node, selector) {
-	                        var dom = node.querySelector(selector);
-	                        if (dom && (dom = dom.textContent.trim())) {
-	                            return dom;
-	                        } else {
-	                            return '';
-	                        }
-	                    };
-	                    var getHref = function getHref(node, selector) {
-	                        var dom = node.querySelector(selector);
-	                        if (dom && (dom = dom.getAttribute('href'))) {
-	                            if (dom.indexOf('http') === -1) {
-	                                if (dom[0] != '/') {
-	                                    var linkArr = feed.url.split('/');
-	                                    linkArr.pop();
-	                                    linkArr.push(dom);
-	                                    dom = linkArr.join('/');
-	                                } else {
-	                                    dom = feed.domain + dom;
+	            (function () {
+	                switch (feed.type) {
+	                    case 'html':
+	                        var dom = document.createElement('div');
+	                        dom.innerHTML = body;
+	                        articleList = dom.querySelectorAll(feed.selector.item || feed.selector);
+
+	                        var getText = function getText(node, selector) {
+	                            var dom = node.querySelector(selector);
+	                            if (dom && (dom = dom.textContent.trim())) {
+	                                return dom;
+	                            } else {
+	                                return '';
+	                            }
+	                        };
+	                        var getHref = function getHref(node, selector) {
+	                            var dom = node.querySelector(selector);
+	                            if (dom && (dom = dom.getAttribute('href'))) {
+	                                if (dom.indexOf('http') === -1) {
+	                                    if (dom[0] != '/') {
+	                                        var linkArr = feed.url.split('/');
+	                                        linkArr.pop();
+	                                        linkArr.push(dom);
+	                                        dom = linkArr.join('/');
+	                                    } else {
+	                                        dom = feed.domain + dom;
+	                                    }
 	                                }
+	                                return dom;
+	                            } else {
+	                                return '';
 	                            }
-	                            return dom;
-	                        } else {
-	                            return '';
-	                        }
-	                    };
-
-	                    next = getHref(dom, feed.selector.next);
-
-	                    parsedData = Array.prototype.map.call(articleList, function (articleNode) {
-
-	                        var title = getText(articleNode, feed.selector.title);
-	                        var href = getHref(articleNode, feed.selector.href);
-
-	                        var desc = getText(articleNode, feed.selector.desc);
-
-	                        return {
-	                            title: title,
-	                            href: href,
-	                            desc: desc
 	                        };
-	                    });
 
-	                    break;
-	                case 'ajax':
-	                    var data = body;
-	                    next = data[feed.selector.next];
-	                    var nextPage = parseInt(feed.fetchUrl.match(/page=[\d]+/)[0].split('=')[1]) + 1;
-	                    next = feed.api;
-	                    next = next.replace(/page=[\d]+/, 'page=' + nextPage);
+	                        next = getHref(dom, feed.selector.next);
 
-	                    parsedData = data[feed.selector.item].map(function (a) {
-	                        var baseUrl;
-	                        if (a[feed.selector.href].indexOf('http') === -1) {
-	                            baseUrl = feed.domain;
-	                            if (a[feed.selector.href][0] !== '/') {
-	                                baseUrl += '/';
+	                        parsedData = Array.prototype.map.call(articleList, function (articleNode) {
+
+	                            var title = getText(articleNode, feed.selector.title);
+	                            var href = getHref(articleNode, feed.selector.href);
+
+	                            var desc = getText(articleNode, feed.selector.desc);
+
+	                            return {
+	                                title: title,
+	                                href: href,
+	                                desc: desc
+	                            };
+	                        });
+
+	                        break;
+	                    case 'ajax':
+	                        var data = body;
+	                        next = data[feed.selector.next];
+	                        var nextPage = parseInt(feed.fetchUrl.match(/page=[\d]+/)[0].split('=')[1]) + 1;
+	                        next = feed.api;
+	                        next = next.replace(/page=[\d]+/, 'page=' + nextPage);
+
+	                        parsedData = data[feed.selector.item].map(function (a) {
+	                            var baseUrl;
+	                            if (a[feed.selector.href].indexOf('http') === -1) {
+	                                baseUrl = feed.domain;
+	                                if (a[feed.selector.href][0] !== '/') {
+	                                    baseUrl += '/';
+	                                }
+	                                if (a[feed.selector.href][1] === "/") {
+	                                    baseUrl = 'http:';
+	                                }
+	                                a[feed.selector.href] = baseUrl + a[feed.selector.href];
 	                            }
-	                            if (a[feed.selector.href][1] === "/") {
-	                                baseUrl = 'http:';
-	                            }
-	                            a[feed.selector.href] = baseUrl + a[feed.selector.href];
-	                        }
-	                        return {
-	                            title: a[feed.selector.title].trim(),
-	                            href: a[feed.selector.href],
-	                            desc: a[feed.selector.desc]
-	                        };
-	                    });
+	                            return {
+	                                title: a[feed.selector.title].trim(),
+	                                href: a[feed.selector.href],
+	                                desc: a[feed.selector.desc]
+	                            };
+	                        });
 
-	            }
+	                }
+	            })();
 
 	            var renderMethod = 'html';
 	            if (feed.domain === _this.feed.domain && feed.fetchUrl != 'end' && feed.fetchUrl != (feed.api ? feed.api : feed.url)) {
@@ -314,36 +317,16 @@
 	    });
 	};
 
-	app.prototype.landing = function () {
-	    document.querySelector('.reader__list').innerHTML = '\n        <div class="house">\n        <div class="house__care"></div>\n\n        <table cellspacing="0">\n\t\t\t\t\t\t\t\t\t\t<tbody><tr>\n\t\t\t\t\t\t\t\t\t\t\t<td width="42%" height="22" align="left">\n\t\t\t\t\t\t\t\t\t\t\t\t<strong>\u9879\u76EE\u540D\u79F0</strong>\n\t\t\t\t\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t\t\t\t\t\t<td width="14%" align="right">\n\t\t\t\t\t\t\t\t\t\t\t\t<strong>\u5957\u6570</strong>\n\t\t\t\t\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t\t\t\t\t\t<td width="19%" align="right">\n\t\t\t\t\t\t\t\t\t\t\t\t<strong>\u91D1\u989D(\u4E07)</strong>\n\t\t\t\t\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t\t\t\t\t\t<td width="" align="right">\n\t\t\t\t\t\t\t\t\t\t\t\t<strong>\u9762\u79EF</strong>\n\t\t\t\t\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t\t\t</tbody></table>\n\n        <div class="house__detail"></div>\n        </div>\n\n    ';
-	    var url = 'http://www.tmsf.com/newhouse/property_searchall.htm?keytype=1&searchkeyword=%E5%90%AF%E5%9F%8E%28%E9%87%8E%E9%A3%8E%C2%B7%E5%90%AF%E5%9F%8E%29&keyword=%25u542F%25u57CE%2528%25u91CE%25u98CE%25B7%25u542F%25u57CE%2529';
-	    this.fetch(url).then(function (html) {
-	        var dom = document.createElement('div');
-	        dom.innerHTML = html;
-	        var sell = dom.querySelector('.ash1.famwei.ft14 a').innerText.match(/\d+/)[0];
-	        document.querySelector('.house__care').innerHTML = '野风启城可售 ' + sell;
-	    });
-
-	    var url2 = 'http://www.tmsf.com/yhweb/';
-	    this.fetch(url2).then(function (html) {
-	        var dom = document.createElement('div');
-	        dom.innerHTML = html;
-	        var sell = dom.querySelector('#myCont5 marquee');
-	        document.querySelector('.house__detail').innerHTML = sell.innerHTML;
-	    });
-	};
-
 	app.prototype.init = function () {
 	    this.renderSiteList();
 	    this.eventBind();
-	    this.landing();
 	};
 
 	new app();
 
-/***/ }),
+/***/ },
 /* 2 */
-/***/ (function(module, exports) {
+/***/ function(module, exports) {
 
 	"use strict";
 
@@ -574,5 +557,5 @@
 
 	module.exports = sites;
 
-/***/ })
+/***/ }
 /******/ ]);
