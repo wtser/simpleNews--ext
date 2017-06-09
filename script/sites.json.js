@@ -1,12 +1,7 @@
-let sites = [
+module.exports = [
     {
-        "url": "http://115.159.211.105/forum.php?mod=forumdisplay&fid=2",
-        "selector": {
-            "item": "[id^=normalthread_]",
-            "title": ".s.xst",
-            "href": ".s.xst",
-            "next": ".nxt"
-        },
+        "url": "http://shuiku.net/forum.php?mod=forumdisplay&fid=2",
+        "selector": {"item": "[id^=normalthread_]", "title": ".s.xst", "href": ".s.xst", "next": ".nxt"},
         "name": "水库论坛",
         "type": "html"
     },
@@ -17,64 +12,51 @@ let sites = [
         "name": "solidot",
         "type": "html",
         "desc": "奇客的资讯，重要的东西"
-    },
-    {
+    }, {
         "url": "https://stackshare.io/trending/tools",
         "selector": {
             "item": ".trending-load-more>div",
             "title": "#service-name-trending",
             "href": ".btn",
-            desc: '.trending-description'
+            "desc": ".trending-description"
         },
         "name": "stackshare",
+        "type": "html"
+    }, {
+        "name": "slashdot",
+        "url": "https://slashdot.org/popular",
         "type": "html",
-    },
-    {
-        name: 'slashdot',
-        url: 'https://slashdot.org/popular',
-        type: 'html',
-        selector: {
-            "item": ".fhitem",
-            "title": ".story-title>a",
-            "href": ".story-title>a",
-        }
-    },
-    {
-        name: 'medium',
-        url: 'https://medium.com/browse/top',
-        type: 'html',
-        selector: {
+        "selector": {"item": ".fhitem", "title": ".story-title>a", "href": ".story-title>a"}
+    }, {
+        "name": "medium",
+        "url": "https://medium.com/browse/top",
+        "type": "html",
+        "selector": {
             "item": ".streamItem",
             "title": ".graf--title",
             "href": ".postArticle-content>a",
             "desc": ".graf--trailing"
-
         }
-    },
-    {
-        name: 'lifehacker',
-        url: 'http://lifehacker.com/',
-        type: 'html',
-        selector: {
+    }, {
+        "name": "lifehacker",
+        "url": "http://lifehacker.com/",
+        "type": "html",
+        "selector": {
             "item": ".post-wrapper",
             "title": ".entry-title>a",
             "href": ".entry-title>a",
             "desc": ".entry-summary"
-
         }
-    },
-
-
-    {
-        name: 'github trending',
-        url: 'https://github.com/trending',
-        type: 'html',
-        selector: {"item": ".repo-list>li", "title": "h3 a ", "href": "h3 a", 'desc': '.py-1 .d-inline-block'},
+    }, {
+        "name": "github trending",
+        "url": "https://github.com/trending",
+        "type": "html",
+        "selector": {"item": ".repo-list>li", "title": "h3 a ", "href": "h3 a", "desc": ".py-1 .d-inline-block"}
     }, {
         "icon": "https://news.ycombinator.com/favicon.ico",
         "name": "hacker news",
         "url": "https://news.ycombinator.com/",
-        "selector": {"item": ".athing", "title": ".title>a", "href": ".title>a", 'next': '.morelink'},
+        "selector": {"item": ".athing", "title": ".title>a", "href": ".title>a", "next": ".morelink"},
         "type": "html",
         "desc": "HN"
     }, {
@@ -93,27 +75,22 @@ let sites = [
         "icon": "https://www.v2ex.com/static/img/icon_rayps_64.png",
         "name": "v2ex",
         "url": "https://www.v2ex.com/?tab=hot",
-        "selector": {"item": ".item tr", "title": ".item_title a", "href": ".item_title a", desc: '.small.fade'},
+        "selector": {"item": ".item tr", "title": ".item_title a", "href": ".item_title a", "desc": ".small.fade"},
         "type": "html",
         "desc": "创意工作者们的社区"
     }, {
         "name": "简书",
         "url": "http://www.jianshu.com/trending/weekly?page=1",
         "icon": "http://static.jianshu.io/assets/icon114-fcef1133c955e46bf55e2a60368f687b.png",
-        "selector": {"item": ".content", "title": ".title", "href": ".title", 'desc': '.abstract'},
+        "selector": {"item": ".content", "title": ".title", "href": ".title", "desc": ".abstract"},
         "desc": "一个基于内容分享的社区",
         "type": "html",
-        'page': 'page'
+        "page": "page"
     }, {
         "icon": "https://static.zhihu.com/static/revved/img/ios/touch-icon-152.87c020b9.png",
         "url": "http://www.zhihu.com/explore/recommendations",
         "name": "知乎编辑推荐",
-        "selector": {
-            "item": ".zm-item",
-            "title": "h2>a",
-            "href": "h2>a",
-            "desc": '.zh-summary'
-        },
+        "selector": {"item": ".zm-item", "title": "h2>a", "href": "h2>a", "desc": ".zh-summary"},
         "type": "html",
         "desc": "与世界分享你的知识、经验和见解"
     }, {
@@ -123,7 +100,7 @@ let sites = [
             "item": ".content-list>.item",
             "title": ".part1>a.show-content",
             "href": ".part1>a.show-content",
-            'desc': '.summary',
+            "desc": ".summary",
             "next": "#dig_lcpage li:last-child a"
         },
         "type": "html",
@@ -156,7 +133,7 @@ let sites = [
         "icon": "http://rs-assets.b0.upaiyun.com/assets/apple-touch-icon-180x180-precomposed-763d5ea2ad5193d98490fa9b7c362cfc.png",
         "name": "NEXT",
         "url": "http://next.36kr.com/posts",
-        "selector": {"item": ".product-item ", "title": ".post-url", "href": ".post-url", desc: '.post-tagline'},
+        "selector": {"item": ".product-item ", "title": ".post-url", "href": ".post-url", "desc": ".post-tagline"},
         "type": "html",
         "desc": "不错过任何一个新产品"
     }, {
@@ -166,8 +143,7 @@ let sites = [
         "type": "html",
         "desc": "关注互联网、创业、技术",
         "selector": {"item": ".list-group>.list-group-item .list-title", "title": "a", "href": "a"}
-    },
-    {
+    }, {
         "icon": "http://sfault-avatar.b0.upaiyun.com/235/056/2350560982-56796cae3be72_huge256",
         "url": "http://faxian.smzdm.com/h2s0t0f0c1p1/",
         "name": "什么值得买热门2小时",
@@ -179,8 +155,7 @@ let sites = [
         },
         "type": "html",
         "desc": "汇集2小时里最热门的网友优惠商品爆料"
-    },
-    {
+    }, {
         "url": "http://yangmaojie.com/",
         "name": "羊毛头条",
         "selector": {
@@ -192,9 +167,7 @@ let sites = [
         },
         "type": "html",
         "desc": "交流活动信息，没事薅个羊腿"
-    },
-
-    {
+    }, {
         "icon": "http://www.kiees.com/favicon.ico",
         "url": "http://www.kiees.com/",
         "name": "发现值得买",
@@ -234,6 +207,5 @@ let sites = [
         },
         "type": "html",
         "desc": "1024"
-    }]
+    }];
 
-module.exports = sites;
