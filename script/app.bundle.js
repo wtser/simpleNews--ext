@@ -149,8 +149,10 @@
 	                                    linkArr.pop();
 	                                    linkArr.push(dom);
 	                                    dom = linkArr.join('/');
-	                                } else {
+	                                } else if (dom[1] != '/') {
 	                                    dom = feed.domain + dom;
+	                                } else {
+	                                    dom = 'http:' + dom;
 	                                }
 	                            }
 	                            return dom;
@@ -314,29 +316,9 @@
 	    });
 	};
 
-	app.prototype.landing = function () {
-	    document.querySelector('.reader__list').innerHTML = '\n        <div class="house">\n        <div class="house__care"></div>\n\n        <table cellspacing="0">\n\t\t\t\t\t\t\t\t\t\t<tbody><tr>\n\t\t\t\t\t\t\t\t\t\t\t<td width="42%" height="22" align="left">\n\t\t\t\t\t\t\t\t\t\t\t\t<strong>\u9879\u76EE\u540D\u79F0</strong>\n\t\t\t\t\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t\t\t\t\t\t<td width="14%" align="right">\n\t\t\t\t\t\t\t\t\t\t\t\t<strong>\u5957\u6570</strong>\n\t\t\t\t\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t\t\t\t\t\t<td width="19%" align="right">\n\t\t\t\t\t\t\t\t\t\t\t\t<strong>\u91D1\u989D(\u4E07)</strong>\n\t\t\t\t\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t\t\t\t\t\t<td width="" align="right">\n\t\t\t\t\t\t\t\t\t\t\t\t<strong>\u9762\u79EF</strong>\n\t\t\t\t\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t\t\t</tbody></table>\n\n        <div class="house__detail"></div>\n        </div>\n\n    ';
-	    var url = 'http://www.tmsf.com/newhouse/property_searchall.htm?keytype=1&searchkeyword=%E5%90%AF%E5%9F%8E%28%E9%87%8E%E9%A3%8E%C2%B7%E5%90%AF%E5%9F%8E%29&keyword=%25u542F%25u57CE%2528%25u91CE%25u98CE%25B7%25u542F%25u57CE%2529';
-	    this.fetch(url).then(function (html) {
-	        var dom = document.createElement('div');
-	        dom.innerHTML = html;
-	        var sell = dom.querySelector('.ash1.famwei.ft14 a').innerText.match(/\d+/)[0];
-	        document.querySelector('.house__care').innerHTML = '野风启城可售 ' + sell;
-	    });
-
-	    var url2 = 'http://www.tmsf.com/yhweb/';
-	    this.fetch(url2).then(function (html) {
-	        var dom = document.createElement('div');
-	        dom.innerHTML = html;
-	        var sell = dom.querySelector('#myCont5 marquee');
-	        document.querySelector('.house__detail').innerHTML = sell.innerHTML;
-	    });
-	};
-
 	app.prototype.init = function () {
 	    this.renderSiteList();
 	    this.eventBind();
-	    this.landing();
 	};
 
 	new app();
