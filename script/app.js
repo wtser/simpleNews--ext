@@ -2,7 +2,7 @@ let app = function () {
     this.sites = require('./sites.json.js');
 
     //this.articleLoading = false;
-    this.feed    = {};
+    this.feed = {};
     this.loading = false;
 
     this.init();
@@ -19,9 +19,9 @@ app.prototype.renderSiteList = function () {
     document.querySelector('.reader__site-items').innerHTML = html;
 };
 
-app.prototype.redirect   = function (url) {
+app.prototype.redirect = function (url) {
     chrome.tabs.create({
-        url   : url,
+        url: url,
         active: false
     })
 }
@@ -32,7 +32,7 @@ app.prototype.renderFeed = function (site) {
 
 app.prototype.fetch = function (url, config) {
     return new Promise(function (resolve, reject) {
-        let xhr    = new XMLHttpRequest();
+        let xhr = new XMLHttpRequest();
         let method = (config && config.method ? config.method : 'get').toUpperCase()
         xhr.open(method, url, true);
         if (config && config.header) {
@@ -40,7 +40,7 @@ app.prototype.fetch = function (url, config) {
                 xhr.setRequestHeader(k, config.header[k])
             })
         }
-        xhr.onload             = function () {
+        xhr.onload = function () {
             if (xhr.readyState === 4 && xhr.status === 200) {
                 resolve(xhr.response)
             } else {
@@ -55,7 +55,7 @@ app.prototype.fetch = function (url, config) {
 }
 
 app.prototype.parseArticle = function (feed) {
-    let _this   = this;
+    let _this = this;
     feed.domain = feed.url.split('/');
     feed.domain = feed.domain[0] + '//' + feed.domain[2];
 
@@ -76,9 +76,9 @@ app.prototype.parseArticle = function (feed) {
             let articleList, parsedData, next;
             switch (feed.type) {
                 case 'html':
-                    let dom       = document.createElement('div');
+                    let dom = document.createElement('div');
                     dom.innerHTML = body;
-                    articleList   = dom.querySelectorAll(feed.selector.item || feed.selector);
+                    articleList = dom.querySelectorAll(feed.selector.item || feed.selector);
 
                     let getText = function (node, selector) {
                         let dom = node.querySelector(selector)
@@ -98,8 +98,10 @@ app.prototype.parseArticle = function (feed) {
                                     linkArr.pop();
                                     linkArr.push(dom)
                                     dom = linkArr.join('/')
-                                } else {
+                                } else if (dom[1] != '/') {
                                     dom = feed.domain + dom
+                                } else {
+                                    dom = 'http:' + dom
                                 }
 
                             }
@@ -116,24 +118,24 @@ app.prototype.parseArticle = function (feed) {
 
 
                         let title = getText(articleNode, feed.selector.title)
-                        let href  = getHref(articleNode, feed.selector.href);
+                        let href = getHref(articleNode, feed.selector.href);
 
                         let desc = getText(articleNode, feed.selector.desc)
 
                         return {
                             title: title,
-                            href : href,
-                            desc : desc
+                            href: href,
+                            desc: desc
                         }
                     })
 
                     break;
                 case 'ajax':
-                    let data     = body;
-                    next         = data[feed.selector.next];
+                    let data = body;
+                    next = data[feed.selector.next];
                     let nextPage = parseInt(feed.fetchUrl.match(/page=[\d]+/)[0].split('=')[1]) + 1
-                    next         = feed.api;
-                    next         = next.replace(/page=[\d]+/, 'page=' + nextPage)
+                    next = feed.api;
+                    next = next.replace(/page=[\d]+/, 'page=' + nextPage)
 
                     parsedData = data[feed.selector.item].map(function (a) {
                         var baseUrl;
@@ -149,8 +151,8 @@ app.prototype.parseArticle = function (feed) {
                         }
                         return {
                             title: a[feed.selector.title].trim(),
-                            href : a[feed.selector.href],
-                            desc : a[feed.selector.desc]
+                            href: a[feed.selector.href],
+                            desc: a[feed.selector.desc]
                         };
                     });
 
@@ -165,7 +167,7 @@ app.prototype.parseArticle = function (feed) {
             _this.renderArticles(parsedData, renderMethod)
 
             feed.fetchUrl = next ? next : 'end'
-            _this.feed    = feed;
+            _this.feed = feed;
 
 
         }
@@ -182,7 +184,7 @@ app.prototype.renderArticles = function (articleData, renderMethod) {
         return init + `<li class="reader__list-item"><a target="_blank" href="${ article.href }" class="reader__list-item-link"><span class="reader__list-item-title">${article.title }</span><span class="reader__list-item-below ellipsis">${article.desc ? article.desc : article.href}</span></a></li>`;
     }, '')
 
-    let dom       = document.createElement('div');
+    let dom = document.createElement('div');
     dom.innerHTML = html
 
     if (renderMethod === 'html') {
@@ -198,7 +200,7 @@ app.prototype.renderArticles = function (articleData, renderMethod) {
 }
 
 app.prototype.eventBind = function () {
-    let _this  = this;
+    let _this = this;
     let $sites = document.querySelectorAll('.reader__site-item--content');
     for (let $site of $sites.entries()) {
         let index = $site[0], dom = $site[1];
@@ -222,7 +224,7 @@ app.prototype.eventBind = function () {
     document.querySelector('.reader__news').addEventListener('scroll', function (e) {
         if (_this.feed.selector.next) {
 
-            let $ele    = e.target
+            let $ele = e.target
             let percent = $ele.clientHeight / ($ele.scrollHeight - $ele.scrollTop )
             if (percent > 0.7 && _this.loading == false) {
                 _this.loading = true;

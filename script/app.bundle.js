@@ -151,8 +151,10 @@
 	                                        linkArr.pop();
 	                                        linkArr.push(dom);
 	                                        dom = linkArr.join('/');
-	                                    } else {
+	                                    } else if (dom[1] != '/') {
 	                                        dom = feed.domain + dom;
+	                                    } else {
+	                                        dom = 'http:' + dom;
 	                                    }
 	                                }
 	                                return dom;
