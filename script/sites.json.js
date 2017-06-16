@@ -159,11 +159,10 @@ module.exports = [
         "url": "http://yangmaojie.com/",
         "name": "羊毛头条",
         "selector": {
-            "item": ".thread.tap",
-            "title": ".subject a:nth-last-child(1)",
-            "href": ".subject a:nth-last-child(1)",
-            "desc": "dt",
-            "next": ".page-item:last-child a"
+            "item": ".list .item",
+            "title": ".title a:last-child",
+            "href": ".title a:last-child",
+            "next": ".page-btn.pull-right "
         },
         "type": "html",
         "desc": "交流活动信息，没事薅个羊腿"
