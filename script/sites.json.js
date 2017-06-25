@@ -6,6 +6,18 @@ module.exports = [
         "type": "html"
     },
     {
+        "url": "http://zzhzbbs.zjol.com.cn/forum-2-1.html",
+        "selector": {"item": '#threadlisttableid>tbody',  "title": ".xst", "href": ".xst", "next": ".nxt"},
+        "name": "口水楼市",
+        "type": "html"
+    },
+    {
+        "url": "http://www.19lou.com/forum-111-1.html",
+        "selector": {"item": ".list-data tbody", "title": ".subject>a", "href": ".subject>a", "next": ".page-next"},
+        "name": "19lou 购房俱乐部",
+        "type": "html"
+    },
+    {
         "icon": "http://www.solidot.org/favicon.ico",
         "url": "http://www.solidot.org/",
         "selector": {"item": ".block_m", "title": "h2>a", "href": "h2>a"},
