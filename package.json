@@ -4,8 +4,7 @@
   "description": "[![Join the chat at https://gitter.im/wtser/ten-read](https://badges.gitter.im/wtser/ten-read.svg)](https://gitter.im/wtser/ten-read?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)",
   "main": "webpack.config.js",
   "scripts": {
-    "start": "webpack-dev-server --inline --hot",
-    "build": "NODE_ENV=production  webpack --config webpack.config.production.js -p --progress --profile --colors"
+    "start": "webpack-dev-server --inline --hot"
   },
   "repository": {
     "type": "git",
@@ -18,27 +17,19 @@
   },
   "homepage": "https://github.com/wtser/ten-read#readme",
   "dependencies": {
-    "babel-core": "^6.11.4",
-    "babel-loader": "^6.2.4",
-    "babel-preset-es2015": "^6.9.0",
-    "css": "^2.2.1",
-    "extract-text-webpack-plugin": "^1.0.1",
-    "fetch": "^1.1.0",
-    "file-loader": "^0.9.0",
-    "html-loader": "^0.4.3",
-    "node-sass": "^3.8.0",
-    "sass-loader": "^4.0.0",
-    "style": "0.0.3",
-    "url-loader": "^0.5.7",
-    "vue": "^2.1.10",
-    "vue-resource": "^1.0.3",
-    "vue-router": "^2.1.2",
-    "webpack": "^1.13.1",
-    "webpack-dev-server": "^1.16.2",
-    "whatwg-fetch": "^2.0.2"
+    "react": "^16.1.0",
+    "react-dom": "^16.1.0",
+    "react-redux": "^5.0.6",
+    "redux": "^3.7.2",
+    "styled-components": "^2.2.3"
   },
   "devDependencies": {
-    "css-loader": "^0.26.1",
-    "style-loader": "^0.13.1"
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "webpack": "^3.8.1",
+    "webpack-dev-server": "^2.9.4"
   }
 }
