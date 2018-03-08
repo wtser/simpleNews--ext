@@ -171,10 +171,10 @@ module.exports = [
         "url": "http://yangmaojie.com/",
         "name": "羊毛头条",
         "selector": {
-            "item": ".list .item",
-            "title": ".title a:last-child",
-            "href": ".title a:last-child",
-            "next": ".page-btn.pull-right "
+            "item": ".jinsom-post-list.time.clear .jinsom-posts-list",
+            "title": "h1",
+            "href": "h1>a",
+            "next": ".jinsom-pager-right"
         },
         "type": "html",
         "desc": "交流活动信息，没事薅个羊腿"
