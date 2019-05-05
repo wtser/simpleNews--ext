@@ -1,16 +1,5 @@
 module.exports = [
   {
-    url: "http://shuiku.net/forum.php?mod=forumdisplay&fid=2",
-    selector: {
-      item: "[id^=normalthread_]",
-      title: ".s.xst",
-      href: ".s.xst",
-      next: ".nxt"
-    },
-    name: "水库论坛",
-    type: "html"
-  },
-  {
     url: "http://zzhzbbs.zjol.com.cn/forum-2-1.html",
     selector: {
       item: "#threadlisttableid>tbody",
@@ -24,7 +13,7 @@ module.exports = [
   {
     url: "http://www.19lou.com/forum-111-1.html",
     selector: {
-      item: ".list-data tbody",
+      item: ".list-data-item",
       title: ".subject>a",
       href: ".subject>a",
       next: ".page-next"
@@ -63,13 +52,13 @@ module.exports = [
   },
   {
     name: "medium",
-    url: "https://medium.com/browse/top",
+    url: "https://medium.com/topic/popular",
     type: "html",
     selector: {
-      item: ".streamItem",
-      title: ".graf--title",
-      href: ".postArticle-content>a",
-      desc: ".graf--trailing"
+      item: "h2+div>section",
+      title: "h3 a",
+      href: "h3 a",
+      desc: "h3+div"
     }
   },
   {
@@ -139,21 +128,7 @@ module.exports = [
     type: "html",
     desc: "创意工作者们的社区"
   },
-  {
-    name: "简书",
-    url: "http://www.jianshu.com/trending/weekly?page=1",
-    icon:
-      "http://static.jianshu.io/assets/icon114-fcef1133c955e46bf55e2a60368f687b.png",
-    selector: {
-      item: ".content",
-      title: ".title",
-      href: ".title",
-      desc: ".abstract"
-    },
-    desc: "一个基于内容分享的社区",
-    type: "html",
-    page: "page"
-  },
+
   {
     icon:
       "https://static.zhihu.com/static/revved/img/ios/touch-icon-152.87c020b9.png",
@@ -273,20 +248,7 @@ module.exports = [
     type: "html",
     desc: "高性价比网购推荐"
   },
-  {
-    icon:
-      "http://sfault-image.b0.upaiyun.com/204/600/2046007660-5689ff9be1751_articlex",
-    url: "http://www.meidebi.com/index_q/",
-    name: "没的比最受关注",
-    selector: {
-      item: ".item .tit:not(.clearfix)",
-      title: "a",
-      href: "a",
-      next: ".next"
-    },
-    type: "html",
-    desc: "没得比最受关注商品推荐"
-  },
+
   {
     type: "ajax",
     api:

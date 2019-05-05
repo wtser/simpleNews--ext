@@ -54,6 +54,8 @@ html,
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-bottom: 1em;
+  margin-top: 1em;
 }
 
 .reader__list-item-link {
@@ -69,7 +71,8 @@ html,
   transition: all 0.25s ease-out;
 }
 
-.reader__list-item-link:hover {
+.reader__list-item-link:hover,
+.reader__list-item-link.reader__list-item-link--active {
   background: #eee;
 }
 
@@ -107,7 +110,7 @@ html,
   width: 100%;
   height: 100%;
   display: grid;
-  grid-template: 1fr 1fr / 200px 1fr;
+  grid-template: 1fr 1fr / 1fr 2fr;
   -webkit-overflow-scrolling: touch;
   overflow: hidden;
   position: fixed;
@@ -117,11 +120,7 @@ html,
 }
 
 .reader__loading {
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(255, 255, 255, 0.7);
-  z-index: 3;
+  margin-bottom: 4rem;
 }
 
 .reader__loading-text {
@@ -160,6 +159,7 @@ html,
   overflow: scroll;
   /* position: absolute; */
   height: calc(100vh - 250px);
+  margin-left: -10px;
 }
 
 .reader__site-item {
@@ -167,7 +167,7 @@ html,
   line-height: 30px;
   font-size: 14px;
   list-style: none;
-  cursor: pointer;
+
   position: relative;
   transition: all 0.25s cubic-bezier(0.22, 0.61, 0.36, 1);
 }
@@ -179,9 +179,10 @@ html,
 }
 
 .reader__site-item--active {
-  background-color: #f4f4f4;
-  font-size: 20px;
-  padding: 5px 10px;
+  background-color: #bbb;
+  color: #fff;
+  border-radius: 4px;
+  font-weight: 800;
 }
 
 .reader__config {
@@ -254,6 +255,16 @@ html,
   }
 }
 
+.reader__site-items {
+  display: flex;
+  flex-wrap: wrap;
+}
+.reader__site-item--content {
+  display: inline-block;
+  width: auto;
+  padding: 8px 16px;
+  cursor: pointer;
+}
 /* other */
 .house__care {
   float: right;
