@@ -4,6 +4,7 @@ let app = function() {
   //this.articleLoading = false;
   this.feed = {};
   this.loading = false;
+  this.fetchUrl = null;
 
   this.init();
 };
@@ -30,6 +31,7 @@ app.prototype.redirect = function(url) {
 };
 app.prototype.renderFeed = function(site) {
   document.querySelector(".reader__loading").classList.remove("hide");
+
   this.parseArticle(site);
 };
 
@@ -48,7 +50,6 @@ app.prototype.fetch = function(url, config) {
     }
     xhr.onload = function() {
       if (xhr.readyState === 4 && xhr.status === 200) {
-          console.log(xhr)
         resolve(xhr.response);
       } else {
         reject(xhr);
@@ -73,6 +74,7 @@ app.prototype.parseArticle = function(feed) {
     return;
   }
 
+  _this.fetchUrl = feed.fetchUrl;
   _this.fetch(feed.fetchUrl).then(
     function(body) {
       switch (feed.type) {
@@ -175,10 +177,11 @@ app.prototype.parseArticle = function(feed) {
           renderMethod = "append";
         }
 
-        _this.renderArticles(parsedData, renderMethod);
-
-        feed.fetchUrl = next ? next : "end";
-        _this.feed = feed;
+        if (_this.fetchUrl === feed.fetchUrl) {
+          _this.renderArticles(parsedData, renderMethod);
+          feed.fetchUrl = next ? next : "end";
+          _this.feed = feed;
+        }
       }
     },
     function(err) {
