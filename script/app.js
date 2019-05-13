@@ -33,6 +33,7 @@ app.prototype.renderFeed = function(site) {
   document.querySelector(".reader__loading").classList.remove("hide");
 
   this.parseArticle(site);
+  this.fetchUrl = site.url;
 };
 
 app.prototype.fetch = function(url, config) {
@@ -74,9 +75,12 @@ app.prototype.parseArticle = function(feed) {
     return;
   }
 
-  _this.fetchUrl = feed.fetchUrl;
   _this.fetch(feed.fetchUrl).then(
     function(body) {
+      if (_this.fetchUrl != feed.url) {
+        return;
+      }
+
       switch (feed.type) {
         case "ajax":
           body = JSON.parse(body);
@@ -177,11 +181,10 @@ app.prototype.parseArticle = function(feed) {
           renderMethod = "append";
         }
 
-        if (_this.fetchUrl === feed.fetchUrl) {
-          _this.renderArticles(parsedData, renderMethod);
-          feed.fetchUrl = next ? next : "end";
-          _this.feed = feed;
-        }
+        _this.renderArticles(parsedData, renderMethod);
+
+        feed.fetchUrl = next ? next : "end";
+        _this.feed = feed;
       }
     },
     function(err) {
@@ -235,8 +238,7 @@ app.prototype.eventBind = function() {
       let site = _this.sites[index];
       delete site.fetchUrl;
       document.querySelector(".reader__list").innerHTML = "";
-      //document.querySelector(".reader__news").scrollTop = 0;
-
+      _this.loading = true;
       _this.renderFeed(site);
     });
   }
